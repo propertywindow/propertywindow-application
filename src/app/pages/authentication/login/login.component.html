@@ -1,0 +1,54 @@
+<div id="login_wrapper">
+	<div class="logo">
+		<img src="assets/img/logo/logo-icon@2x.png" alt="logo" class="logo-img">
+	</div>
+	<section id="login_content">
+		<h1 class="login-title">
+			Sign In to your account
+		</h1>
+		<div class="login-body">
+
+            <!--<alert type="warning" *ngIf="f.submitted && !email.valid" dismissible="true">-->
+                <!--Email is required.-->
+            <!--</alert>-->
+
+            <!--<alert type="warning" *ngIf="f.submitted && !password.valid" dismissible="true">-->
+                <!--Password is required.-->
+            <!--</alert>-->
+
+            <!--<alert type="danger" *ngIf="error" dismissible="true">-->
+                <!--{{error}}-->
+            <!--</alert>-->
+
+			<form class="form-horizontal" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+
+				<div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
+					<label class="sr-only">Email: </label>
+					<div class="col-md">
+						<md-input-container floatPlaceholder="auto" class="float-auto">
+							<input mdInput placeholder="Email" class="form-control" type="email" name="email" [(ngModel)]="model.email" #email="ngModel" required>
+						</md-input-container>
+					</div>
+				</div>
+
+				<div class="form-group row"  [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+					<label class="sr-only">Password: </label>
+					<div class="col-md">
+						<md-input-container floatPlaceholder="auto" class="float-auto">
+							<input mdInput  placeholder="Password" class="form-control" type="password" name="password" [(ngModel)]="model.password" #password="ngModel" required>
+						</md-input-container>
+					</div>
+				</div>
+
+				<a href="javascript:void(0)" class="forgot-pass float-right">Forgot Password?</a>
+				<div class="checkbox inline-block">
+					<md-checkbox name="remember"> Remember Me</md-checkbox>
+				</div>
+
+                <button [disabled]="loading" class="btn btn-primary btn-block m-t-40">
+                    <i *ngIf="loading" class="zmdi zmdi-spinner zmdi-hc-spin"></i> <span *ngIf="!loading">Login</span>
+                </button>
+			</form>
+		</div>
+	</section>
+</div>

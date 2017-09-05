@@ -1,0 +1,55 @@
+<nav role="navigation" class="navbar">
+    <ul class="navbar-nav nav-left">
+        <li class="nav-item hidden-sm">
+            <a md-ripple href="javascript:void(0)" (click)="toggleAppMobileLeftMenuSidebar()"
+               class="nav-link mobile-menu-trigger">
+                <i class="mdi mdi-backburger"></i>
+            </a>
+        </li>
+        <li class="nav-item hidden-sm-down">
+            <a md-ripple href="javascript:void(0)" [routerLink]="['/dashboard']" class="nav-link">
+                <span>New</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a md-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
+                <i class="zmdi zmdi-search"></i>
+            </a>
+        </li>
+    </ul>
+    <ul class="navbar-nav nav-right">
+        <li class="nav-item dropdown avatar-menu hidden-sm-down" *ngIf="loggedInUser" dropdown>
+            <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
+				<span class="meta">
+					<span class="avatar">
+						<img src="{{loggedInUser.avatar}}" alt="" class="img-circle max-w-35">
+						<i class="badge mini success status"></i>
+					</span>
+					<span class="name">{{loggedInUser.full_name}}</span>
+					<span class="caret"></span>
+				</span>
+            </a>
+            <ul class="dropdown-menu btn-accent dropdown-menu-right" *dropdownMenu>
+                <li>
+                    <a href="javascript:void(0)" [routerLink]="['/profile']"><i class="zmdi zmdi-account"></i>
+                        Profile</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)" [routerLink]="['/mail']"><i class="zmdi zmdi-email"></i> Messages</a>
+                </li>
+                <li>
+                    <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> Account Settings</a>
+                </li>
+                <li>
+                    <a [routerLink]="['/login']"><i class="zmdi zmdi-sign-in"></i> Sign Out</a>
+                </li>
+            </ul>
+        </li>
+        <li class="nav-item">
+            <a md-ripple href="javascript:void(0)" (click)="toggleAppRightSidebar()" class="nav-link">
+                <i [ngClass]="{'mdi-playlist-minus': false, 'mdi-playlist-plus': true}" class="mdi"></i>
+            </a>
+        </li>
+    </ul>
+</nav>
+<topbar-search #search></topbar-search>

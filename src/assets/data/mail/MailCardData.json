@@ -1,0 +1,37 @@
+[
+	{
+		"title": "John Smith",
+		"img": "/assets/img/profiles/02.jpg",
+		"text": "[Dribbble] Work inquiry from John Smith."
+	},
+	{
+		"title": "Mike Jones",
+		"img": "/assets/img/profiles/03.jpg",
+		"text": "We would also require your assistance to design our backend application."
+	},
+	{
+		"title": "Allison Grayce",
+		"img": "/assets/img/profiles/05.jpg",
+		"text": "If you don't break a few things you're not trying hard enough."
+	},
+	{
+		"title": "Ashley Ford",
+		"img": "/assets/img/profiles/18.jpg",
+		"text": "Let's touch base this Friday and go over the project requirements."
+	},
+	{
+		"title": "Josh Hemsley",
+		"img": "/assets/img/profiles/16.jpg",
+		"text": "Tree-shaking example with Typescript and Webpack"
+	},
+	{
+		"title": "Nikki Clark",
+		"img": "/assets/img/profiles/06.jpg",
+		"text": "I'm thrilled to announce that Designing for Performance is now available for free online."
+	},
+	{
+		"title": "Johanna Kollmann",
+		"img": "/assets/img/profiles/11.jpg",
+		"text": "Leaving for London in one week"
+	}
+]
