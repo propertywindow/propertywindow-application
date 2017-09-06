@@ -2,56 +2,42 @@ import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
-import {User} from '../../../model/user';
+import {Agent} from '../../../model/agent';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
 @Injectable()
-export class UserService {
+export class AgentService {
     constructor(private http: Http, private authenticationService: AuthenticationService) {
     }
-
-    getUsers(): Observable<User[]> {
+    getAgents(): Observable<Agent[]> {
         const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
         const options = new RequestOptions({headers: headers});
         const data = {
             'jsonrpc': '2.0',
             'id': null,
-            'method': 'getUsers'
+            'method': 'getAgents'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
+            .post('http://propertywindow-engine.dev/agent', data, options)
             .map((response: Response) => response.json().result);
     };
 
-    getUser(id: number): Observable<User> {
+    getAgent(id: number): Observable<Agent> {
         const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
         const options = new RequestOptions({headers: headers});
         const data = {
             'jsonrpc': '2.0',
             'id': null,
-            'method': 'getUser',
+            'method': 'getAgent',
             'params': {
                 'id': id
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
-            .map((response: Response) => response.json().result);
-    };
-
-    getColleagues(): Observable<User[]> {
-        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        const options = new RequestOptions({headers: headers});
-        const data = {
-            'jsonrpc': '2.0',
-            'id': null,
-            'method': 'getColleagues'
-        };
-        return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
+            .post('http://propertywindow-engine.dev/agent', data, options)
             .map((response: Response) => response.json().result);
     };
 }

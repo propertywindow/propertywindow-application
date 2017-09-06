@@ -1,5 +1,6 @@
 import {Routes, RouterModule} from '@angular/router';
 import {LayoutComponent} from './layout.component';
+import {AuthGuard} from '../shared/guards/auth.guard';
 
 const LAYOUT_ROUTES: Routes = [
     {
@@ -20,27 +21,41 @@ const LAYOUT_ROUTES: Routes = [
             // ---------------------------------------------------------->
             {
                 path: 'dashboard',
-                loadChildren: '../pages/dashboard/dashboard.module#DashboardModule'
+                loadChildren: '../pages/dashboard/dashboard.module#DashboardModule',
+                canActivate: [AuthGuard]
             },
             // ---------------------------------------------------------->
             // Properties
             // ---------------------------------------------------------->
             {
                 path: 'properties',
-                loadChildren: '../pages/properties/properties/properties.module#PropertiesModule'
+                loadChildren: '../pages/properties/properties/properties.module#PropertiesModule',
+                canActivate: [AuthGuard]
             },
             // ---------------------------------------------------------->
             // Users
             // ---------------------------------------------------------->
             {
                 path: 'users/users',
-                loadChildren: '../pages/users/users/users.module#UsersModule'
+                loadChildren: '../pages/users/users/users.module#UsersModule',
+                canActivate: [AuthGuard]
+            },
+            // ---------------------------------------------------------->
+            // Agents
+            // ---------------------------------------------------------->
+            {
+                path: 'agents',
+                loadChildren: '../pages/agents/agents/agents.module#AgentsModule',
+                canActivate: [AuthGuard]
             }
         ]
     },
 
     // 404 Page Not Found
-    {path: '**', redirectTo: 'dashboards'}
+    {
+        path: '**',
+        redirectTo: 'dashboard'
+    }
 ];
 
 export const LayoutRoutes = RouterModule.forChild(LAYOUT_ROUTES);

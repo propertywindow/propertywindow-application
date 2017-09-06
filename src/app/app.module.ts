@@ -6,12 +6,14 @@ import {HttpModule} from '@angular/http';
 import {AppComponent} from './app.component';
 import {AppState, InternalStateType} from './app.service';
 import {GlobalState} from './app.state';
+import {AuthGuard} from './shared/guards/auth.guard';
+import {AuthenticationService} from './shared/authentication/authentication.service';
 import {ServicesModule} from './shared/services/services.module';
 import {SharedModule} from './shared/shared.module';
 import {AppRoutingModule} from './app.routing';
 
 // Application wide providers
-const APP_PROVIDERS = [AppState, GlobalState, Title];
+const APP_PROVIDERS = [AppState, GlobalState, Title, AuthGuard, AuthenticationService];
 
 export type StoreType = {
     state: InternalStateType;

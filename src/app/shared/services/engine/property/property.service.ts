@@ -1,7 +1,7 @@
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AuthenticationService} from '../../authentication/authentication.service';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Property} from '../../../model/property';
 
 import 'rxjs/Rx';
@@ -14,9 +14,9 @@ export class PropertyService {
     }
 
     getProperties(): Observable<Property[]> {
-        let headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        let options = new RequestOptions({headers: headers});
-        let data = {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'getProperties'
@@ -28,9 +28,9 @@ export class PropertyService {
     };
 
     getProperty(id: number): Observable<Property> {
-        let headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        let options = new RequestOptions({headers: headers});
-        let data = {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'getProperty',

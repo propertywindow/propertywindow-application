@@ -8,17 +8,17 @@
 		</h1>
 		<div class="login-body">
 
-            <!--<alert type="warning" *ngIf="f.submitted && !email.valid" dismissible="true">-->
-                <!--Email is required.-->
-            <!--</alert>-->
+            <alert type="warning" *ngIf="f.submitted && !email.valid" dismissible="true">
+                Email is required.
+            </alert>
 
-            <!--<alert type="warning" *ngIf="f.submitted && !password.valid" dismissible="true">-->
-                <!--Password is required.-->
-            <!--</alert>-->
+            <alert type="warning" *ngIf="f.submitted && !password.valid" dismissible="true">
+                Password is required.
+            </alert>
 
-            <!--<alert type="danger" *ngIf="error" dismissible="true">-->
-                <!--{{error}}-->
-            <!--</alert>-->
+            <alert type="danger" *ngIf="error" dismissible="true">
+                {{error}}
+            </alert>
 
 			<form class="form-horizontal" name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
 

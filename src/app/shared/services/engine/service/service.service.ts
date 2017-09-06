@@ -1,7 +1,7 @@
 import {Http, Headers, Response, RequestOptions} from '@angular/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {AuthenticationService} from '../../authentication/authentication.service';
+import {AuthenticationService} from '../../../authentication/authentication.service';
 import {ServiceGroup} from '../../../model/serviceGroup';
 
 import 'rxjs/Rx';
@@ -13,9 +13,9 @@ export class ServiceService {
     constructor(private http: Http, private authenticationService: AuthenticationService) {
     }
     getServiceGroups(): Observable<ServiceGroup[]> {
-        let headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        let options = new RequestOptions({headers: headers});
-        let data = {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'getServiceGroups'
@@ -26,9 +26,9 @@ export class ServiceService {
     };
 
     getServiceGroup(id: number): Observable<ServiceGroup> {
-        let headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        let options = new RequestOptions({headers: headers});
-        let data = {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'getServiceGroup',
@@ -42,9 +42,9 @@ export class ServiceService {
     };
 
     getMenu(): Observable<ServiceGroup[]> {
-        let headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
-        let options = new RequestOptions({headers: headers});
-        let data = {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'getMenu'

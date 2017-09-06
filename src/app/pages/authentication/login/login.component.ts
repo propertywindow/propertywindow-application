@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
-import { AuthenticationService } from '../../../shared/services/authentication/authentication.service';
+import {AuthenticationService} from '../../../shared/authentication/authentication.service';
 
 @Component({
     moduleId: module.id,
@@ -15,9 +15,9 @@ export class LoginComponent implements OnInit {
     loading = false;
     error = '';
 
-    constructor(
-        private router: Router,
-        private authenticationService: AuthenticationService) { }
+    constructor(private router: Router,
+                private authenticationService: AuthenticationService) {
+    }
 
     ngOnInit() {
         this.authenticationService.logout();

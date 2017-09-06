@@ -43,7 +43,7 @@ $mw-custom-teal: (
 		)
 );
 $theme-a-primary: mat-palette($mw-custom-teal, 500);
-$theme-a-accent: mat-palette($mat-pink, 500);
+$theme-a-accent: mat-palette($mw-custom-teal, 500);
 $theme-a-warn: mat-palette($mat-red, 500);
 $theme-a-theme: mat-light-theme(
 	$theme-a-primary,
@@ -55,7 +55,7 @@ $theme-a-theme: mat-light-theme(
 // --------------------------------------------------
 //== Default Skin Colors
 $app_primary: $light_blue; //** main App Color
-$app_secondary: lighten(#6CA300,5%);
+$app_secondary: lighten($light_blue,5%);
 $app_accent: $light_green; //** main Accent Color
 $app_warn: $md-yellow-500; //** Warn Color
 $body_bg: #eef5f9; //** Background color for <body>
@@ -561,16 +561,16 @@ body {
 	label {
 		input.toggle-primary[type=checkbox]:checked {
 			+ .toggle {
-				background-color: rgba(green,  (70/100));
+				background-color: rgba($light_green,  (70/100));
 			}
 
 			+ .toggle:after {
-				border-color: green;
+				border-color: $light_green;
 			}
 
 			+ .toggle:active:after {
 				box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.4),
-					0 0 0 15px rgba(green,  (10/100));
+					0 0 0 15px rgba($light_green,  (10/100));
 			}
 		}
 	}

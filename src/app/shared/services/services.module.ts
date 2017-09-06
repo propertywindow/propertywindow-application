@@ -4,8 +4,8 @@ import {ConfigService} from './config/config.service';
 import {PreloaderService} from './preloader/preloader.service';
 import {SpinnerService} from './spinner/spinner.service';
 
-import {AuthenticationService} from './authentication/authentication.service';
 import {UserService} from './engine/user/user.service';
+import {AgentService} from './engine/agent/agent.service';
 import {PropertyService} from './engine/property/property.service';
 import {ServiceService} from './engine/service/service.service';
 import {ActivityService} from './engine/log/activity.service';
@@ -16,8 +16,8 @@ import {ActivityService} from './engine/log/activity.service';
         ConfigService,
         PreloaderService,
         SpinnerService,
-        AuthenticationService,
         UserService,
+        AgentService,
         PropertyService,
         ServiceService,
         ActivityService

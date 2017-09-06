@@ -19,7 +19,7 @@ export class RightSidebarComponent {
     constructor(public config: ConfigService,
                 private userService: UserService,
                 private activityService: ActivityService) {
-        this.userService.getUsers().subscribe(
+        this.userService.getColleagues().subscribe(
             data => {
                 this.users = data;
             }
