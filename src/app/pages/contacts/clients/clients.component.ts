@@ -12,17 +12,17 @@ import {
 } from '@angular/core';
 import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
-import {PropertyService} from '../../../shared/services/engine/property/property.service';
-import {Property} from '../../../shared/model/property';
+import {ClientService} from '../../../shared/services/engine/client/client.service';
+import {Client} from '../../../shared/model/client';
 
 @Component({
     selector: '.content_inner_wrapper',
-    templateUrl: './properties.component.html',
-    styleUrls: ['./properties.component.scss']
+    templateUrl: './clients.component.html',
+    styleUrls: ['./clients.component.scss']
 })
-export class PropertiesComponent implements OnInit {
-    title: string = 'Properties';
-    rows: Property[] = [];
+export class ClientsComponent implements OnInit {
+    title: string = 'Clients';
+    rows: Client[] = [];
     selected = [];
     temp = [];
     searchValue: string = null;
@@ -31,16 +31,15 @@ export class PropertiesComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(private propertyService: PropertyService) {
+    constructor(private clientService: ClientService) {
     }
 
     ngOnInit() {
-        this.propertyService.getProperties()
+        this.clientService.getClients()
             .subscribe(data => {
                 this.temp = [...data];
                 this.rows = data;
             });
-        // todo: when no properties, pulsate add button
     }
 
     updateFilter(event) {

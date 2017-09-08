@@ -32,6 +32,16 @@ const LAYOUT_ROUTES: Routes = [
                 loadChildren: '../pages/properties/properties/properties.module#PropertiesModule',
                 canActivate: [AuthGuard]
             },
+            {
+                path: 'properties/add',
+                loadChildren: '../pages/properties/add.property/add.property.module#AddPropertyModule',
+                canActivate: [AuthGuard]
+            },
+            {
+                path: 'properties/view/:id',
+                loadChildren: '../pages/properties/view.property/view.property.module#ViewPropertyModule',
+                canActivate: [AuthGuard]
+            },
             // ---------------------------------------------------------->
             // Users
             // ---------------------------------------------------------->
@@ -46,6 +56,14 @@ const LAYOUT_ROUTES: Routes = [
             {
                 path: 'agents',
                 loadChildren: '../pages/agents/agents/agents.module#AgentsModule',
+                canActivate: [AuthGuard]
+            },
+            // ---------------------------------------------------------->
+            // Contacts
+            // ---------------------------------------------------------->
+            {
+                path: 'contacts/clients',
+                loadChildren: '../pages/contacts/clients/clients.module#ClientsModule',
                 canActivate: [AuthGuard]
             }
         ]

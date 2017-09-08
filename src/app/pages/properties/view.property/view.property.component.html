@@ -1,0 +1,39 @@
+<div id="content_wrapper" class="fullWidth2-wrapper">
+
+    <md-sidenav-container class="sidenav-container">
+        <div class="content" *ngIf="property">
+            <header class="header-wrapper header-sm shadow-none">
+                <h1>{{property.address}}, {{property.city}}</h1>
+            </header>
+            <tabset class="tabpanel tab-header">
+                <tab heading="Overview">
+                    <div class="content-body">
+                        <pre>
+                            {{property | json}}
+                        </pre>
+                    </div>
+                </tab>
+                <tab heading="Gallery">
+                    <div class="content-body">
+
+                    </div>
+                </tab>
+                <tab heading="Offers">
+                    <div class="content-body">
+
+                    </div>
+                </tab>
+                <tab heading="Viewings">
+                    <div class="content-body">
+
+                    </div>
+                </tab>
+            </tabset>
+        </div>
+
+        <footer id="footer_wrapper" class="footer_wrapper"></footer>
+
+    </md-sidenav-container>
+
+</div>
+

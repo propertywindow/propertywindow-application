@@ -18,6 +18,13 @@
         </li>
     </ul>
     <ul class="navbar-nav nav-right">
+
+
+        <li class="nav-item" *ngIf="loading">
+            <a md-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
+                <i class="zmdi zmdi-spinner zmdi-hc-spin"></i>
+            </a>
+        </li>
         <li class="nav-item dropdown avatar-menu hidden-sm-down" *ngIf="loggedInUser" dropdown>
             <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
 				<span class="meta">
@@ -45,6 +52,7 @@
                 </li>
             </ul>
         </li>
+
         <li class="nav-item">
             <a md-ripple href="javascript:void(0)" (click)="toggleAppRightSidebar()" class="nav-link">
                 <i [ngClass]="{'mdi-playlist-minus': false, 'mdi-playlist-plus': true}" class="mdi"></i>

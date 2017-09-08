@@ -24,6 +24,7 @@ import {User} from '../../shared/model/user';
 })
 export class TopNavbarComponent implements OnInit {
     loggedInUser: User;
+    loading = true;
 
     constructor(public config: ConfigService,
                 private _elementRef: ElementRef,
@@ -44,6 +45,7 @@ export class TopNavbarComponent implements OnInit {
         this.userService.getUser(currentUser.id).subscribe(
             data => {
                 this.loggedInUser = data;
+                this.loading = false;
             }
         );
     }

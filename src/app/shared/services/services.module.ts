@@ -6,6 +6,7 @@ import {SpinnerService} from './spinner/spinner.service';
 
 import {UserService} from './engine/user/user.service';
 import {AgentService} from './engine/agent/agent.service';
+import {ClientService} from './engine/client/client.service';
 import {PropertyService} from './engine/property/property.service';
 import {ServiceService} from './engine/service/service.service';
 import {ActivityService} from './engine/log/activity.service';
@@ -18,6 +19,7 @@ import {ActivityService} from './engine/log/activity.service';
         SpinnerService,
         UserService,
         AgentService,
+        ClientService,
         PropertyService,
         ServiceService,
         ActivityService

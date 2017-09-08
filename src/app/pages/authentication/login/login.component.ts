@@ -5,7 +5,7 @@ import {AuthenticationService} from '../../../shared/authentication/authenticati
 
 @Component({
     moduleId: module.id,
-    selector: '.content_inner_wrapper',
+    selector: '.login_wrapper',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss']
 })

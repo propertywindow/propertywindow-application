@@ -14,13 +14,13 @@ export class AuthenticationService {
         this.token = currentUser && currentUser.token;
     }
 
-    login(username: string, password: string): Observable<boolean> {
+    login(email: string, password: string): Observable<boolean> {
         const loginData = {
             'jsonrpc': '2.0',
             'id': null,
             'method': 'login',
             'params': {
-                'email': username,
+                'email': email,
                 'password': password
             }
         };
@@ -33,7 +33,7 @@ export class AuthenticationService {
 
                     localStorage.setItem('currentUser', JSON.stringify({
                         id: this.id,
-                        email: 'geurtsmarc@hotmail.com',
+                        email: email,
                         token: this.token
                     }));
                     return true;
