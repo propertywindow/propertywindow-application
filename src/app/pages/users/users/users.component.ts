@@ -22,14 +22,15 @@ import {TopNavbarComponent} from '../../../layout/top-navbar/top-navbar.componen
 import {LeftSidebarComponent} from '../../../layout/left-sidebar/left-sidebar.component';
 import {ImpersonateComponent} from '../../../layout/top-navbar/impersonate/impersonate.component';
 import swal from 'sweetalert2';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
-    providers: [TopNavbarComponent, LeftSidebarComponent, ImpersonateComponent],
     selector: '.content_inner_wrapper',
     templateUrl: './users.component.html',
     styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
+    public static doImpersonate: Subject<boolean> = new Subject();
     service: Service;
     rows: User[] = [];
     selected = [];
@@ -39,14 +40,45 @@ export class UsersComponent implements OnInit {
     isToolbarActive: boolean = false;
     itemsSelected: string = '';
     itemCount: number = 0;
+    impersonateId: number;
 
     constructor(private router: Router,
                 private userService: UserService,
                 private serviceService: ServiceService,
-                private authenticationService: AuthenticationService,
-                private topNavbar: TopNavbarComponent,
-                private leftSidebar: LeftSidebarComponent,
-                private impersonateBar: ImpersonateComponent) {
+                private authenticationService: AuthenticationService
+    ) {
+
+        UsersComponent.doImpersonate.subscribe(res => {
+            this.authenticationService.impersonate(this.impersonateId)
+                .subscribe(result => {
+                    if (result === true) {
+                        swal({
+                            title: 'Impersonating',
+                            text: 'One moment please..',
+                            type: 'success',
+                            timer: 3000,
+                            customClass: 'animated tada',
+                            showConfirmButton: false,
+                        }).then(
+                            function () {},
+                            function (dismiss) {}
+                        );
+                        TopNavbarComponent.updateUser.next(true);
+                        LeftSidebarComponent.updateUser.next(true);
+                        ImpersonateComponent.updateUser.next(true);
+                        this.router.navigate(['/']);
+                    } else {
+                        swal({
+                            title: 'Error!',
+                            text: 'You are not allowed to impersonate',
+                            type: 'error',
+                            confirmButtonText: 'Ok',
+                            confirmButtonClass: 'btn btn-danger',
+                            buttonsStyling: false
+                        });
+                    }
+                });
+        })
     }
 
     ngOnInit() {
@@ -64,7 +96,7 @@ export class UsersComponent implements OnInit {
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.temp.filter(function (d) {
-            return d.address.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.full_name.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.rows = temp;
     }
@@ -108,20 +140,20 @@ export class UsersComponent implements OnInit {
     }
 
     impersonate(id) {
-        // todo : add popup to confirm
-
-        this.authenticationService.impersonate(id)
-            .subscribe(result => {
-                if (result === true) {
-                    this.topNavbar.ngOnInit();
-                    this.leftSidebar.ngOnInit();
-                    this.impersonateBar.ngOnInit();
-                    this.router.navigate(['/']);
-                    swal('Success', 'You are now impersonating', 'success');
-                } else {
-
-                    // todo: add loading
-                }
-            });
+        this.impersonateId = id;
+        swal({
+            title: 'Are you sure?',
+            text: 'Do you want to impersonate?',
+            type: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, impersonate',
+            cancelButtonText: 'No, cancel',
+            confirmButtonClass: 'btn btn-success',
+            cancelButtonClass: 'btn btn-danger',
+            buttonsStyling: false
+        }).then(function () {
+            UsersComponent.doImpersonate.next(true);
+        }, function (dismiss) {}
+        )
     }
 }

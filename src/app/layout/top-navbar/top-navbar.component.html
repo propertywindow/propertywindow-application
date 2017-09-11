@@ -9,7 +9,7 @@
         </li>
         <li class="nav-item hidden-sm-down">
             <a md-ripple href="javascript:void(0)" [routerLink]="['/dashboard']" class="nav-link">
-                <i class="zmdi zmdi-plus"></i> {{loading}}
+                <i class="zmdi zmdi-plus"></i>
             </a>
         </li>
         <li class="nav-item">
@@ -17,7 +17,9 @@
                 <i class="zmdi zmdi-search"></i>
             </a>
         </li>
-        <topbar-impersonate></topbar-impersonate>
+    </ul>
+    <ul class="navbar-nav nav-center">
+        <topbar-impersonate class="m-t-n-20 impersonate"></topbar-impersonate>
     </ul>
     <ul class="navbar-nav nav-right">
 
@@ -26,7 +28,7 @@
                 <i class="zmdi zmdi-spinner zmdi-hc-spin"></i>
             </a>
         </li>
-        <li class="nav-item dropdown avatar-menu hidden-sm-down" *ngIf="loggedInUser" dropdown>
+        <li class="nav-item dropdown avatar-menu hidden-sm-down" *ngIf="loggedInUser && !loading" dropdown>
             <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
 				<span class="meta">
 					<span class="avatar">
@@ -60,14 +62,11 @@
                 </li>
             </ul>
         </li>
-        <!--<li class="nav-item">-->
-            <!--<a md-ripple href="javascript:void(0)" class="nav-link">-->
-                <!--<i class="zmdi zmdi-notifications"></i>-->
-            <!--</a>-->
-        <!--</li>-->
         <li class="nav-item">
             <a md-ripple href="javascript:void(0)" class="nav-link">
-                <i class="zmdi zmdi-notifications-active animated infinite tada mdc-text-amber zmdi-hc-fw"></i>
+                <i *ngIf="loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
+                <i *ngIf="!loading"
+                   class="zmdi zmdi-notifications-active animated infinite tada zmdi-hc-fw"></i>
             </a>
         </li>
         <li class="nav-item">

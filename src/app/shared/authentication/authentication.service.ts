@@ -81,8 +81,41 @@ export class AuthenticationService {
             });
     }
 
+    reImpersonate(): Observable<boolean> {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const impersonateUser = JSON.parse(localStorage.getItem('impersonateUser'));
+        const impersonateData = {
+            'jsonrpc': '2.0',
+            'id': null,
+            'method': 'impersonate',
+            'params': {
+                'user_id': impersonateUser.id,
+                'impersonate_id': currentUser.id
+            }
+        };
+        return this.http.post('http://propertywindow-engine.dev/authentication/login', impersonateData)
+            .map((response: Response) => {
+                const result = response.json() && response.json().result;
+                if (result) {
+                    this.id = impersonateUser.id;
+                    this.email = impersonateUser.email;
+                    this.token = impersonateUser.token;
+                    localStorage.setItem('currentUser', JSON.stringify({
+                        id: impersonateUser.id,
+                        email: impersonateUser.email,
+                        token: impersonateUser.token
+                    }));
+                    localStorage.removeItem('impersonateUser');
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+    }
+
     logout(): void {
         this.token = null;
         localStorage.removeItem('currentUser');
+        localStorage.removeItem('impersonateUser');
     }
 }

@@ -1,4 +1,4 @@
 <alert type="warning" *ngIf="impersonate">
-    <i class="zmdi zmdi-run"></i> You're impersonating this user {{impersonateUser.id}},
-    <button md-ripple class="btn btn-primary btn-sm" (click)="goBack()">Click Here</button> to go back to your own account.
+    <i class="mdi mdi-transit-transfer"></i> You're impersonating this user,
+    <a (click)="goBack()">Click here</a> to go back to your own account.
 </alert>

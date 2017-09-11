@@ -2,9 +2,11 @@ import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from '@angular/router';
 import {TopNavbarComponent} from '../top-navbar.component';
 import {LeftSidebarComponent} from '../../left-sidebar/left-sidebar.component';
+import {Subject} from 'rxjs/Subject';
+import swal from 'sweetalert2';
+import {AuthenticationService} from '../../../shared/authentication/authentication.service';
 
 @Component({
-    providers: [TopNavbarComponent, LeftSidebarComponent],
     selector: 'topbar-impersonate',
     templateUrl: './impersonate.component.html',
     styleUrls: ['./impersonate.component.scss'],
@@ -12,34 +14,45 @@ import {LeftSidebarComponent} from '../../left-sidebar/left-sidebar.component';
 })
 
 export class ImpersonateComponent implements OnInit {
+    public static updateUser: Subject<boolean> = new Subject();
     impersonate: boolean = false;
     impersonateUser;
 
-    constructor(private router: Router,
-                private topNavbar: TopNavbarComponent,
-                private leftSidebar: LeftSidebarComponent
+    constructor(
+        private router: Router,
+        private authenticationService: AuthenticationService
     ) {
+        ImpersonateComponent.updateUser.subscribe(res => {
+            this.impersonate = false;
+            if (localStorage.getItem('impersonateUser')) {
+                this.impersonate = true;
+                this.impersonateUser = JSON.parse(localStorage.getItem('impersonateUser'));
+            }
+        })
     }
 
     ngOnInit() {
-        if (localStorage.getItem('impersonateUser')) {
-            this.impersonate = true;
-            this.impersonateUser = JSON.parse(localStorage.getItem('impersonateUser'));
-        }
+        ImpersonateComponent.updateUser.next(true);
     }
 
     goBack() {
-        localStorage.setItem('currentUser', JSON.stringify({
-            id: this.impersonateUser.id,
-            email: this.impersonateUser.email,
-            token: this.impersonateUser.token
-        }));
-        localStorage.removeItem('impersonateUser');
-
-        this.impersonate = false;
-        this.topNavbar.ngOnInit();
-        this.leftSidebar.ngOnInit();
-
-        this.router.navigate(['/users/users']);
+        this.authenticationService.reImpersonate()
+            .subscribe(result => {
+                if (result === true) {
+                    TopNavbarComponent.updateUser.next(true);
+                    LeftSidebarComponent.updateUser.next(true);
+                    ImpersonateComponent.updateUser.next(true);
+                    this.router.navigate(['/users/users']);
+                } else {
+                    swal({
+                        title: 'Error!',
+                        text: 'Something went wrong.',
+                        type: 'error',
+                        confirmButtonText: 'Ok',
+                        confirmButtonClass: 'btn btn-danger',
+                        buttonsStyling: false
+                    });
+                }
+            });
     }
 }

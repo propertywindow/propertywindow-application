@@ -15,6 +15,7 @@ import {GlobalState} from '../../app.state';
 import {ConfigService} from '../../shared/services/config/config.service';
 import {UserService} from '../../shared/services/engine/user/user.service';
 import {User} from '../../shared/model/user';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
     selector: 'app-header',
@@ -24,6 +25,7 @@ import {User} from '../../shared/model/user';
 })
 
 export class TopNavbarComponent implements OnInit {
+    public static updateUser: Subject<boolean> = new Subject();
     loggedInUser: User;
     loading: boolean = true;
 
@@ -40,19 +42,21 @@ export class TopNavbarComponent implements OnInit {
         this._state.subscribe('app.isApp_SidebarRightOpen', (isApp_SidebarRightOpen) => {
             this.config.appLayout.isApp_SidebarRightOpen = isApp_SidebarRightOpen;
         });
+
+        TopNavbarComponent.updateUser.subscribe(res => {
+            this.loading = true;
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            this.userService.getUser(currentUser.id).subscribe(
+                data => {
+                    this.loggedInUser = data;
+                    this.loading = false;
+                }
+            );
+        })
     }
 
     ngOnInit() {
-        this.loading = true;
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
-        this.userService.getUser(currentUser.id).subscribe(
-            data => {
-                this.loggedInUser = data;
-                console.log(currentUser.id);
-                console.log(data);
-                this.loading = false;
-            }
-        );
+        TopNavbarComponent.updateUser.next(true);
     }
 
     toggleAppMobileLeftMenuSidebar() {

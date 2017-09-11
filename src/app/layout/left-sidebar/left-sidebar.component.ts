@@ -14,6 +14,7 @@ import {GlobalState} from '../../app.state';
 import {ConfigService} from '../../shared/services/config/config.service';
 import {ServiceService} from '../../shared/services/engine/service/service.service';
 import {ServiceGroup} from '../../shared/model/serviceGroup';
+import {Subject} from 'rxjs/Subject';
 
 @Component({
     selector: 'app-sidebar',
@@ -21,6 +22,7 @@ import {ServiceGroup} from '../../shared/model/serviceGroup';
     styleUrls: ['./left-sidebar.component.scss']
 })
 export class LeftSidebarComponent implements OnInit {
+    public static updateUser: Subject<boolean> = new Subject();
     loading = true;
     public scrollbarOptions = {
         axis: 'y',
@@ -38,16 +40,20 @@ export class LeftSidebarComponent implements OnInit {
         this._state.subscribe('app.isCollapsed', isCollapsed => {
             this.config.appLayout.isApp_SidebarLeftCollapsed = isCollapsed;
         });
+        LeftSidebarComponent.updateUser.subscribe(res => {
+            this.loading = true;
+            const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+            this.serviceService.getMenu().subscribe(
+                data => {
+                    this.menu = data;
+                    this.loading = false;
+                }
+            );
+        })
     }
 
     ngOnInit() {
-        this.loading = true;
-        this.serviceService.getMenu().subscribe(
-            data => {
-                this.menu = data;
-                this.loading = false;
-            }
-        );
+        LeftSidebarComponent.updateUser.next(true);
     }
 
     toggleMenuSideabar() {
