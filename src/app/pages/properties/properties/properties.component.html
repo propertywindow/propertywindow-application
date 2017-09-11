@@ -1,7 +1,7 @@
 <div id="content_wrapper" class="fullWidth1-wrapper">
     <div class="content">
         <header class="header-wrapper header-sm">
-            <h1>{{title}}</h1>
+            <h1 *ngIf="service"><i class="{{service.icon}}"></i> {{service.description}}</h1>
         </header>
         <div class="content-body">
             <div class="card card-datatable">
@@ -15,7 +15,7 @@
                             </button>
                         </md-toolbar>
                     </div>
-                    <h2 class="card-title">{{title}}</h2>
+                    <h2 class="card-title" *ngIf="service">{{service.description}}</h2>
                     <ul class="actions icons top-right">
                         <li>
                             <a href="javascript:void(0)" (click)="isSearchActive = !isSearchActive;">
@@ -46,9 +46,12 @@
                     </ul>
                     <ul class="actions fab bottom-right">
                         <li>
-                            <button [routerLink]="['/properties/add']" class="btn btn-accent btn-fab" md-ripple>
+                            <button [routerLink]="['/properties/add']" class="btn btn-accent btn-fab"
+                                    [ngClass]="{'animated infinite tada' : !loading && rows.length === 0}"
+                                    md-ripple>
                                 <i class="zmdi zmdi-plus"></i>
                             </button>
+
                         </li>
                     </ul>
                 </header>

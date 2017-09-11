@@ -9,7 +9,7 @@ import {
     ElementRef,
     HostListener,
     ViewEncapsulation,
-    ViewChild
+    ViewChild, ChangeDetectorRef
 } from '@angular/core';
 import {GlobalState} from '../../app.state';
 import {ConfigService} from '../../shared/services/config/config.service';
@@ -22,9 +22,10 @@ import {User} from '../../shared/model/user';
     styleUrls: ['./top-navbar.component.scss'],
     encapsulation: ViewEncapsulation.Emulated,
 })
+
 export class TopNavbarComponent implements OnInit {
     loggedInUser: User;
-    loading = true;
+    loading: boolean = true;
 
     constructor(public config: ConfigService,
                 private _elementRef: ElementRef,
@@ -39,18 +40,19 @@ export class TopNavbarComponent implements OnInit {
         this._state.subscribe('app.isApp_SidebarRightOpen', (isApp_SidebarRightOpen) => {
             this.config.appLayout.isApp_SidebarRightOpen = isApp_SidebarRightOpen;
         });
-
-        const currentUser = JSON.parse(localStorage.getItem('currentUser'))
-
-        this.userService.getUser(currentUser.id).subscribe(
-            data => {
-                this.loggedInUser = data;
-                this.loading = false;
-            }
-        );
     }
 
     ngOnInit() {
+        this.loading = true;
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        this.userService.getUser(currentUser.id).subscribe(
+            data => {
+                this.loggedInUser = data;
+                console.log(currentUser.id);
+                console.log(data);
+                this.loading = false;
+            }
+        );
     }
 
     toggleAppMobileLeftMenuSidebar() {

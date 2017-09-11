@@ -10,7 +10,7 @@
                         <md-toolbar class="activeHeaderColor">
                             <span>{{itemCount}} {{itemsSelected}}</span>
                             <span class="demo-fill-remaining"></span>
-                            <button md-icon-button >
+                            <button md-icon-button>
                                 <md-icon class="md-24">delete</md-icon>
                             </button>
                         </md-toolbar>
@@ -46,36 +46,56 @@
                     </ul>
                     <ul class="actions fab bottom-right">
                         <li>
-                            <button class="btn btn-accent btn-fab" md-ripple><i class="zmdi zmdi-plus"></i></button>
+                            <button class="btn btn-accent btn-fab"
+                                    [ngClass]="{'animated infinite tada' : !loading && rows.length === 0}"
+                                    md-ripple>
+                                <i class="zmdi zmdi-plus"></i>
+                            </button>
                         </li>
                     </ul>
                 </header>
                 <div class="card-block p-0">
                     <div class="data-filter-wrapper" [ngClass]="{'active' : isSearchActive}">
                         <i class="zmdi zmdi-search search filter-icons"></i>
-                        <input type='text' class='data-filter' placeholder='Search property...' (keyup)='updateFilter($event)' [(ngModel)]="searchValue"/>
-                        <a href="javascript:void(0)" class="close filter-icons" (click)="triggerClose($event)"><i class="zmdi zmdi-close"></i></a>
+                        <input type='text' class='data-filter' placeholder='Search property...'
+                               (keyup)='updateFilter($event)' [(ngModel)]="searchValue"/>
+                        <a href="javascript:void(0)" class="close filter-icons" (click)="triggerClose($event)"><i
+                                class="zmdi zmdi-close"></i></a>
                     </div>
-                    <ngx-datatable #table style="width: 100%" class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
+                    <ngx-datatable #table style="width: 100%" class="material" [rows]="rows" [columnMode]="'force'"
+                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10"
+                                   [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
                                    (select)='onSelect($event)'>
-                        <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-                            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
-                                <md-checkbox class="example-margin" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></md-checkbox>
+                        <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false"
+                                              [draggable]="false" [resizeable]="false">
+                            <ng-template ngx-datatable-header-template let-value="value"
+                                         let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                                <md-checkbox class="example-margin" [checked]="allRowsSelected"
+                                             (change)="selectFn(!allRowsSelected)"></md-checkbox>
                             </ng-template>
-                            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-                                <md-checkbox class="example-margin" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"></md-checkbox>
+                            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected"
+                                         let-onCheckboxChangeFn="onCheckboxChangeFn">
+                                <md-checkbox class="example-margin" [checked]="isSelected"
+                                             (change)="onCheckboxChangeFn($event)"></md-checkbox>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Name"></ngx-datatable-column>
-                        <ngx-datatable-column name="City"></ngx-datatable-column>
-                        <ngx-datatable-column name="Property Limit">
+                        <ngx-datatable-column name="User ID">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                {{row.property_limit}}
+                                {{row.user_id}}
                             </ng-template>
                         </ngx-datatable-column>
+                        <ngx-datatable-column name="IP Address">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <span>
+                                    {{row.ip}}
+                                </span>
+                            </ng-template>
+                        </ngx-datatable-column>
+                        <ngx-datatable-column name="Amount"></ngx-datatable-column>
                         <ngx-datatable-column name="Edit">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                <a href="javascript:void(0)" attr.data-id="{{row.id}}" class="icon edit-product"><i class="zmdi zmdi-edit"></i></a>
+                                <a href="javascript:void(0)" attr.data-id="{{row.id}}" class="icon edit-product"><i
+                                        class="zmdi zmdi-edit"></i></a>
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>

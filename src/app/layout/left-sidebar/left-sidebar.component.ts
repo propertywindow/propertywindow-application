@@ -21,6 +21,7 @@ import {ServiceGroup} from '../../shared/model/serviceGroup';
     styleUrls: ['./left-sidebar.component.scss']
 })
 export class LeftSidebarComponent implements OnInit {
+    loading = true;
     public scrollbarOptions = {
         axis: 'y',
         theme: 'minimal',
@@ -37,15 +38,16 @@ export class LeftSidebarComponent implements OnInit {
         this._state.subscribe('app.isCollapsed', isCollapsed => {
             this.config.appLayout.isApp_SidebarLeftCollapsed = isCollapsed;
         });
-
-        this.serviceService.getMenu().subscribe(
-            data => {
-                this.menu = data;
-            }
-        );
     }
 
     ngOnInit() {
+        this.loading = true;
+        this.serviceService.getMenu().subscribe(
+            data => {
+                this.menu = data;
+                this.loading = false;
+            }
+        );
     }
 
     toggleMenuSideabar() {

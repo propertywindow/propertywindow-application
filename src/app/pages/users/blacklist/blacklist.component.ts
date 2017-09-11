@@ -10,54 +10,46 @@ import {
     HostListener,
     HostBinding
 } from '@angular/core';
-import {Router} from '@angular/router';
 import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
-import {UserService} from '../../../shared/services/engine/user/user.service';
-import {User} from '../../../shared/model/user';
+import {BlacklistService} from '../../../shared/services/engine/blacklist/blacklist.service';
+import {Blacklist} from '../../../shared/model/blacklist';
 import {Service} from '../../../shared/model/service';
 import {ServiceService} from '../../../shared/services/engine/service/service.service';
-import {AuthenticationService} from '../../../shared/authentication/authentication.service';
-import {TopNavbarComponent} from '../../../layout/top-navbar/top-navbar.component';
-import {LeftSidebarComponent} from '../../../layout/left-sidebar/left-sidebar.component';
-import {ImpersonateComponent} from '../../../layout/top-navbar/impersonate/impersonate.component';
-import swal from 'sweetalert2';
 
 @Component({
-    providers: [TopNavbarComponent, LeftSidebarComponent, ImpersonateComponent],
     selector: '.content_inner_wrapper',
-    templateUrl: './users.component.html',
-    styleUrls: ['./users.component.scss']
+    templateUrl: './blacklist.component.html',
+    styleUrls: ['./blacklist.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class BlacklistComponent implements OnInit {
     service: Service;
-    rows: User[] = [];
+    rows: Blacklist[] = [];
     selected = [];
     temp = [];
+    loading: boolean = true;
     searchValue: string = null;
     isSearchActive: boolean = false;
     isToolbarActive: boolean = false;
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(private router: Router,
-                private userService: UserService,
-                private serviceService: ServiceService,
-                private authenticationService: AuthenticationService,
-                private topNavbar: TopNavbarComponent,
-                private leftSidebar: LeftSidebarComponent,
-                private impersonateBar: ImpersonateComponent) {
+    constructor(
+        private blacklistService: BlacklistService,
+        private serviceService: ServiceService
+    ) {
     }
 
     ngOnInit() {
-        this.serviceService.getService(8)
+        this.serviceService.getService(7)
             .subscribe(data => {
                 this.service = data;
             });
-        this.userService.getUsers()
+        this.blacklistService.getBlacklists()
             .subscribe(data => {
                 this.temp = [...data];
                 this.rows = data;
+                this.loading = false;
             });
     }
 
@@ -105,23 +97,5 @@ export class UsersComponent implements OnInit {
 
     remove() {
         this.selected = [];
-    }
-
-    impersonate(id) {
-        // todo : add popup to confirm
-
-        this.authenticationService.impersonate(id)
-            .subscribe(result => {
-                if (result === true) {
-                    this.topNavbar.ngOnInit();
-                    this.leftSidebar.ngOnInit();
-                    this.impersonateBar.ngOnInit();
-                    this.router.navigate(['/']);
-                    swal('Success', 'You are now impersonating', 'success');
-                } else {
-
-                    // todo: add loading
-                }
-            });
     }
 }

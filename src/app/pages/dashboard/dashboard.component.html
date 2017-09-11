@@ -73,8 +73,112 @@
                     </div>
                 </tab>
                 <tab heading="Timeline">
-                    <div class="content-body">
+                    <div class="content-body timeline-page">
 
+                        <section id="meeting-timeline" class="timeline-container ">
+                            <div class="card card-date">
+                                <div class="form-group">
+                                    <md-input-container>
+                                        <input mdInput [mdDatepicker]="picker" placeholder="Choose a date">
+                                        <!--<button mdSuffix [mdDatepickerToggle]="picker"></button>-->
+                                    </md-input-container>
+                                    <md-datepicker #picker></md-datepicker>
+                                </div>
+                            </div>
+
+                            <div class="meeting-timeline-block">
+                                <div class="meeting-timeline-icon animated bounceIn">
+                                    <i class="zmdi zmdi-time"></i>
+                                </div>
+                                <div class="card card-timeline animated fadeInRight">
+                                    <header class="card-header border-bottom">
+                                        <h2 class="card-title">Open viewing address</h2>
+                                        <small><i class="zmdi zmdi-time"></i> 8:00am - 8:15am</small>
+                                        <ul class="actions icons top-right">
+                                            <li class="dropdown" dropdown>
+                                                <a href="javascript:void(0)" dropdownToggle>
+                                                    <i class="zmdi zmdi-more-vert"></i>
+                                                </a>
+                                                <ul class="dropdown-menu btn-primary dropdown-menu-right">
+                                                    <li>
+                                                        <a href="javascript:void(0)">Option One</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">Option Two</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="javascript:void(0)">Option Three</a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </header>
+                                    <div class="card-block p-0">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+										<span class="float-left">
+											<i class="zmdi zmdi-pin w-15"></i>
+										</span>
+                                                <div class="list-group-item-body">
+                                                    <div class="list-group-item-heading">West Wing Building</div>
+                                                    <div class="list-group-item-text">Bushwick man bun pok pok shoreditch.</div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+										<span class="float-left">
+											<i class="zmdi zmdi-book w-15"></i>
+										</span>
+                                                <div class="list-group-item-body">
+                                                    <div class="list-group-item-heading">Project update status</div>
+                                                    <div class="list-group-item-text">Chicharrones fingerstache vice mlkshk. </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="float-left">
+                                                    <img src="assets/img/profiles/11.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/13.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/03.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/09.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/12.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/14.jpg" alt="" class="rounded-circle max-w-40 ">
+                                                    <button class="btn btn-add-gray btn-fab btn-fab-sm m-l-5"><i class="zmdi zmdi-plus"></i></button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-footer border-top">
+                                        <ul class="actions bottom-left">
+                                            <li>
+                                                <a href="javascript:void(0)" class="btn btn-default btn-flat">
+                                                    RSVP
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <ul class="actions icons bottom-right">
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="zmdi zmdi-attachment-alt"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="zmdi zmdi-notifications"></i>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="javascript:void(0)">
+                                                    <i class="zmdi zmdi-comment-alt-text"></i>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <span class="meeting-time">8:00 AM</span>
+                                </div>
+                            </div>
+
+
+
+                        </section>
                     </div>
                 </tab>
                 <tab heading="Map">

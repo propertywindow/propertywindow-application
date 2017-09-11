@@ -8,6 +8,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
+import {Service} from "../../../model/service";
 @Injectable()
 export class ServiceService {
     constructor(private http: Http, private authenticationService: AuthenticationService) {
@@ -38,6 +39,22 @@ export class ServiceService {
         };
         return this.http
             .post('http://propertywindow-engine.dev/services/service_group', data, options)
+            .map((response: Response) => response.json().result);
+    };
+
+    getService(id: number): Observable<Service> {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
+            'jsonrpc': '2.0',
+            'id': null,
+            'method': 'getService',
+            'params': {
+                'id': id
+            }
+        };
+        return this.http
+            .post('http://propertywindow-engine.dev/services/service', data, options)
             .map((response: Response) => response.json().result);
     };
 

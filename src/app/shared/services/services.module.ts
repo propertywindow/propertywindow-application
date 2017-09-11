@@ -10,6 +10,7 @@ import {ClientService} from './engine/client/client.service';
 import {PropertyService} from './engine/property/property.service';
 import {ServiceService} from './engine/service/service.service';
 import {ActivityService} from './engine/log/activity.service';
+import {BlacklistService} from './engine/blacklist/blacklist.service';
 
 @NgModule({
     imports: [],
@@ -22,7 +23,8 @@ import {ActivityService} from './engine/log/activity.service';
         ClientService,
         PropertyService,
         ServiceService,
-        ActivityService
+        ActivityService,
+        BlacklistService
     ],
     declarations: [],
     exports: []

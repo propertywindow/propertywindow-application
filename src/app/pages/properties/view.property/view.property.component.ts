@@ -21,6 +21,7 @@ import {Property} from '../../../shared/model/property';
 export class ViewPropertyComponent implements OnInit {
 
     property: Property;
+    loading = true;
 
     constructor(public config: ConfigService,
                 private _elementRef: ElementRef,
@@ -33,7 +34,11 @@ export class ViewPropertyComponent implements OnInit {
     ngOnInit() {
         this.route.params
             .switchMap((params: Params) => this.propertyService.getProperty(+params['id']))
-            .subscribe((data) => this.property = data);
+            .subscribe((data) => {
+                this.loading = false;
+                this.property = data;
+            }
+        );
     }
 
 }

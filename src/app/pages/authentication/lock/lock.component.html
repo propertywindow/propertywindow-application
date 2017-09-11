@@ -10,7 +10,7 @@
 		</header>
 		<figure class="text-center m-b-20">
 	
-			<img src="/assets/img/profiles/02.jpg" alt="" class="rounded-circle max-w-100">
+			<img src="{{user.avatar}}" alt="" class="rounded-circle max-w-100">
 				<span class="icon-locked"><i class="zmdi zmdi-lock"></i></span>
 		</figure>
 
@@ -22,7 +22,7 @@
 				<div class="form-group row">
 					<label class="sr-only">Email: </label>
 					<div class="col-md">
-						<md-input-container floatPlaceholder="auto" class="float-auto">
+						<md-input-container floatPlaceholder="auto" class="float-auto" style="width: 100%">
 							<input mdInput placeholder="Email (disabled)" class="form-control" type="email" disabled>
 						</md-input-container>
 					</div>
@@ -30,12 +30,12 @@
 				<div class="form-group row">
 					<label class="sr-only">Password: </label>
 					<div class="col-md">
-						<md-input-container floatPlaceholder="auto" class="float-auto">
+						<md-input-container floatPlaceholder="auto" class="float-auto" style="width: 100%">
 							<input mdInput placeholder="Password" class="form-control" type="password">
 						</md-input-container>
 					</div>
 				</div>
-				<a href="javascript:void(0)" class="font-size-12 float-right" data-toggle="register">Not Mike Jones? </a>
+				<a href="javascript:void(0)" class="font-size-12 float-right" data-toggle="register">Not {{user.full_name}}? </a>
 				<a href="javascript:void(0)" [routerLink]="['/dashboards']" class="btn btn-info btn-block m-t-40">Unlock</a>
 			</form>
 		</div>

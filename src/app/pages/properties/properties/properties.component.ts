@@ -14,6 +14,8 @@ import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
 import {PropertyService} from '../../../shared/services/engine/property/property.service';
 import {Property} from '../../../shared/model/property';
+import {ServiceService} from '../../../shared/services/engine/service/service.service';
+import {ServiceGroup} from '../../../shared/model/serviceGroup';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -21,26 +23,34 @@ import {Property} from '../../../shared/model/property';
     styleUrls: ['./properties.component.scss']
 })
 export class PropertiesComponent implements OnInit {
-    title: string = 'Properties';
+    service: ServiceGroup;
     rows: Property[] = [];
     selected = [];
     temp = [];
+    loading: boolean = true;
     searchValue: string = null;
     isSearchActive: boolean = false;
     isToolbarActive: boolean = false;
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(private propertyService: PropertyService) {
+    constructor(
+        private propertyService: PropertyService,
+        private serviceService: ServiceService
+    ) {
     }
 
     ngOnInit() {
+        this.serviceService.getServiceGroup(2)
+            .subscribe(data => {
+                this.service = data;
+            });
         this.propertyService.getProperties()
             .subscribe(data => {
                 this.temp = [...data];
                 this.rows = data;
+                this.loading = false;
             });
-        // todo: when no properties, pulsate add button
     }
 
     updateFilter(event) {

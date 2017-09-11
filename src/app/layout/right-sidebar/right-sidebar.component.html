@@ -13,7 +13,15 @@
                         <li class="list-group-item" data-chat="open" data-chat-name="user.full_name"
                             *ngIf="user.online_now">
                             <span class="float-left">
-                                <img src="{{user.avatar}}" alt="" class="rounded-circle max-w-40 m-r-10 ">
+                                <img *ngIf="user.avatar" src="{{user.avatar}}" alt=""
+                                     class="rounded-circle max-w-40 m-r-10 ">
+                                <ngu-letter-avatar *ngIf="!user.avatar" avatar-data={{user.full_name}}
+                                                   [avatar-char-count]="2"
+                                                   avatar-shape="round"
+                                                   [avatar-height]="40"
+                                                   [avatar-width]="40"
+                                                   [avatar-font-size]="14" class="rounded-circle max-w-40 m-r-10 ">
+                                </ngu-letter-avatar>
                             </span>
                             <i class="badge mini success status"></i>
                             <div class="list-group-item-body">
@@ -36,7 +44,15 @@
                         <li class="list-group-item" data-chat="open" data-chat-name="user.full_name"
                             *ngIf="!user.online_now">
                             <span class="float-left">
-                                <img src="{{user.avatar}}" alt="" class="rounded-circle max-w-40 m-r-10 ">
+                                <img *ngIf="user.avatar" src="{{user.avatar}}" alt=""
+                                     class="rounded-circle max-w-40 m-r-10 ">
+                                <ngu-letter-avatar *ngIf="!user.avatar" avatar-data={{user.full_name}}
+                                                   [avatar-char-count]="2"
+                                                   avatar-shape="round"
+                                                   [avatar-height]="40"
+                                                   [avatar-width]="40"
+                                                   [avatar-font-size]="14" class="rounded-circle max-w-40 m-r-10 ">
+                                </ngu-letter-avatar>
                             </span>
                             <i class="badge mini danger status"></i>
                             <div class="list-group-item-body">
@@ -56,7 +72,8 @@
                 <div class="time-item" *ngFor="let activity of activities">
                     <div class="item-info">
                         <small class="text-muted">{{activity.datetime | amTimeAgo}}</small>
-                        <p><a href="#" class="accent">{{activity.user_name}}</a> {{activity.action}} {{activity.category}}</p>
+                        <p><a href="#" class="accent">{{activity.user_name}}</a> {{activity.action}}
+                            {{activity.category}}</p>
                     </div>
                 </div>
 

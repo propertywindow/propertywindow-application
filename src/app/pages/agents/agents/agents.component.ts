@@ -14,6 +14,8 @@ import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
 import {AgentService} from '../../../shared/services/engine/agent/agent.service';
 import {Agent} from '../../../shared/model/agent';
+import {ServiceService} from '../../../shared/services/engine/service/service.service';
+import {ServiceGroup} from '../../../shared/model/serviceGroup';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -21,7 +23,7 @@ import {Agent} from '../../../shared/model/agent';
     styleUrls: ['./agents.component.scss']
 })
 export class AgentsComponent implements OnInit {
-    title: string = 'Agents';
+    service: ServiceGroup;
     rows: Agent[] = [];
     selected = [];
     temp = [];
@@ -31,10 +33,17 @@ export class AgentsComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(private agentService: AgentService) {
+    constructor(
+        private agentService: AgentService,
+        private serviceService: ServiceService
+    ) {
     }
 
     ngOnInit() {
+        this.serviceService.getServiceGroup(4)
+            .subscribe(data => {
+                this.service = data;
+            });
         this.agentService.getAgents()
             .subscribe(data => {
                 this.temp = [...data];

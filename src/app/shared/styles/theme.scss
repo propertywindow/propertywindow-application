@@ -212,7 +212,8 @@ body {
 					background-color: $sidebar_menu_active_bg;
 					box-shadow: none;
 					.brand-text {
-	 				 color:#fff;
+						font-size: 13px;
+	 				 	color:#fff;
 	 			 }
 					li a {
 						color: $app_topnavbar-wrapper_color;

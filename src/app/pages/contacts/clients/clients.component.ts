@@ -14,6 +14,8 @@ import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
 import {ClientService} from '../../../shared/services/engine/client/client.service';
 import {Client} from '../../../shared/model/client';
+import {ServiceService} from '../../../shared/services/engine/service/service.service';
+import {Service} from '../../../shared/model/service';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -21,7 +23,7 @@ import {Client} from '../../../shared/model/client';
     styleUrls: ['./clients.component.scss']
 })
 export class ClientsComponent implements OnInit {
-    title: string = 'Clients';
+    service: Service;
     rows: Client[] = [];
     selected = [];
     temp = [];
@@ -31,10 +33,17 @@ export class ClientsComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(private clientService: ClientService) {
+    constructor(
+        private clientService: ClientService,
+        private serviceService: ServiceService
+    ) {
     }
 
     ngOnInit() {
+        this.serviceService.getService(56)
+            .subscribe(data => {
+                this.service = data;
+            });
         this.clientService.getClients()
             .subscribe(data => {
                 this.temp = [...data];
