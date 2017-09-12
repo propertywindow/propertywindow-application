@@ -24,4 +24,20 @@ export class ActivityService {
             .post('http://propertywindow-engine.dev/log/activity', data, options)
             .map((response: Response) => response.json().result);
     };
+
+    getPropertyChanges(type: string): Observable<Activity[]> {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
+            'jsonrpc': '2.0',
+            'id': null,
+            'method': 'getPropertyChanges',
+            'params': {
+                'type': type
+            }
+        };
+        return this.http
+            .post('http://propertywindow-engine.dev/log/activity', data, options)
+            .map((response: Response) => response.json().result);
+    };
 }

@@ -7,10 +7,15 @@
                 <i class="mdi mdi-backburger"></i>
             </a>
         </li>
-        <li class="nav-item hidden-sm-down">
-            <a md-ripple href="javascript:void(0)" [routerLink]="['/dashboard']" class="nav-link">
-                <i class="zmdi zmdi-plus"></i>
-            </a>
+        <li class="nav-item dropdown hidden-sm-down" dropdown>
+            <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle><i class="zmdi zmdi-plus"></i></a>
+            <ul class="dropdown-menu btn-accent dropdown-menu-left" *dropdownMenu>
+                <!-- todo: get all services with add, load icons from it too-->
+                <li><a href="javascript:void(0)"><i class="zmdi zmdi zmdi-city-alt"></i> Property</a></li>
+                <li><a href="javascript:void(0)"><i class="zmdi zmdi-store"></i> Agent</a></li>
+                <li><a href="javascript:void(0)"><i class="zmdi zmdi-accounts-list"></i> User</a></li>
+                <li><a href="javascript:void(0)"><i class="zmdi zmdi-calendar"></i> Appointment</a></li>
+            </ul>
         </li>
         <li class="nav-item">
             <a md-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
@@ -58,7 +63,7 @@
                     <a href="javascript:void(0)"><i class="zmdi zmdi-settings"></i> Account Settings</a>
                 </li>
                 <li>
-                    <a [routerLink]="['/login']"><i class="zmdi zmdi-sign-in"></i> Sign Out</a>
+                    <a href="/login"><i class="zmdi zmdi-sign-in"></i> Sign Out</a>
                 </li>
             </ul>
         </li>

@@ -50,8 +50,12 @@
                     </ul>
                     <ul class="actions fab bottom-right">
                         <li>
-                            <button class="btn btn-accent btn-fab animate-fab" md-ripple><i class="zmdi zmdi-plus"></i>
+                            <button class="btn btn-accent btn-fab animate-fab"
+                                    [ngClass]="{'animated infinite tada' : !loading && rows.length === 0}"
+                                    md-ripple>
+                                <i class="zmdi zmdi-plus"></i>
                             </button>
+
                         </li>
                     </ul>
                 </header>

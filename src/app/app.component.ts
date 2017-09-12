@@ -11,6 +11,7 @@ import {GlobalState} from './app.state';
 import {ConfigService} from './shared/services/config/config.service';
 import {PreloaderService} from './shared/services/preloader/preloader.service';
 import {SpinnerService} from './shared/services/spinner/spinner.service';
+
 @Component({
     selector: 'app-root',
     template: '<router-outlet></router-outlet>',

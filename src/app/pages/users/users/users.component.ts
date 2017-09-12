@@ -43,6 +43,7 @@ export class UsersComponent implements OnInit {
     rows: User[] = [];
     selected = [];
     temp = [];
+    loading: boolean = true;
     searchValue: string = null;
     isSearchActive: boolean = false;
     isToolbarActive: boolean = false;
@@ -99,6 +100,7 @@ export class UsersComponent implements OnInit {
             .subscribe(data => {
                 this.temp = [...data];
                 this.rows = data;
+                this.loading = false;
             });
     }
 

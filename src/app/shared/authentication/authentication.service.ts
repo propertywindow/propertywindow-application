@@ -116,7 +116,13 @@ export class AuthenticationService {
 
     logout(): void {
         this.token = null;
-        localStorage.removeItem('currentUser');
-        localStorage.removeItem('impersonateUser');
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        const impersonateUser = JSON.parse(localStorage.getItem('impersonateUser'));
+        if (currentUser) {
+            localStorage.removeItem('currentUser');
+        }
+        if (impersonateUser) {
+            localStorage.removeItem('impersonateUser');
+        }
     }
 }

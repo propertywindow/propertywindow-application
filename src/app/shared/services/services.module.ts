@@ -30,8 +30,9 @@ import {BlacklistService} from './engine/blacklist/blacklist.service';
     exports: []
 })
 export class ServicesModule {
-    constructor(@Optional()
-                @SkipSelf()
-                    parentModule: ServicesModule) {
+    constructor(
+        @Optional()
+        @SkipSelf()
+            parentModule: ServicesModule) {
     }
 }

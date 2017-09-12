@@ -29,17 +29,7 @@ const LAYOUT_ROUTES: Routes = [
             // ---------------------------------------------------------->
             {
                 path: 'properties',
-                loadChildren: '../pages/properties/properties/properties.module#PropertiesModule',
-                canActivate: [AuthGuard]
-            },
-            {
-                path: 'properties/add',
-                loadChildren: '../pages/properties/add.property/add.property.module#AddPropertyModule',
-                canActivate: [AuthGuard]
-            },
-            {
-                path: 'properties/view/:id',
-                loadChildren: '../pages/properties/view.property/view.property.module#ViewPropertyModule',
+                loadChildren: '../pages/properties/properties.module#PropertiesModule',
                 canActivate: [AuthGuard]
             },
             // ---------------------------------------------------------->

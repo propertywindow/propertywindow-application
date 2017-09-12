@@ -72,8 +72,8 @@
                 <div class="time-item" *ngFor="let activity of activities">
                     <div class="item-info">
                         <small class="text-muted">{{activity.datetime | amTimeAgo}}</small>
-                        <p><a href="#" class="accent">{{activity.user_name}}</a> {{activity.action}}
-                            {{activity.category}}</p>
+                        <p><a href="#" class="accent">{{activity.user_name}}</a> {{activity.action_name}}
+                            {{activity.action_category}}</p>
                     </div>
                 </div>
 

@@ -24,13 +24,13 @@ export class RightSidebarComponent {
 
     constructor(public config: ConfigService,
                 private userService: UserService,
-                private activityService: ActivityService) {
+                private activityService: ActivityService
+    ) {
         this.userService.getColleagues().subscribe(
             data => {
                 this.users = data;
             }
         );
-
         this.activityService.getActivityFromUser().subscribe(
             data => {
                 this.activities = data;

@@ -8,7 +8,7 @@ import {
     animate,
     ElementRef,
     HostListener,
-    HostBinding
+    HostBinding, ViewChild
 } from '@angular/core';
 import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
@@ -16,6 +16,7 @@ import {AgentService} from '../../../shared/services/engine/agent/agent.service'
 import {Agent} from '../../../shared/model/agent';
 import {ServiceService} from '../../../shared/services/engine/service/service.service';
 import {ServiceGroup} from '../../../shared/model/serviceGroup';
+import {DatatableComponent} from '@swimlane/ngx-datatable';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -23,6 +24,13 @@ import {ServiceGroup} from '../../../shared/model/serviceGroup';
     styleUrls: ['./agents.component.scss']
 })
 export class AgentsComponent implements OnInit {
+    public pageLengths: number[] = [
+        10,
+        25,
+        50,
+        100
+    ];
+    @ViewChild(DatatableComponent) table: DatatableComponent;
     service: ServiceGroup;
     rows: Agent[] = [];
     selected = [];
@@ -40,6 +48,7 @@ export class AgentsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.table.limit = 10;
         this.serviceService.getServiceGroup(4)
             .subscribe(data => {
                 this.service = data;
@@ -95,5 +104,11 @@ export class AgentsComponent implements OnInit {
 
     remove() {
         this.selected = [];
+    }
+
+    selectPageLength(value) {
+        this.table.limit = value;
+        this.table.offset = 0;
+        this.rows = this.rows.slice();
     }
 }

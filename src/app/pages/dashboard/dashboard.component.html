@@ -20,23 +20,60 @@
 
                                         <md-tab-group class="demo-tab-group">
                                             <md-tab label="New">
-                                                <div class="tab-content p-20">
-                                                    <ul>
-                                                        <li>New Address</li>
-                                                    </ul>
-                                                </div>
-                                            </md-tab>
-                                            <md-tab label="Openend">
-                                                <div class="tab-content p-20">
-                                                    <ul>
-                                                        <li>Opened Address</li>
+                                                <div class="tab-content p-0 max-h-500 scrollbar overflow-auto">
+                                                    <ul class="list-group p-0">
+                                                        <li class="list-group-item"
+                                                            *ngFor="let item of newProperties">
+                                                            <span class="float-left">
+                                                                <!--<img src="{{item.photo}}" alt=""-->
+                                                                <!--class="rounded-circle max-w-40 m-r-10 ">-->
+                                                                <ngu-letter-avatar avatar-data={{item.user_name}}
+                                                                                   [avatar-char-count]="2"
+                                                                                   avatar-shape="round"
+                                                                                   [avatar-height]="40"
+                                                                                   [avatar-width]="40"
+                                                                                   [avatar-font-size]="16"
+                                                                                   class="rounded-circle max-w-40 m-r-10 ">
+                                                                </ngu-letter-avatar>
+                                                            </span>
+                                                            <div class="list-group-item-body">
+                                                                <div class="list-group-item-heading">
+                                                                    {{item.user_name}}
+                                                                </div>
+                                                                <div class="list-group-item-text">
+                                                                    {{item.datetime}}
+                                                                </div>
+                                                            </div>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </md-tab>
                                             <md-tab label="Changed">
-                                                <div class="tab-content p-20">
-                                                    <ul>
-                                                        <li>Changed Address</li>
+                                                <div class="tab-content p-0 max-h-500 scrollbar overflow-auto">
+                                                    <ul class="list-group p-0">
+                                                        <li class="list-group-item"
+                                                            *ngFor="let item of changedProperties">
+                                                            <span class="float-left">
+                                                                <!--<img src="{{item.photo}}" alt=""-->
+                                                                <!--class="rounded-circle max-w-40 m-r-10 ">-->
+                                                                <ngu-letter-avatar avatar-data={{item.user_name}}
+                                                                                   [avatar-char-count]="2"
+                                                                                   avatar-shape="round"
+                                                                                   [avatar-height]="40"
+                                                                                   [avatar-width]="40"
+                                                                                   [avatar-font-size]="16"
+                                                                                   class="rounded-circle max-w-40 m-r-10 ">
+                                                                </ngu-letter-avatar>
+                                                            </span>
+                                                            <div class="list-group-item-body">
+                                                                <div class="list-group-item-heading">
+                                                                    {{item.user_name}}
+                                                                </div>
+                                                                <div class="list-group-item-text">
+                                                                    {{item.datetime}}
+                                                                </div>
+                                                            </div>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </md-tab>
@@ -44,6 +81,13 @@
                                                 <div class="tab-content p-20">
                                                     <ul>
                                                         <li>Sold Address</li>
+                                                    </ul>
+                                                </div>
+                                            </md-tab>
+                                            <md-tab label="Something">
+                                                <div class="tab-content p-20">
+                                                    <ul>
+                                                        <li>Something</li>
                                                     </ul>
                                                 </div>
                                             </md-tab>
@@ -127,7 +171,9 @@
 										</span>
                                                 <div class="list-group-item-body">
                                                     <div class="list-group-item-heading">West Wing Building</div>
-                                                    <div class="list-group-item-text">Bushwick man bun pok pok shoreditch.</div>
+                                                    <div class="list-group-item-text">Bushwick man bun pok pok
+                                                        shoreditch.
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
@@ -136,18 +182,27 @@
 										</span>
                                                 <div class="list-group-item-body">
                                                     <div class="list-group-item-heading">Project update status</div>
-                                                    <div class="list-group-item-text">Chicharrones fingerstache vice mlkshk. </div>
+                                                    <div class="list-group-item-text">Chicharrones fingerstache vice
+                                                        mlkshk.
+                                                    </div>
                                                 </div>
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="float-left">
-                                                    <img src="assets/img/profiles/11.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/13.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/03.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/09.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/12.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/14.jpg" alt="" class="rounded-circle max-w-40 ">
-                                                    <button class="btn btn-add-gray btn-fab btn-fab-sm m-l-5"><i class="zmdi zmdi-plus"></i></button>
+                                                    <img src="assets/img/profiles/11.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/13.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/03.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/09.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/12.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <img src="assets/img/profiles/14.jpg" alt=""
+                                                         class="rounded-circle max-w-40 ">
+                                                    <button class="btn btn-add-gray btn-fab btn-fab-sm m-l-5"><i
+                                                            class="zmdi zmdi-plus"></i></button>
                                                 </div>
                                             </li>
                                         </ul>
@@ -181,7 +236,6 @@
                                     <span class="meeting-time">8:00 AM</span>
                                 </div>
                             </div>
-
 
 
                         </section>
