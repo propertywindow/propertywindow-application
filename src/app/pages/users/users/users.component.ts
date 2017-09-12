@@ -8,7 +8,7 @@ import {
     animate,
     ElementRef,
     HostListener,
-    HostBinding
+    HostBinding, ViewChild
 } from '@angular/core';
 import {Router} from '@angular/router';
 import {GlobalState} from '../../../app.state';
@@ -23,6 +23,7 @@ import {LeftSidebarComponent} from '../../../layout/left-sidebar/left-sidebar.co
 import {ImpersonateComponent} from '../../../layout/top-navbar/impersonate/impersonate.component';
 import swal from 'sweetalert2';
 import {Subject} from 'rxjs/Subject';
+import {DatatableComponent} from '@swimlane/ngx-datatable';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -37,6 +38,7 @@ export class UsersComponent implements OnInit {
         50,
         100
     ];
+    @ViewChild(DatatableComponent) table: DatatableComponent;
     service: Service;
     rows: User[] = [];
     selected = [];
@@ -47,7 +49,6 @@ export class UsersComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
     impersonateId: number;
-    pageLength: number = 10;
 
     constructor(private router: Router,
                 private userService: UserService,
@@ -89,6 +90,7 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.table.limit = 10;
         this.serviceService.getService(8)
             .subscribe(data => {
                 this.service = data;
@@ -147,9 +149,9 @@ export class UsersComponent implements OnInit {
     }
 
     selectPageLength(value) {
-        console.log(value);
-        this.pageLength = value;
-        this.rows = [...this.rows];
+        this.table.limit = value;
+        this.table.offset = 0;
+        this.rows = this.rows.slice();
     }
 
     impersonate(id) {

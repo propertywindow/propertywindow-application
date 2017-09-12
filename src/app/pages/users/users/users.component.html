@@ -35,7 +35,7 @@
                             <ul class="dropdown-menu btn-primary dropdown-menu-right">
                                 <li *ngFor="let choice of pageLengths">
                                     <a class="dropdown-item" href="#" (click)="selectPageLength(choice)"
-                                       [ngClass]="{'selected': choice === pageLength}">{{choice}}</a>
+                                       [ngClass]="{'selected': choice === table.limit}">{{choice}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -64,7 +64,7 @@
                                 class="zmdi zmdi-close"></i></a>
                     </div>
                     <ngx-datatable #table style="width: 100%" class="material" [rows]="rows" [columnMode]="'force'"
-                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="pageLength"
+                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                    [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
                                    (select)='onSelect($event)'>
                         <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false"
