@@ -3,7 +3,7 @@
     <md-sidenav-container class="sidenav-container">
         <div class="content">
             <header class="header-wrapper header-sm shadow-none">
-                <h1>{{title}}</h1>
+                <h1 *ngIf="service"><i class="{{service.icon}}"></i> {{service.description}}</h1>
             </header>
             <tabset class="tabpanel tab-header">
                 <tab heading="Overview">
@@ -69,6 +69,12 @@
                 </tab>
                 <tab heading="Activity">
                     <div class="content-body">
+
+                        <ul class="breadcrumb">
+                            <i><a href="">test</a></i>
+                            <i><a href="">test</a></i>
+                            <i><a href="">test</a></i>
+                        </ul>
 
                     </div>
                 </tab>

@@ -1,7 +1,7 @@
 <div class="sidebar-inner sidebar-overlay">
     <md-tab-group class="sidebar-right-tab-group">
         <md-tab label="Chat">
-            <div class="tab-content">
+            <div class="tab-content" malihu-scrollbar [scrollbarOptions]="DarkScrollbar">
                 <ul class="description">
                     <li class="title">
                         Online
@@ -20,7 +20,7 @@
                                                    avatar-shape="round"
                                                    [avatar-height]="40"
                                                    [avatar-width]="40"
-                                                   [avatar-font-size]="14" class="rounded-circle max-w-40 m-r-10 ">
+                                                   [avatar-font-size]="16" class="rounded-circle max-w-40 m-r-10 ">
                                 </ngu-letter-avatar>
                             </span>
                             <i class="badge mini success status"></i>
@@ -51,7 +51,7 @@
                                                    avatar-shape="round"
                                                    [avatar-height]="40"
                                                    [avatar-width]="40"
-                                                   [avatar-font-size]="14" class="rounded-circle max-w-40 m-r-10 ">
+                                                   [avatar-font-size]="16" class="rounded-circle max-w-40 m-r-10 ">
                                 </ngu-letter-avatar>
                             </span>
                             <i class="badge mini danger status"></i>
@@ -67,7 +67,7 @@
             </div>
         </md-tab>
         <md-tab label="Activity">
-            <div class="sidebar-timeline">
+            <div class="sidebar-timeline" malihu-scrollbar [scrollbarOptions]="DarkScrollbar">
 
                 <div class="time-item" *ngFor="let activity of activities">
                     <div class="item-info">

@@ -55,6 +55,7 @@ export class AuthenticationService {
                 'impersonate_id': impersonateId
             }
         };
+        // todo: if impersonate already exists, keep current one
         return this.http.post('http://propertywindow-engine.dev/authentication/login', impersonateData)
             .map((response: Response) => {
                 const result = response.json() && response.json().result;

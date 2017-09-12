@@ -7,12 +7,18 @@ import {User} from '../../shared/model/user';
 import {Activity} from '../../shared/model/activity';
 
 @Component({
-    selector: 'app-offsidebar',
+    selector: 'app-off-sidebar',
     templateUrl: './right-sidebar.component.html',
     styleUrls: ['./right-sidebar.component.scss'],
     encapsulation: ViewEncapsulation.Emulated
 })
 export class RightSidebarComponent {
+    public DarkScrollbar = {
+        axis: 'y',
+        theme: 'dark',
+        scrollInertia: 0,
+        mouseWheel: { preventDefault: true }
+    };
     users: User[] = [];
     activities: Activity[] = [];
 

@@ -36,6 +36,17 @@ export class ImpersonateComponent implements OnInit {
     }
 
     goBack() {
+        swal({
+            title: 'Going Back',
+            text: 'One moment please..',
+            type: 'success',
+            timer: 4000,
+            customClass: 'animated tada',
+            showConfirmButton: false,
+        }).then(
+            function () {},
+            function (dismiss) {}
+        );
         this.authenticationService.reImpersonate()
             .subscribe(result => {
                 if (result === true) {

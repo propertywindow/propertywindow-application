@@ -31,6 +31,12 @@ import {Subject} from 'rxjs/Subject';
 })
 export class UsersComponent implements OnInit {
     public static doImpersonate: Subject<boolean> = new Subject();
+    public pageLengths: number[] = [
+        10,
+        25,
+        50,
+        100
+    ];
     service: Service;
     rows: User[] = [];
     selected = [];
@@ -41,6 +47,7 @@ export class UsersComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
     impersonateId: number;
+    pageLength: number = 10;
 
     constructor(private router: Router,
                 private userService: UserService,
@@ -49,20 +56,20 @@ export class UsersComponent implements OnInit {
     ) {
 
         UsersComponent.doImpersonate.subscribe(res => {
+            swal({
+                title: 'Impersonating',
+                text: 'One moment please..',
+                type: 'success',
+                timer: 3000,
+                customClass: 'animated tada',
+                showConfirmButton: false,
+            }).then(
+                function () {},
+                function (dismiss) {}
+            );
             this.authenticationService.impersonate(this.impersonateId)
                 .subscribe(result => {
                     if (result === true) {
-                        swal({
-                            title: 'Impersonating',
-                            text: 'One moment please..',
-                            type: 'success',
-                            timer: 3000,
-                            customClass: 'animated tada',
-                            showConfirmButton: false,
-                        }).then(
-                            function () {},
-                            function (dismiss) {}
-                        );
                         TopNavbarComponent.updateUser.next(true);
                         LeftSidebarComponent.updateUser.next(true);
                         ImpersonateComponent.updateUser.next(true);
@@ -139,17 +146,23 @@ export class UsersComponent implements OnInit {
         this.selected = [];
     }
 
+    selectPageLength(value) {
+        console.log(value);
+        this.pageLength = value;
+        this.rows = [...this.rows];
+    }
+
     impersonate(id) {
         this.impersonateId = id;
         swal({
             title: 'Are you sure?',
-            text: 'Do you want to impersonate?',
+            text: 'You\'re about to impersonate this user.',
             type: 'question',
             showCancelButton: true,
-            confirmButtonText: 'Yes, impersonate',
-            cancelButtonText: 'No, cancel',
+            confirmButtonText: 'Impersonate',
+            cancelButtonText: 'Cancel',
             confirmButtonClass: 'btn btn-success',
-            cancelButtonClass: 'btn btn-danger',
+            cancelButtonClass: 'btn btn-default btn-flat mat-ripple',
             buttonsStyling: false
         }).then(function () {
             UsersComponent.doImpersonate.next(true);
