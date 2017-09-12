@@ -27,14 +27,20 @@
 
             <ng-container *ngFor="let item of menu">
                 <li [hidden]="loading" *ngIf="item.services.length === 0" routerLinkActive="active">
-                    <a md-ripple [routerLink]="item.url" class=""><i class="{{item.icon}} zmdi-hc-fw"></i>{{item.description}}</a>
+                    <a md-ripple [routerLink]="item.url" class="">
+                        <i class="{{item.icon}} zmdi-hc-fw"></i>{{item.description}}
+                    </a>
                 </li>
 
-                <li [hidden]="loading" *ngIf="item.services.length > 0" appNavDropdown class="nav-dropdown">
-                    <a md-ripple class="" appNavDropdownToggle><i class="{{item.icon}} zmdi-hc-fw"></i>{{item.description}}</a>
+                <li [hidden]="loading" *ngIf="item.services.length > 0" routerLinkActive="active open" appNavDropdown
+                    class="nav-dropdown">
+                    <a md-ripple href="javascript:void(0)" class="" appNavDropdownToggle><i
+                            class="{{item.icon}} zmdi-hc-fw"></i>{{item.description}}</a>
                     <ul class="nav-sub">
                         <li *ngFor="let subItem of item.services" routerLinkActive="active">
-                            <a [routerLink]="subItem.url">{{subItem.description}}</a>
+                            <a href="javascript:void(0)" [routerLink]="subItem.url">
+                                <i class="{{subItem.icon}} zmdi-hc-fw"></i>{{subItem.description}}
+                            </a>
                         </li>
                     </ul>
                 </li>
