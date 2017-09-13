@@ -1,11 +1,4 @@
-import {
-    Component,
-    ViewEncapsulation,
-    ViewChild,
-    OnInit,
-    HostListener,
-    ElementRef
-} from '@angular/core';
+import {Component, ViewEncapsulation, OnInit, ElementRef} from '@angular/core';
 import {FormControl, NgModel} from '@angular/forms';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -17,7 +10,7 @@ import {NgDateRangePickerOptions} from 'ng-daterangepicker';
 import {ServiceService} from '../../shared/services/engine/service/service.service';
 import {ServiceGroup} from '../../shared/model/serviceGroup';
 import {ActivityService} from '../../shared/services/engine/log/activity.service';
-import {Activity} from '../../shared/model/activity';
+import {Property} from '../../shared/model/property';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -30,14 +23,17 @@ export class DashboardComponent implements OnInit {
     currentDate: Date;
     date: DateModel;
     DatePickerOptions: DatePickerOptions;
-    newProperties: Activity[] = [];
-    changedProperties: Activity[] = [];
+    newProperties: Property[] = [];
+    changedProperties: Property[] = [];
 
     constructor(public config: ConfigService,
                 private _elementRef: ElementRef,
                 private _state: GlobalState,
                 private serviceService: ServiceService,
                 private activityService: ActivityService) {
+    }
+
+    ngOnInit() {
         this.serviceService.getServiceGroup(1)
             .subscribe(data => {
                 this.service = data;
@@ -46,17 +42,22 @@ export class DashboardComponent implements OnInit {
         this.DatePickerOptions = new DatePickerOptions();
         this.activityService.getPropertyChanges('create').subscribe(
             data => {
-                this.newProperties = data;
+                const property: Property[] = [];
+                for (const entry of data) {
+                    property.push(JSON.parse(entry.new_value));
+                }
+                this.newProperties = property;
             }
         );
         this.activityService.getPropertyChanges('update').subscribe(
             data => {
-                this.changedProperties = data;
+                const property: Property[] = [];
+                for (const entry of data) {
+                    property.push(JSON.parse(entry.new_value));
+                }
+                this.changedProperties = property;
             }
         );
-    }
-
-    ngOnInit() {
     }
 
 }

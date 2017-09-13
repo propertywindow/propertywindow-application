@@ -13,7 +13,7 @@
                         <li class="list-group-item" data-chat="open" data-chat-name="user.full_name"
                             *ngIf="user.online_now">
                             <span class="float-left">
-                                <img *ngIf="user.avatar" src="{{user.avatar}}" alt=""
+                                <img *ngIf="user.avatar" [src]="'image_data/' + user.avatar"
                                      class="rounded-circle max-w-40 m-r-10 ">
                                 <ngu-letter-avatar *ngIf="!user.avatar" avatar-data={{user.full_name}}
                                                    [avatar-char-count]="2"
@@ -44,7 +44,7 @@
                         <li class="list-group-item" data-chat="open" data-chat-name="user.full_name"
                             *ngIf="!user.online_now">
                             <span class="float-left">
-                                <img *ngIf="user.avatar" src="{{user.avatar}}" alt=""
+                                <img *ngIf="user.avatar" [src]="'image_data/' + user.avatar"
                                      class="rounded-circle max-w-40 m-r-10 ">
                                 <ngu-letter-avatar *ngIf="!user.avatar" avatar-data={{user.full_name}}
                                                    [avatar-char-count]="2"

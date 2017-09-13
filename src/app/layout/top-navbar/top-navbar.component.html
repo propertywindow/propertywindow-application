@@ -37,7 +37,7 @@
             <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
 				<span class="meta">
 					<span class="avatar">
-						<img *ngIf="loggedInUser.avatar" src="{{loggedInUser.avatar}}" alt=""
+						<img *ngIf="loggedInUser.avatar" [src]="'image_data/' + loggedInUser.avatar"
                              class="img-circle max-w-35">
                         <ngu-letter-avatar *ngIf="!loggedInUser.avatar" avatar-data={{loggedInUser.full_name}}
                                            [avatar-char-count]="2"
@@ -71,7 +71,7 @@
             <a md-ripple href="javascript:void(0)" class="nav-link">
                 <i *ngIf="loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
                 <!--<span *ngIf="!loading" class="icon-orange">-->
-                    <!--<i class="zmdi zmdi-notifications-active animated infinite tada zmdi-hc-fw"></i>-->
+                <!--<i class="zmdi zmdi-notifications-active animated infinite tada zmdi-hc-fw"></i>-->
                 <!--</span>-->
                 <i *ngIf="!loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
             </a>

@@ -1,12 +1,11 @@
-import {Component, ViewEncapsulation, ElementRef, OnInit, HostBinding, ViewChild} from '@angular/core';
+import {Component, ViewEncapsulation, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Router, NavigationEnd} from '@angular/router';
+import {Title} from '@angular/platform-browser';
+import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
+import {ModalDirective} from 'ngx-bootstrap';
 
 import {GlobalState} from '../app.state';
 import {ConfigService} from '../shared/services/config/config.service';
-
-import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
-import {ModalDirective} from 'ngx-bootstrap';
-import {Title} from '@angular/platform-browser';
 
 @Component({
     selector: 'app-layout',

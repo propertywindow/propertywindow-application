@@ -10,7 +10,7 @@
                         <md-toolbar class="activeHeaderColor">
                             <span>{{itemCount}} {{itemsSelected}}</span>
                             <span class="demo-fill-remaining"></span>
-                            <button md-icon-button >
+                            <button md-icon-button>
                                 <md-icon class="md-24">delete</md-icon>
                             </button>
                         </md-toolbar>
@@ -62,20 +62,49 @@
                 <div class="card-block p-0">
                     <div class="data-filter-wrapper" [ngClass]="{'active' : isSearchActive}">
                         <i class="zmdi zmdi-search search filter-icons"></i>
-                        <input type='text' class='data-filter' placeholder='Search property...' (keyup)='updateFilter($event)' [(ngModel)]="searchValue"/>
-                        <a href="javascript:void(0)" class="close filter-icons" (click)="triggerClose($event)"><i class="zmdi zmdi-close"></i></a>
+                        <input type='text' class='data-filter' placeholder='Search property...'
+                               (keyup)='updateFilter($event)' [(ngModel)]="searchValue"/>
+                        <a href="javascript:void(0)" class="close filter-icons" (click)="triggerClose($event)"><i
+                                class="zmdi zmdi-close"></i></a>
                     </div>
-                    <ngx-datatable #table style="width: 100%" class="material" [rows]="rows" [columnMode]="'force'" [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10" [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
+                    <ngx-datatable #table style="width: 100%" class="material" [rows]="rows"
+                                   [groupRowsBy]="'agent_group_id'" [groupExpansionDefault]="true"
+                                   [columnMode]="'force'"
+                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10"
+                                   [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
                                    (select)='onSelect($event)'>
-                        <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
-                            <ng-template ngx-datatable-header-template let-value="value" let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
-                                <md-checkbox class="example-margin" [checked]="allRowsSelected" (change)="selectFn(!allRowsSelected)"></md-checkbox>
+
+                        <ngx-datatable-group-header [rowHeight]="50" #myGroupHeader (toggle)="onDetailToggle($event)">
+                            <ng-template let-group="group" let-expanded="expanded" ngx-datatable-group-header-template>
+                                <div class="datatable-group-header">
+                                    <a
+                                            href="#"
+                                            [class.datatable-icon-right]="!expanded"
+                                            [class.datatable-icon-down]="expanded"
+                                            title="Expand/Collapse Group"
+                                            (click)="toggleExpandGroup(group)">
+                                        <b>{{group.value[0].name}}</b>
+                                    </a>
+                                </div>
                             </ng-template>
-                            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected" let-onCheckboxChangeFn="onCheckboxChangeFn">
-                                <md-checkbox class="example-margin" [checked]="isSelected" (change)="onCheckboxChangeFn($event)"></md-checkbox>
+                        </ngx-datatable-group-header>
+
+                        <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false"
+                                              [draggable]="false" [resizeable]="false">
+                            <ng-template ngx-datatable-header-template let-value="value"
+                                         let-allRowsSelected="allRowsSelected" let-selectFn="selectFn">
+                                <md-checkbox class="example-margin" [checked]="allRowsSelected"
+                                             (change)="selectFn(!allRowsSelected)"></md-checkbox>
+                            </ng-template>
+                            <ng-template ngx-datatable-cell-template let-value="value" let-isSelected="isSelected"
+                                         let-onCheckboxChangeFn="onCheckboxChangeFn" let-group="group">
+                                <md-checkbox class="example-margin" [checked]="isSelected"
+                                             (change)="onCheckboxChangeFn($event)"></md-checkbox>
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Name"></ngx-datatable-column>
+
+                        <ngx-datatable-column name="Office"></ngx-datatable-column>
+                        <ngx-datatable-column name="Address"></ngx-datatable-column>
                         <ngx-datatable-column name="City"></ngx-datatable-column>
                         <ngx-datatable-column name="Property Limit">
                             <ng-template let-row="row" ngx-datatable-cell-template>

@@ -6,6 +6,6 @@ export class Activity {
     action_name: string;
     action_id: number;
     old_value: string;
-    new_value: string;
+    new_value: any;
     datetime: string;
 }

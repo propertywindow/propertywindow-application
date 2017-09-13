@@ -1,9 +1,9 @@
+import {Agent} from './agent';
+import {UserType} from './userType';
 export class User {
     id: number;
-    active: boolean;
     email: string;
-    agent_id: number;
-    user_type_id: number;
+    password: string;
     full_name: string;
     first_name: string;
     last_name: string;
@@ -13,8 +13,13 @@ export class User {
     postcode: string;
     city: string;
     country: string;
-    avatar: string;
     phone: string;
+    agent_id: number;
+    agent: Agent;
+    user_type_id: number;
+    user_type: UserType;
+    avatar: string;
+    active: boolean;
     last_login: string;
     last_online: string;
     first_login: boolean;

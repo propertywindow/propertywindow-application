@@ -1,7 +1,10 @@
+import {AgentGroup} from './agentGroup';
 export class Agent {
     id: number;
-    group_id: number;
+    agent_group_id: number;
+    agent_group: AgentGroup;
     name: string;
+    office: string;
     address: string;
     street: string;
     house_number: string;
@@ -13,7 +16,9 @@ export class Agent {
     fax: string;
     email: string;
     website: number;
-    logo: number;
-    webprint: boolean;
+    logo: string;
     espc: boolean;
+    webprint: boolean;
+    archived: boolean;
+    created: string;
 }

@@ -25,23 +25,20 @@
                                                         <li class="list-group-item"
                                                             *ngFor="let item of newProperties">
                                                             <span class="float-left">
-                                                                <!--<img src="{{item.photo}}" alt=""-->
-                                                                <!--class="rounded-circle max-w-40 m-r-10 ">-->
-                                                                <ngu-letter-avatar avatar-data={{item.user_name}}
-                                                                                   [avatar-char-count]="2"
-                                                                                   avatar-shape="round"
-                                                                                   [avatar-height]="40"
-                                                                                   [avatar-width]="40"
-                                                                                   [avatar-font-size]="16"
-                                                                                   class="rounded-circle max-w-40 m-r-10 ">
-                                                                </ngu-letter-avatar>
+
+                                                                <span *ngFor="let image of item.images">
+                                                                    <img *ngIf="image.main"
+                                                                         [src]="image.path"
+                                                                         class="rounded-circle max-w-50 m-r-10">
+                                                                </span>
+
                                                             </span>
                                                             <div class="list-group-item-body">
                                                                 <div class="list-group-item-heading">
-                                                                    {{item.user_name}}
+                                                                    {{item.street}} {{item.house_number}}, {{item.city}}
                                                                 </div>
                                                                 <div class="list-group-item-text">
-                                                                    {{item.datetime}}
+                                                                    Added {{item.created | amTimeAgo}}
                                                                 </div>
                                                             </div>
                                                         </li>
@@ -54,23 +51,20 @@
                                                         <li class="list-group-item"
                                                             *ngFor="let item of changedProperties">
                                                             <span class="float-left">
-                                                                <!--<img src="{{item.photo}}" alt=""-->
-                                                                <!--class="rounded-circle max-w-40 m-r-10 ">-->
-                                                                <ngu-letter-avatar avatar-data={{item.user_name}}
-                                                                                   [avatar-char-count]="2"
-                                                                                   avatar-shape="round"
-                                                                                   [avatar-height]="40"
-                                                                                   [avatar-width]="40"
-                                                                                   [avatar-font-size]="16"
-                                                                                   class="rounded-circle max-w-40 m-r-10 ">
-                                                                </ngu-letter-avatar>
+
+                                                                <span *ngFor="let image of item.images">
+                                                                    <img *ngIf="image.main"
+                                                                         [src]="image.path"
+                                                                         class="rounded-circle max-w-50 m-r-10">
+                                                                </span>
+
                                                             </span>
                                                             <div class="list-group-item-body">
                                                                 <div class="list-group-item-heading">
-                                                                    {{item.user_name}}
+                                                                    {{item.street}} {{item.house_number}}, {{item.city}}
                                                                 </div>
                                                                 <div class="list-group-item-text">
-                                                                    {{item.datetime}}
+                                                                    Added {{item.created | amTimeAgo}}
                                                                 </div>
                                                             </div>
                                                         </li>

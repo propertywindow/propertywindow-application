@@ -41,10 +41,8 @@ export class AgentsComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(
-        private agentService: AgentService,
-        private serviceService: ServiceService
-    ) {
+    constructor(private agentService: AgentService,
+                private serviceService: ServiceService) {
     }
 
     ngOnInit() {
@@ -63,7 +61,7 @@ export class AgentsComponent implements OnInit {
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.temp.filter(function (d) {
-            return d.address.toLowerCase().indexOf(val) !== -1 || !val;
+            return d.name.toLowerCase().indexOf(val) !== -1 || !val;
         });
         this.rows = temp;
     }
@@ -90,8 +88,14 @@ export class AgentsComponent implements OnInit {
         this.isSearchActive = !this.isSearchActive;
     }
 
+    toggleExpandGroup(group) {
+        this.table.groupHeader.toggleExpandGroup(group);
+    }
+
+    onDetailToggle(event) {
+    }
+
     onActivate(event) {
-        // console.log('Activate Event', event);
     }
 
     add() {
