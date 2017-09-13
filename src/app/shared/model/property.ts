@@ -3,6 +3,7 @@ import {Agent} from './agent';
 import {Client} from './client';
 import {Kind} from './kind';
 import {Terms} from './terms';
+import {SubType} from './subType';
 export class Property {
     id: number;
     images: Gallery[];
@@ -15,6 +16,7 @@ export class Property {
     terms_id: number;
     terms: Terms;
     sub_type_id: number;
+    subType: SubType;
     online: boolean;
     address: string;
     street: string;
