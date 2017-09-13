@@ -18,27 +18,22 @@ import {SpinnerService} from './shared/services/spinner/spinner.service';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-    // App Left Sidebar Menu Open/Close Desktop
+
     @HostBinding('class.app_sidebar-menu-collapsed')
     get isApp_SidebarLeftCollapsed() {
         return this.config.appLayout.isApp_SidebarLeftCollapsed;
     }
 
-    // Left Menu Sidebar Open/Close Tablet & Mobile
     @HostBinding('class.app_sidebar-left-open')
     get isApp_MobileSidebarLeftOpen() {
         return this.config.appLayout.isApp_MobileSidebarLeftOpen;
     }
 
-    // App Right Sidebar Open/Close
     @HostBinding('class.sidebar-overlay-open')
     get isApp_SidebarRightOpen() {
         return this.config.appLayout.isApp_SidebarRightOpen;
     }
 
-    // The constructor is called first time before the ngOnInit()
-    // The constructor should only be used to initialize class members but shouldn't do actual 'work'.
-    // So you should use constructor() to setup Dependency Injection and not much else.
     constructor(private _state: GlobalState,
                 public config: ConfigService,
                 private viewContainerRef: ViewContainerRef,
@@ -50,13 +45,10 @@ export class AppComponent implements OnInit {
         this.titleService.setTitle(newTitle);
     }
 
-    // Called after the constructor and called  after the first ngOnChanges()
-    // ngOnInit() is better place to 'start' - it's where/when components' bindings are resolved.
     ngOnInit() {
         $(document).on('click', '[href="#"]', e => e.preventDefault());
     }
 
-    // Check if menu should reset on resize
     @HostListener('window:resize')
     public onWindowResize(): void {
         if (this._shouldMenuReset()) {

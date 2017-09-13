@@ -20,7 +20,7 @@
                   autocomplete="off" novalidate>
 
                 <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !email.valid }">
-                    <label class="sr-only">Email:</label>
+                    <label class="sr-only">Email: </label>
                     <div class="col-md">
                         <md-input-container floatPlaceholder="auto" class="float-auto" style="width: 100%">
                             <input mdInput [disabled]="loading" placeholder="Email" class="form-control" type="email"
@@ -33,7 +33,7 @@
                 </div>
 
                 <div class="form-group row" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
-                    <label class="sr-only">Password:</label>
+                    <label class="sr-only">Password: </label>
                     <div class="col-md">
                         <md-input-container floatPlaceholder="auto" class="float-auto" style="width: 100%">
                             <input mdInput [disabled]="loading" placeholder="Password" class="form-control"

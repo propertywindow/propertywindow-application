@@ -11,6 +11,7 @@ import {AuthenticationService} from './shared/authentication/authentication.serv
 import {ServicesModule} from './shared/services/services.module';
 import {SharedModule} from './shared/shared.module';
 import {AppRoutingModule} from './app.routing';
+import {NgIdleModule} from '@ng-idle/core';
 
 // Application wide providers
 const APP_PROVIDERS = [AppState, GlobalState, Title, AuthGuard, AuthenticationService];
@@ -31,6 +32,7 @@ export type StoreType = {
         BrowserAnimationsModule,
         ServicesModule,
         SharedModule.forRoot(),
+        NgIdleModule.forRoot(),
         AppRoutingModule
     ],
     providers: [APP_PROVIDERS],

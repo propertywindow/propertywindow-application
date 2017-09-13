@@ -14,3 +14,27 @@
 
 </div>
 <appBackdrop></appBackdrop>
+
+<div bsModal #idleModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header modal-danger">
+                <h4 class="modal-title float-left">
+                    <i class="zmdi zmdi-alarm-snooze animated infinite flash"></i> Inactive
+                </h4>
+            </div>
+            <div class="modal-body">
+                <p>Due to inactivity your session will be locked in
+                    <span class="badge" style="background:#d9534f;color:white;">{{timeOutTime}}</span> seconds.</p>
+
+                <md-progress-bar [value]="timeOutTime" [bufferValue]="100" mode="buffer"
+                                 [color]="'warn'"></md-progress-bar>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

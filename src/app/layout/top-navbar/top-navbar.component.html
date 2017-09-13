@@ -70,8 +70,10 @@
         <li class="nav-item">
             <a md-ripple href="javascript:void(0)" class="nav-link">
                 <i *ngIf="loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
-                <i *ngIf="!loading"
-                   class="zmdi zmdi-notifications-active animated infinite tada zmdi-hc-fw"></i>
+                <!--<span *ngIf="!loading" class="icon-orange">-->
+                    <!--<i class="zmdi zmdi-notifications-active animated infinite tada zmdi-hc-fw"></i>-->
+                <!--</span>-->
+                <i *ngIf="!loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
             </a>
         </li>
         <li class="nav-item">
