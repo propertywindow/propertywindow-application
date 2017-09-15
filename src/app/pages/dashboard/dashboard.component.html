@@ -28,7 +28,7 @@
 
                                                                 <span *ngFor="let image of item.images">
                                                                     <img *ngIf="image.main"
-                                                                         [src]="image.path"
+                                                                         [src]="'image_data/' + image.path"
                                                                          class="rounded-circle max-w-50 m-r-10">
                                                                 </span>
 
@@ -54,7 +54,7 @@
 
                                                                 <span *ngFor="let image of item.images">
                                                                     <img *ngIf="image.main"
-                                                                         [src]="image.path"
+                                                                         [src]="'image_data/' + image.path"
                                                                          class="rounded-circle max-w-50 m-r-10">
                                                                 </span>
 
@@ -130,14 +130,16 @@
                                 </div>
                             </div>
 
-                            <div class="meeting-timeline-block">
+                            <div class="meeting-timeline-block"
+                                 *ngFor="let item of newProperties; let index =index; let isOdd=odd; let isEven=even">
                                 <div class="meeting-timeline-icon animated bounceIn">
                                     <i class="zmdi zmdi-time"></i>
                                 </div>
-                                <div class="card card-timeline animated fadeInRight">
+                                <div class="card card-timeline animated"
+                                     [class.fadeInRight]="isEven" [class.fadeInLeft]="isOdd">
                                     <header class="card-header border-bottom">
-                                        <h2 class="card-title">Open viewing address</h2>
-                                        <small><i class="zmdi zmdi-time"></i> 8:00am - 8:15am</small>
+                                        <h2 class="card-title">New Property</h2>
+                                        <small><i class="zmdi zmdi-time"></i> 9:00am - 9:15am</small>
                                         <ul class="actions icons top-right">
                                             <li class="dropdown" dropdown>
                                                 <a href="javascript:void(0)" dropdownToggle>
@@ -164,7 +166,9 @@
 											<i class="zmdi zmdi-pin w-15"></i>
 										</span>
                                                 <div class="list-group-item-body">
-                                                    <div class="list-group-item-heading">West Wing Building</div>
+                                                    <div class="list-group-item-heading">{{item.house_number}}
+                                                        {{item.street}}
+                                                    </div>
                                                     <div class="list-group-item-text">Bushwick man bun pok pok
                                                         shoreditch.
                                                     </div>
@@ -183,20 +187,10 @@
                                             </li>
                                             <li class="list-group-item">
                                                 <div class="float-left">
-                                                    <img src="assets/img/profiles/11.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/13.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/03.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/09.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/12.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <img src="assets/img/profiles/14.jpg" alt=""
-                                                         class="rounded-circle max-w-40 ">
-                                                    <button class="btn btn-add-gray btn-fab btn-fab-sm m-l-5"><i
-                                                            class="zmdi zmdi-plus"></i></button>
+                                                    <span *ngFor="let image of item.images; let i=index">
+                                                        <img *ngIf="i<5" [src]="'image_data/' + image.path"
+                                                             class="rounded-circle max-w-40">
+                                                    </span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -227,7 +221,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                    <span class="meeting-time">8:00 AM</span>
+                                    <span class="meeting-time">{{item.created | amDateFormat:'HH:mm'  }}</span>
                                 </div>
                             </div>
 

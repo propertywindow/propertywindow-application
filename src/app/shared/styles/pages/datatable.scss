@@ -1,4 +1,10 @@
 :host /deep/ {
+  .page-amount-selected {
+    color: white;
+    text-decoration: none;
+    background-color: #cecece !important;
+  }
+
   .card.card-datatable {
     ul.actions.top-right {
       top: 20px;

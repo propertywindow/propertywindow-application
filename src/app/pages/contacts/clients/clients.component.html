@@ -73,7 +73,11 @@
                             </ng-template>
                         </ngx-datatable-column>
                         <ngx-datatable-column name="City"></ngx-datatable-column>
-                        <ngx-datatable-column name="Properties"></ngx-datatable-column>
+                        <ngx-datatable-column name="Properties">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                1
+                            </ng-template>
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Edit">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <a href="javascript:void(0)" attr.data-id="{{row.id}}" class="icon edit-product"><i class="zmdi zmdi-edit"></i></a>

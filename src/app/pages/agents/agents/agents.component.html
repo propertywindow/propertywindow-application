@@ -35,7 +35,7 @@
                             <ul class="dropdown-menu btn-primary dropdown-menu-right">
                                 <li *ngFor="let choice of pageLengths">
                                     <a class="dropdown-item" href="#" (click)="selectPageLength(choice)"
-                                       [ngClass]="{'selected': choice === table.limit}">{{choice}}</a>
+                                       [ngClass]="{'page-amount-selected': choice === table.limit}">{{choice}}</a>
                                 </li>
                             </ul>
                         </li>
@@ -113,7 +113,7 @@
                         </ngx-datatable-column>
                         <ngx-datatable-column name="Impersonate">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                <a href="javascript:void(0)" (click)="impersonate(row.id)" class="icon"><i
+                                <a href="javascript:void(0)" (click)="impersonate(row.agent_user_id)" class="icon"><i
                                         class="mdi mdi-transit-transfer"></i></a>
                             </ng-template>
                         </ngx-datatable-column>

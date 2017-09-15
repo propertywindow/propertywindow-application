@@ -51,6 +51,7 @@ export class ClientsComponent implements OnInit {
             });
     }
 
+
     updateFilter(event) {
         const val = event.target.value.toLowerCase();
         const temp = this.temp.filter(function (d) {

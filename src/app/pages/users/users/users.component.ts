@@ -50,13 +50,13 @@ export class UsersComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
     impersonateId: number;
+    loggedInUserId: number;
 
     constructor(private router: Router,
                 private userService: UserService,
                 private serviceService: ServiceService,
                 private authenticationService: AuthenticationService
     ) {
-
         UsersComponent.doImpersonate.subscribe(res => {
             swal({
                 title: 'Impersonating',
@@ -91,7 +91,9 @@ export class UsersComponent implements OnInit {
     }
 
     ngOnInit() {
+        const currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.table.limit = 10;
+        this.loggedInUserId = currentUser.id;
         this.serviceService.getService(8)
             .subscribe(data => {
                 this.service = data;
@@ -135,7 +137,10 @@ export class UsersComponent implements OnInit {
     }
 
     onActivate(event) {
-        // console.log('Activate Event', event);
+        if (event.type === 'click') {
+            // this.router.navigate(['/users/users/view', event.row.id]);
+        }
+
     }
 
     add() {

@@ -3,6 +3,7 @@ export class Agent {
     id: number;
     agent_group_id: number;
     agent_group: AgentGroup;
+    agent_user_id: number;
     name: string;
     office: string;
     address: string;

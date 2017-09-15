@@ -36,13 +36,8 @@ const LAYOUT_ROUTES: Routes = [
             // Users
             // ---------------------------------------------------------->
             {
-                path: 'users/blacklist',
-                loadChildren: '../pages/users/blacklist/blacklist.module#BlacklistModule',
-                canActivate: [AuthGuard]
-            },
-            {
-                path: 'users/users',
-                loadChildren: '../pages/users/users/users.module#UsersModule',
+                path: 'users',
+                loadChildren: '../pages/users/users.module#UsersModule',
                 canActivate: [AuthGuard]
             },
             // ---------------------------------------------------------->

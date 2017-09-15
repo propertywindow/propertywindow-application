@@ -16,6 +16,7 @@ export class User {
     phone: string;
     agent_id: number;
     agent: Agent;
+    office: string;
     user_type_id: number;
     user_type: UserType;
     avatar: string;

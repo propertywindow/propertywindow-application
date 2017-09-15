@@ -1,21 +1,13 @@
-import {
-    Component,
-    OnInit,
-    trigger,
-    state,
-    style,
-    transition,
-    animate,
-    ElementRef,
-    HostListener,
-    HostBinding
-} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {Router} from '@angular/router';
 import {GlobalState} from '../../../app.state';
 import {ConfigService} from '../../../shared/services/config/config.service';
 import {PropertyService} from '../../../shared/services/engine/property/property.service';
 import {Property} from '../../../shared/model/property';
 import {ServiceService} from '../../../shared/services/engine/service/service.service';
 import {ServiceGroup} from '../../../shared/model/serviceGroup';
+import {DatatableComponent} from '@swimlane/ngx-datatable';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -23,6 +15,13 @@ import {ServiceGroup} from '../../../shared/model/serviceGroup';
     styleUrls: ['./properties.component.scss']
 })
 export class PropertiesComponent implements OnInit {
+    public pageLengths: number[] = [
+        10,
+        25,
+        50,
+        100
+    ];
+    @ViewChild(DatatableComponent) table: DatatableComponent;
     service: ServiceGroup;
     rows: Property[] = [];
     selected = [];
@@ -34,13 +33,13 @@ export class PropertiesComponent implements OnInit {
     itemsSelected: string = '';
     itemCount: number = 0;
 
-    constructor(
-        private propertyService: PropertyService,
-        private serviceService: ServiceService
-    ) {
+    constructor(private router: Router,
+                private propertyService: PropertyService,
+                private serviceService: ServiceService) {
     }
 
     ngOnInit() {
+        this.table.limit = 10;
         this.serviceService.getServiceGroup(2)
             .subscribe(data => {
                 this.service = data;
@@ -84,7 +83,10 @@ export class PropertiesComponent implements OnInit {
     }
 
     onActivate(event) {
-        // console.log('Activate Event', event);
+        if (event.type === 'click') {
+            this.router.navigate(['/properties/view', event.row.id]);
+        }
+
     }
 
     add() {
@@ -98,4 +100,11 @@ export class PropertiesComponent implements OnInit {
     remove() {
         this.selected = [];
     }
+
+    selectPageLength(value) {
+        this.table.limit = value;
+        this.table.offset = 0;
+        this.rows = this.rows.slice();
+    }
+
 }

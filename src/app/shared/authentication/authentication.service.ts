@@ -55,7 +55,7 @@ export class AuthenticationService {
                 'impersonate_id': impersonateId
             }
         };
-        // todo: if impersonate already exists, keep current one
+
         return this.http.post('http://propertywindow-engine.dev/authentication/login', impersonateData)
             .map((response: Response) => {
                 const result = response.json() && response.json().result;
@@ -64,11 +64,15 @@ export class AuthenticationService {
                     this.email = result[1];
                     this.token = result[2];
 
-                    localStorage.setItem('impersonateUser', JSON.stringify({
-                        id: currentUser.id,
-                        email: currentUser.email,
-                        token: currentUser.token
-                    }));
+                    const impersonateUser = JSON.parse(localStorage.getItem('impersonateUser'));
+
+                    if (!impersonateUser) {
+                        localStorage.setItem('impersonateUser', JSON.stringify({
+                            id: currentUser.id,
+                            email: currentUser.email,
+                            token: currentUser.token
+                        }));
+                    }
 
                     localStorage.setItem('currentUser', JSON.stringify({
                         id: this.id,

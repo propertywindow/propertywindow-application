@@ -18,28 +18,32 @@
                     <h2 class="card-title" *ngIf="service">{{service.description}}</h2>
                     <ul class="actions icons top-right">
                         <li>
-                            <a href="javascript:void(0)" (click)="isSearchActive = !isSearchActive;">
+                            <a href="javascript:void(0)" #tooltip="mdTooltip" [mdTooltip]="'Search Entries'"
+                               [mdTooltipPosition]="'above'" [mdTooltipDisabled]="'false'"
+                               [mdTooltipShowDelay]="0" [mdTooltipHideDelay]="100"
+                               [mdTooltipClass]="{'red-tooltip': 'false'}" (click)="isSearchActive = !isSearchActive;">
                                 <i class="zmdi zmdi-search"></i>
                             </a>
                         </li>
                         <li class="dropdown" dropdown>
-                            <a href="javascript:void(0)" dropdownToggle>
+                            <a href="javascript:void(0)" #tooltip="mdTooltip" [mdTooltip]="'Show Entries'"
+                               [mdTooltipPosition]="'above'" [mdTooltipDisabled]="'false'"
+                               [mdTooltipShowDelay]="0" [mdTooltipHideDelay]="200"
+                               [mdTooltipClass]="{'red-tooltip': 'false'}" dropdownToggle>
                                 <i class="zmdi zmdi-more-vert"></i>
                             </a>
                             <ul class="dropdown-menu btn-primary dropdown-menu-right">
-                                <li>
-                                    <a href="javascript:void(0)">Option One</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Option Two</a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0)">Option Three</a>
+                                <li *ngFor="let choice of pageLengths">
+                                    <a class="dropdown-item" href="#" (click)="selectPageLength(choice)"
+                                       [ngClass]="{'page-amount-selected': choice === table.limit}">{{choice}}</a>
                                 </li>
                             </ul>
                         </li>
                         <li>
-                            <a href="javascript:void(0)">
+                            <a href="javascript:void(0)" #tooltip="mdTooltip" [mdTooltip]="'Export All'"
+                               [mdTooltipPosition]="'above'" [mdTooltipDisabled]="'false'"
+                               [mdTooltipShowDelay]="0" [mdTooltipHideDelay]="200"
+                               [mdTooltipClass]="{'red-tooltip': 'false'}">
                                 <i class="zmdi zmdi-inbox"></i>
                             </a>
                         </li>
@@ -56,6 +60,7 @@
                     </ul>
                 </header>
                 <div class="card-block p-0">
+
                     <div class="data-filter-wrapper" [ngClass]="{'active' : isSearchActive}">
                         <i class="zmdi zmdi-search search filter-icons"></i>
                         <input type='text' class='data-filter' placeholder='Search property...'
@@ -63,8 +68,9 @@
                         <a href="javascript:void(0)" class="close filter-icons" (click)="triggerClose($event)"><i
                                 class="zmdi zmdi-close"></i></a>
                     </div>
+
                     <ngx-datatable #table style="width: 100%" class="material" [rows]="rows" [columnMode]="'force'"
-                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'" [limit]="10"
+                                   [headerHeight]="50" [footerHeight]="50" [rowHeight]="'auto'"
                                    [selected]="selected" [selectionType]="'checkbox'" (activate)="onActivate($event)"
                                    (select)='onSelect($event)'>
                         <ngx-datatable-column [width]="60" [sortable]="false" [canAutoResize]="false"
@@ -83,16 +89,14 @@
                         <ngx-datatable-column name="Address"></ngx-datatable-column>
                         <ngx-datatable-column name="City"></ngx-datatable-column>
                         <ngx-datatable-column name="Terms"></ngx-datatable-column>
-                        <ngx-datatable-column name="Price"></ngx-datatable-column>
+                        <ngx-datatable-column name="Price">
+                            <ng-template let-row="row" ngx-datatable-cell-template>
+                                <span style="text-align: right;">{{row.price | currency:'GBP':true:'4.0-2'}}</span>
+                            </ng-template>
+                        </ngx-datatable-column>
                         <ngx-datatable-column name="Online">
                             <ng-template let-row="row" ngx-datatable-cell-template>
                                 <md-slide-toggle [color]="accent" [checked]="row.online"></md-slide-toggle>
-                            </ng-template>
-                        </ngx-datatable-column>
-                        <ngx-datatable-column name="Edit">
-                            <ng-template let-row="row" ngx-datatable-cell-template>
-                                <a href="javascript:void(0)" attr.data-id="{{row.id}}" [routerLink]="['/properties/view', row.id]" class="icon edit-product"><i
-                                        class="zmdi zmdi-edit"></i></a>
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>
@@ -100,6 +104,6 @@
             </div>
         </div>
     </div>
-
+    <!--[routerLink]="['/properties/view', row.id]"-->
 </div>
 <footer id="footer_wrapper" class="footer_wrapper"></footer>

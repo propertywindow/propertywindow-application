@@ -76,7 +76,7 @@
                 <i *ngIf="!loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" *ngIf="loggedInUser && loggedInUser.user_type_id == 3">
             <a md-ripple href="javascript:void(0)" (click)="toggleAppRightSidebar()" class="nav-link">
                 <i [ngClass]="{'mdi-playlist-minus': false, 'mdi-playlist-plus': true}" class="mdi"></i>
             </a>
