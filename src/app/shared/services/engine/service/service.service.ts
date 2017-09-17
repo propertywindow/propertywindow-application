@@ -3,12 +3,14 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {ServiceGroup} from '../../../model/serviceGroup';
+import {Service} from '../../../model/service';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/catch';
-import {Service} from "../../../model/service";
+
 @Injectable()
 export class ServiceService {
     constructor(private http: Http, private authenticationService: AuthenticationService) {
@@ -22,7 +24,7 @@ export class ServiceService {
             'method': 'getServiceGroups'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/services/service_group', data, options)
+            .post(environment.engineUrl + 'services/service_group', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -38,7 +40,7 @@ export class ServiceService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/services/service_group', data, options)
+            .post(environment.engineUrl + 'services/service_group', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -54,7 +56,7 @@ export class ServiceService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/services/service', data, options)
+            .post(environment.engineUrl + 'services/service', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -67,7 +69,7 @@ export class ServiceService {
             'method': 'getMenu'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/services/menu', data, options)
+            .post(environment.engineUrl + 'services/menu', data, options)
             .map((response: Response) => response.json().result);
     };
 }

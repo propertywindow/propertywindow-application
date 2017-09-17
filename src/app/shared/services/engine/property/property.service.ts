@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Property} from '../../../model/property';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -23,7 +24,7 @@ export class PropertyService {
         };
 
         return this.http
-            .post('http://propertywindow-engine.dev/property', data, options)
+            .post(environment.engineUrl + 'property', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -40,7 +41,7 @@ export class PropertyService {
         };
 
         return this.http
-            .post('http://propertywindow-engine.dev/property', data, options)
+            .post(environment.engineUrl + 'property', data, options)
             .map((response: Response) => response.json().result);
     };
 }

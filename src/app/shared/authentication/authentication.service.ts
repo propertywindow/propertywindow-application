@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
+import {environment} from '../../../environments/environment';
 import 'rxjs/add/operator/map'
 
 @Injectable()
@@ -25,7 +26,7 @@ export class AuthenticationService {
                 'password': password
             }
         };
-        return this.http.post('http://propertywindow-engine.dev/authentication/login', loginData)
+        return this.http.post(environment.engineUrl + 'authentication/login', loginData)
             .map((response: Response) => {
                 const result = response.json() && response.json().result;
                 if (result) {
@@ -56,7 +57,7 @@ export class AuthenticationService {
             }
         };
 
-        return this.http.post('http://propertywindow-engine.dev/authentication/login', impersonateData)
+        return this.http.post(environment.engineUrl + 'authentication/login', impersonateData)
             .map((response: Response) => {
                 const result = response.json() && response.json().result;
                 if (result) {
@@ -98,7 +99,7 @@ export class AuthenticationService {
                 'impersonate_id': currentUser.id
             }
         };
-        return this.http.post('http://propertywindow-engine.dev/authentication/login', impersonateData)
+        return this.http.post(environment.engineUrl + 'authentication/login', impersonateData)
             .map((response: Response) => {
                 const result = response.json() && response.json().result;
                 if (result) {

@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Activity} from '../../../model/activity';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -21,7 +22,7 @@ export class ActivityService {
             'method': 'getActivityFromUser'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/log/activity', data, options)
+            .post(environment.engineUrl + 'log/activity', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -37,7 +38,7 @@ export class ActivityService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/log/activity', data, options)
+            .post(environment.engineUrl + 'log/activity', data, options)
             .map((response: Response) => response.json().result);
     };
 }

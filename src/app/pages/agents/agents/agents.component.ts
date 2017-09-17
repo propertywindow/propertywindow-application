@@ -43,6 +43,7 @@ export class AgentsComponent implements OnInit {
     rows: Agent[] = [];
     selected = [];
     temp = [];
+    loading: boolean = true;
     searchValue: string = null;
     isSearchActive: boolean = false;
     isToolbarActive: boolean = false;
@@ -97,6 +98,7 @@ export class AgentsComponent implements OnInit {
             .subscribe(data => {
                 this.temp = [...data];
                 this.rows = data;
+                this.loading = false;
             });
     }
 

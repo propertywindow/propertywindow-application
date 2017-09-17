@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Client} from '../../../model/client';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -22,7 +23,7 @@ export class ClientService {
             'method': 'getClients'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/contacts/client', data, options)
+            .post(environment.engineUrl + 'contacts/client', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -38,7 +39,7 @@ export class ClientService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/contacts/client', data, options)
+            .post(environment.engineUrl + 'contacts/client', data, options)
             .map((response: Response) => response.json().result);
     };
 }

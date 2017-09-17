@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {User} from '../../../model/user';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -22,7 +23,7 @@ export class UserService {
             'method': 'getUsers'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
+            .post(environment.engineUrl + 'authentication/user', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -38,7 +39,7 @@ export class UserService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
+            .post(environment.engineUrl + 'authentication/user', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -51,7 +52,7 @@ export class UserService {
             'method': 'getColleagues'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/user', data, options)
+            .post(environment.engineUrl + 'authentication/user', data, options)
             .map((response: Response) => response.json().result);
     };
 }

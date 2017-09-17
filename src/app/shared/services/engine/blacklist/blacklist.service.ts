@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
 import {AuthenticationService} from '../../../authentication/authentication.service';
 import {Blacklist} from '../../../model/blacklist';
+import {environment} from '../../../../../environments/environment';
 
 import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -22,7 +23,7 @@ export class BlacklistService {
             'method': 'getBlacklists'
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/blacklist', data, options)
+            .post(environment.engineUrl + 'authentication/blacklist', data, options)
             .map((response: Response) => response.json().result);
     };
 
@@ -38,7 +39,7 @@ export class BlacklistService {
             }
         };
         return this.http
-            .post('http://propertywindow-engine.dev/authentication/blacklist', data, options)
+            .post(environment.engineUrl + 'authentication/blacklist', data, options)
             .map((response: Response) => response.json().result);
     };
 }
