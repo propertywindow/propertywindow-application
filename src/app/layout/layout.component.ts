@@ -26,7 +26,7 @@ export class LayoutComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.idle.setIdle(10);
+        this.idle.setIdle(900);
         this.idle.setTimeout(100);
         this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 

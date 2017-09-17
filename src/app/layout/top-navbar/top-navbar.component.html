@@ -33,9 +33,11 @@
                 <i class="zmdi zmdi-spinner zmdi-hc-spin"></i>
             </a>
         </li>
+
         <li class="nav-item dropdown avatar-menu hidden-sm-down" *ngIf="loggedInUser && !loading" dropdown>
             <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle>
-				<span class="meta">
+
+				<span class="meta" *ngIf="loggedInUser.user_type_id != 2">
 					<span class="avatar">
 						<img *ngIf="loggedInUser.avatar" [src]="'image_data/' + loggedInUser.avatar"
                              class="img-circle max-w-35">
@@ -50,6 +52,23 @@
 					<span class="name">{{loggedInUser.full_name}}</span>
 					<span class="caret"></span>
 				</span>
+
+                <span class="meta" *ngIf="loggedInUser.user_type_id == 2">
+					<span class="avatar">
+						<img *ngIf="loggedInUser.avatar" [src]="'image_data/' + loggedInUser.avatar"
+                             class="img-circle max-w-35">
+                        <ngu-letter-avatar *ngIf="!loggedInUser.avatar" avatar-data={{loggedInUser.agent_name}}
+                                           [avatar-char-count]="2"
+                                           [avatar-font-size]="14" [avatar-height]="36"
+                                           [avatar-width]="36">
+                        </ngu-letter-avatar>
+						<i class="badge mini success status"></i>
+					</span>
+
+					<span class="name">{{loggedInUser.agent_name}}</span>
+					<span class="caret"></span>
+				</span>
+
             </a>
             <ul class="dropdown-menu btn-accent dropdown-menu-right" *dropdownMenu>
                 <li>
@@ -67,6 +86,7 @@
                 </li>
             </ul>
         </li>
+
         <li class="nav-item">
             <a md-ripple href="javascript:void(0)" class="nav-link">
                 <i *ngIf="loading" class="zmdi zmdi-notifications zmdi-hc-fw"></i>
