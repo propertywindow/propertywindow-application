@@ -1,0 +1,4 @@
+e2e
+protractor.conf.js
+tsconfig.json
+tslint.json

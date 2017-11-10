@@ -7,6 +7,11 @@
                 <i class="mdi mdi-backburger"></i>
             </a>
         </li>
+        <li class="nav-item">
+            <a md-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
+                <i class="zmdi zmdi-search"></i>
+            </a>
+        </li>
         <li class="nav-item dropdown hidden-sm-down" dropdown>
             <a md-ripple href="javascript:void(0)" class="nav-link" dropdownToggle><i class="zmdi zmdi-plus"></i></a>
             <ul class="dropdown-menu btn-accent dropdown-menu-left" *dropdownMenu>
@@ -16,11 +21,6 @@
                 <li><a href="javascript:void(0)"><i class="zmdi zmdi-accounts-list"></i> User</a></li>
                 <li><a href="javascript:void(0)"><i class="zmdi zmdi-calendar"></i> Appointment</a></li>
             </ul>
-        </li>
-        <li class="nav-item">
-            <a md-ripple href="javascript:void(0)" (click)="search.searchStatus = true" class="nav-link">
-                <i class="zmdi zmdi-search"></i>
-            </a>
         </li>
     </ul>
     <ul class="navbar-nav nav-center">

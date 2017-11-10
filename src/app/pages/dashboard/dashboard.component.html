@@ -78,13 +78,6 @@
                                                     </ul>
                                                 </div>
                                             </md-tab>
-                                            <md-tab label="Something">
-                                                <div class="tab-content p-20">
-                                                    <ul>
-                                                        <li>Something</li>
-                                                    </ul>
-                                                </div>
-                                            </md-tab>
                                         </md-tab-group>
 
                                     </div>
@@ -227,12 +220,78 @@
 
 
                         </section>
-                    </div>
+                    </div>x
                 </tab>
-                <tab heading="Map">
-                    <div class="content-body">
+                <tab heading="Map" (select)="selectMapTab()">
+                    <div class="content-body map-body" *ngIf="properties">
+
+                        <agm-map
+                                [latitude]="lat"
+                                [longitude]="lng"
+                                [zoom]="8"
+                                [disableDefaultUI]="true"
+                                [zoomControl]="true"
+                        >
+                            <agm-marker *ngFor="let m of properties; let i = index"
+                                        [latitude]="m.lat"
+                                        [longitude]="m.lng"
+                                        [label]="m.address">
+                                <agm-info-window>
+                                    <strong>{{m.address}}</strong>
+                                </agm-info-window>
+                            </agm-marker>
+                        </agm-map>
+
+
 
                     </div>
+
+                    <div class="map-list">
+                        <header class="header app_primary_bg">
+                            <ul class="actions icons top-left">
+                                <li>
+                                    <a href="javascript:void(0)">
+                                        <i class="zmdi zmdi-search text-white"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                            <h2 class="header-title text-white font-weight-600 alt-h2 m-l-40 m-t-5">Properties</h2>
+                            <ul class="actions icons top-right">
+                                <li class="dropdown" dropdown>
+                                    <a href="javascript:void(0)" dropdownToggle>
+                                        <i class="zmdi zmdi-more-vert text-white"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right btn-primary" *dropdownMenu>
+                                        <li>
+                                            <a href="javascript:void(0)">Map details</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Copy Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Print Map</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Zoom to viewport</a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:void(0)">Download KML</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </header>
+                        <nav class="submenu">
+                            <ul>
+                                <li *ngFor="let property of properties">
+                                    <a md-ripple href="javascript:void(0)">
+                                        <i class="zmdi zmdi-pin"></i> {{property.address}}
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+
                 </tab>
             </tabset>
         </div>

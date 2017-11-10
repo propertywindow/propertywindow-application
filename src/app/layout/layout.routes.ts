@@ -45,7 +45,7 @@ const LAYOUT_ROUTES: Routes = [
             // ---------------------------------------------------------->
             {
                 path: 'agents',
-                loadChildren: '../pages/agents/agents/agents.module#AgentsModule',
+                loadChildren: '../pages/agents/agents.module#AgentsModule',
                 canActivate: [AuthGuard]
             },
             // ---------------------------------------------------------->

@@ -26,7 +26,7 @@ export class ActivityService {
             .map((response: Response) => response.json().result);
     };
 
-    getPropertyChanges(type: string): Observable<Activity[]> {
+    getPropertyChanges(type: string, id: number = null): Observable<Activity[]> {
         const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
         const options = new RequestOptions({headers: headers});
         const data = {
@@ -34,6 +34,7 @@ export class ActivityService {
             'id': null,
             'method': 'getPropertyChanges',
             'params': {
+                'id': id,
                 'type': type
             }
         };

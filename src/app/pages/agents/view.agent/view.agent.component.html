@@ -1,0 +1,245 @@
+<div id="content_wrapper" class="detachedToolbarLeft-wrapper">
+    <div class="content" *ngIf="agent">
+        <div class="header-wrapper header-md overlay"></div>
+        <div class="content-body container-fluid">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="card profile">
+                        <header class="card-header">
+
+
+                            <ngu-letter-avatar avatar-data={{agent.name}}
+                                               [avatar-char-count]="2"
+                                               [avatar-font-size]="14" [avatar-height]="36"
+                                               [avatar-width]="36" class="rounded-circle">
+                            </ngu-letter-avatar>
+                            <ul class="actions icons top-right">
+                                <li class="dropdown" dropdown>
+                                    <a href="javascript:void(0)" dropdownToggle>
+                                        <i class="zmdi zmdi-more-vert"></i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-right btn-primary">
+                                        <li>
+                                            <a href="javascript:void(0)">Edit Agent</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </header>
+                        <div class="card-block p-0">
+                            <h3 class="name">{{agent.name}} </h3>
+                            <span class="title">{{agent.office}} Office</span>
+                            <button md-ripple type="button" class="btn btn-accent btn-round">Impersonate</button>
+                        </div>
+                        <footer class="card-footer border-top m-t-15">
+                            <div class="row p-t-10 p-b-10">
+                                <div class="col"><span class="count">250</span><span>Properties</span></div>
+                                <div class="col"><span class="count">6</span><span>Employees</span></div>
+                                <div class="col"><span class="count">2</span><span>Offices</span></div>
+                            </div>
+                        </footer>
+                    </div>
+                </div>
+                <div class="col-lg-8">
+                    <div class="card">
+                        <tabset [justified]="true">
+                            <tab heading="Timeline">
+                                <div class="card-block p-30">
+                                    <div class="row">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-11">
+
+
+                                            <article *ngFor="let newProperty of newProperties">
+                                                <div class="card card-comment" data-timeline="image">
+                                                    <header class="card-header mw-lightGray">
+                                                        <img src="assets/img/profiles/02.jpg" alt=""
+                                                             class="rounded-circle img-sm float-left m-r-10">
+                                                        <h2 class="card-title m-t-5">New property</h2>
+                                                        <ul class="actions icons top-right">
+                                                            <li class="d-md-none d-lg-none d-xl-none">
+                                                                <a href="javascript:void(0)">
+                                                                    <i class="zmdi zmdi-comment-text"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="d-xs-none">
+                                                                <a href="javascript:void(0)">
+                                                                    <i class="zmdi zmdi-favorite"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="d-xs-none">
+                                                                <a href="javascript:void(0)">
+                                                                    <i class="zmdi zmdi-share"></i>
+                                                                </a>
+                                                            </li>
+                                                            <li class="dropdown" dropdown>
+                                                                <a href="javascript:void(0)" dropdownToggle>
+                                                                    <i class="zmdi zmdi-more-vert"></i>
+                                                                </a>
+                                                                <ul class="dropdown-menu btn-primary dropdown-menu-right"
+                                                                    *dropdownMenu>
+                                                                    <li>
+                                                                        <a href="javascript:void(0)">Edit</a>
+                                                                    </li>
+                                                                    <li>
+                                                                        <a href="javascript:void(0)">Delete</a>
+                                                                    </li>
+                                                                </ul>
+                                                            </li>
+                                                        </ul>
+                                                    </header>
+                                                    <div class="card-block">
+                                                        <div id="photo-gallery" class="gallery row" itemscope
+                                                             itemtype="http://schema.org/ImageGallery">
+
+                                                            <figure *ngFor="let image of newProperty.images; let i=index"
+                                                                    class="col-md-3 col-sm-4 col-xs-12"
+                                                                    itemprop="associatedMedia" itemscope
+                                                                    itemtype="http://schema.org/ImageObject">
+                                                                <a href="#" *ngIf="i<4">
+                                                                    <img [src]="'image_data/' + image.path">
+                                                                </a>
+                                                            </figure>
+
+                                                        </div>
+                                                        <p>{{newProperty.street}} {{newProperty.house_number}}, {{newProperty.city}}</p>
+                                                    </div>
+
+                                                    <div class="card-footer mw-lightGray p-10">
+                                                        <ul class="actions icons bottom-left">
+                                                            <li class="d-xs-none">
+                                                                <a href="javascript:void(0)">
+                                                                    <span class="badge status danger">0</span>
+                                                                    <i class="zmdi zmdi-comment-text"></i>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="form-group m-5 p-0">
+                                                            <div class="input-group">
+                                                                <label class="sr-only">Leave a comment...</label>
+                                                                <input type="text" class="form-control form-rounded"
+                                                                       placeholder="Leave a comment..">
+                                                                <span class="input-group-btn">
+																			<button type="button"
+                                                                                    class="btn btn-blue btn-fab animate-fab btn-fab-sm m-l-20">
+																				<i class="zmdi zmdi-mail-send"></i>
+																			</button>
+																		</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                            </article>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </tab>
+                            <tab heading="About">
+                                <div class="card-block p-30">
+                                    <h3>About {{agent.name}}</h3>
+                                    <p>
+                                        Fields go here
+                                    </p>
+                                    <h3 class="p-t-30 p-b-15">Contact Information</h3>
+                                    <ul class="vertical-icon-list p-l-30">
+                                        <li><i class="zmdi zmdi-phone"></i>{{agent.phone}}</li>
+                                        <li><i class="zmdi zmdi-email"></i><a href="mailto:{{agent.email}}">{{agent.email}}</a>
+                                        </li>
+                                        <li><i class="zmdi zmdi-open-in-new"></i><a [href]="agent.website"
+                                                                                    target="_blank">{{agent.website}}</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </tab>
+                            <tab heading="Employees">
+                                <div class="card-block p-30">
+                                    <div class="row">
+
+                                        <div class="col" *ngFor="let user of users">
+
+                                            <div class="card type--profile m-b-20 m-10">
+                                                <header class="card-header  card-blue">
+
+                                                    <img *ngIf="user.avatar" [src]="'image_data/' + user.avatar"
+                                                         class="rounded-circle profile-mini">
+                                                    <ngu-letter-avatar *ngIf="!user.avatar"
+                                                                       avatar-data={{user.full_name}}
+                                                                       [avatar-char-count]="2"
+                                                                       [avatar-font-size]="14" [avatar-height]="36"
+                                                                       [avatar-width]="36">
+                                                    </ngu-letter-avatar>
+
+                                                    <ul class="actions icons top-right">
+                                                        <li class="dropdown" dropdown>
+                                                            <a href="javascript:void(0)" dropdownToggle>
+                                                                <i class="zmdi zmdi-more-vert"></i>
+                                                            </a>
+                                                            <ul class="dropdown-menu dropdown-menu-right btn-accent"
+                                                                *dropdownMenu>
+                                                                <li>
+                                                                    <a href="javascript:void(0)"><i
+                                                                            class="zmdi zmdi-edit"></i> <span
+                                                                            class="m-l-10">Edit</span></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:void(0)"><i
+                                                                            class="zmdi zmdi-block"></i> <span
+                                                                            class="m-l-10">Mute</span></a>
+                                                                </li>
+                                                                <li>
+                                                                    <a href="javascript:void(0)"><i
+                                                                            class="zmdi zmdi-delete"></i> <span
+                                                                            class="m-l-10">Remove</span></a>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </header>
+                                                <div class="card-block">
+                                                    <h3 class="name">{{user.full_name}}</h3>
+                                                    <span class="title">{{user.city}}</span>
+                                                    <button md-ripple type="button" class="btn btn-blue btn-round ">
+                                                        Impersonate
+                                                    </button>
+                                                </div>
+                                                <div class="card-footer border-top">
+                                                    <ul class="actions bottom-left">
+                                                        <li>
+                                                            <a md-ripple href="javascript:void(0)"
+                                                               class="btn btn-default btn-flat">
+                                                                Action
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                    <ul class="actions icons bottom-right">
+                                                        <li>
+                                                            <a href="javascript:void(0)">
+                                                                <i class="zmdi zmdi-pin"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="javascript:void(0)">
+                                                                <i class="zmdi zmdi-notifications"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </tab>
+                        </tabset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer_wrapper" class="footer_wrapper"></footer>

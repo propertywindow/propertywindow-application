@@ -27,6 +27,22 @@ export class UserService {
             .map((response: Response) => response.json().result);
     };
 
+    getAgentUsers(id: number): Observable<User[]> {
+        const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
+        const options = new RequestOptions({headers: headers});
+        const data = {
+            'jsonrpc': '2.0',
+            'id': null,
+            'method': 'getAgentUsers',
+            'params': {
+                'id': id
+            }
+        };
+        return this.http
+            .post(environment.engineUrl + 'authentication/user', data, options)
+            .map((response: Response) => response.json().result);
+    };
+
     getUser(id: number): Observable<User> {
         const headers = new Headers({'Authorization': 'Basic ' + this.authenticationService.token});
         const options = new RequestOptions({headers: headers});

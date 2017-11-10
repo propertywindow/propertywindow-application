@@ -111,10 +111,15 @@
                                 {{row.property_limit}}
                             </ng-template>
                         </ngx-datatable-column>
-                        <ngx-datatable-column name="Impersonate">
+                        <ngx-datatable-column name="Actions">
                             <ng-template let-row="row" ngx-datatable-cell-template>
-                                <a href="javascript:void(0)" (click)="impersonate(row.agent_user_id)" class="icon"><i
-                                        class="mdi mdi-transit-transfer"></i></a>
+                                <a href="javascript:void(0)" (click)="impersonate(row.agent_user_id)" class="icon">
+                                    <i class="mdi mdi-transit-transfer"></i>
+                                </a>
+                                <a href="javascript:void(0)" attr.data-id="{{row.id}}"
+                                   [routerLink]="['/agents/view', row.id]" class="icon">
+                                    <i class="zmdi zmdi-edit"></i>
+                                </a>
                             </ng-template>
                         </ngx-datatable-column>
                     </ngx-datatable>

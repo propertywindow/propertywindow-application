@@ -1,4 +1,4 @@
-import {Component, ViewEncapsulation, OnInit, ElementRef} from '@angular/core';
+import {Component, ViewEncapsulation, ViewChild, OnInit, HostListener, ElementRef} from '@angular/core';
 import {FormControl, NgModel} from '@angular/forms';
 import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
@@ -11,6 +11,8 @@ import {ServiceService} from '../../shared/services/engine/service/service.servi
 import {ServiceGroup} from '../../shared/model/serviceGroup';
 import {ActivityService} from '../../shared/services/engine/log/activity.service';
 import {Property} from '../../shared/model/property';
+import {PropertyService} from '../../shared/services/engine/property/property.service';
+import {AgmMap} from '@agm/core';
 
 @Component({
     selector: '.content_inner_wrapper',
@@ -19,24 +21,30 @@ import {Property} from '../../shared/model/property';
     encapsulation: ViewEncapsulation.Emulated
 })
 export class DashboardComponent implements OnInit {
+    @ViewChild(AgmMap) private map: any;
+    navMode = 'side';
+    lat: number = 55.924676;
+    lng: number = -3.199477;
     service: ServiceGroup;
     currentDate: Date;
     date: DateModel;
     DatePickerOptions: DatePickerOptions;
     newProperties: Property[] = [];
     changedProperties: Property[] = [];
+    properties: Property[] = [];
 
     constructor(public config: ConfigService,
                 private _elementRef: ElementRef,
                 private _state: GlobalState,
                 private serviceService: ServiceService,
-                private activityService: ActivityService) {
+                private activityService: ActivityService,
+                private propertyService: PropertyService) {
     }
 
     ngOnInit() {
         this.serviceService.getServiceGroup(1)
-            .subscribe(data => {
-                this.service = data;
+            .subscribe(services => {
+                this.service = services;
             });
         this.currentDate = new Date();
         this.DatePickerOptions = new DatePickerOptions();
@@ -58,6 +66,27 @@ export class DashboardComponent implements OnInit {
                 this.changedProperties = property;
             }
         );
+        this.propertyService.getProperties().subscribe(
+            properties => {
+                this.properties = properties;
+            }
+        );
+
+        window.scrollTo(0, 0);
+    }
+
+    private redrawMap() {
+        this.map.triggerResize()
+            .then(() => this.map._mapsWrapper.setCenter({lat: this.lat, lng: this.lng}));
+    }
+    private selectMapTab() {
+        this.redrawMap();
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onResize(event) {
+        this.redrawMap();
     }
 
 }
+
