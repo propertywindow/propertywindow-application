@@ -47,7 +47,6 @@ import {NgxChartsModule} from '@swimlane/ngx-charts';
 import {GaugeModule} from 'ng-gauge';
 import {FormWizardModule} from 'angular2-wizard';
 import {CustomFormsModule} from 'ng2-validation';
-import {DatePickerModule} from 'ng2-datepicker';
 import {NgDateRangePickerModule} from 'ng-daterangepicker';
 import {DndModule} from 'ng2-dnd';
 import {ChartistModule} from 'ng-chartist';
@@ -94,7 +93,6 @@ import {AppBackdropComponent} from './components/app_backdrop/app_backdrop.compo
         GaugeModule,
         FormWizardModule,
         CustomFormsModule,
-        DatePickerModule,
         ChartistModule,
         NgDateRangePickerModule,
         BsDropdownModule.forRoot(),
@@ -157,7 +155,6 @@ import {AppBackdropComponent} from './components/app_backdrop/app_backdrop.compo
         NgxChartsModule,
         GaugeModule,
         CustomFormsModule,
-        DatePickerModule,
         ChartistModule,
         DndModule,
         NgDateRangePickerModule

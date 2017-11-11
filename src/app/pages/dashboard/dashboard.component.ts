@@ -4,8 +4,6 @@ import 'rxjs/add/operator/startWith';
 import 'rxjs/add/operator/map';
 import {GlobalState} from '../../app.state';
 import {ConfigService} from '../../shared/services/config/config.service';
-import {MdSidenav} from '@angular/material';
-import {DatePickerOptions, DateModel} from 'ng2-datepicker';
 import {NgDateRangePickerOptions} from 'ng-daterangepicker';
 import {ServiceService} from '../../shared/services/engine/service/service.service';
 import {ServiceGroup} from '../../shared/model/serviceGroup';
@@ -27,8 +25,6 @@ export class DashboardComponent implements OnInit {
     lng: number = -3.199477;
     service: ServiceGroup;
     currentDate: Date;
-    date: DateModel;
-    DatePickerOptions: DatePickerOptions;
     newProperties: Property[] = [];
     changedProperties: Property[] = [];
     properties: Property[] = [];
@@ -47,7 +43,6 @@ export class DashboardComponent implements OnInit {
                 this.service = services;
             });
         this.currentDate = new Date();
-        this.DatePickerOptions = new DatePickerOptions();
         this.activityService.getPropertyChanges('create').subscribe(
             data => {
                 const property: Property[] = [];
