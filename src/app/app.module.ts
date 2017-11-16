@@ -1,44 +1,29 @@
-import {BrowserModule, Title} from '@angular/platform-browser';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {NgModule} from '@angular/core';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
-import {AppComponent} from './app.component';
-import {AppState, InternalStateType} from './app.service';
-import {GlobalState} from './app.state';
-import {AuthGuard} from './shared/guards/auth.guard';
-import {AuthenticationService} from './shared/authentication/authentication.service';
-import {ServicesModule} from './shared/services/services.module';
-import {SharedModule} from './shared/shared.module';
-import {AppRoutingModule} from './app.routing';
-import {NgIdleModule} from '@ng-idle/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { ThemeComponent } from './theme/theme.component';
+import { LayoutModule } from './theme/layouts/layout.module';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
-// Application wide providers
-const APP_PROVIDERS = [AppState, GlobalState, Title, AuthGuard, AuthenticationService];
-
-export type StoreType = {
-    state: InternalStateType;
-    restoreInputValues: () => void;
-    disposeOldHosts: () => void;
-};
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { ScriptLoaderService } from "./_services/script-loader.service";
+import { ThemeRoutingModule } from "./theme/theme-routing.module";
+import { AuthModule } from "./auth/auth.module";
 
 @NgModule({
-    declarations: [AppComponent],
-    imports: [
-        BrowserModule,
-        FormsModule,
-        HttpModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule,
-        ServicesModule,
-        SharedModule.forRoot(),
-        NgIdleModule.forRoot(),
-        AppRoutingModule
-    ],
-    providers: [APP_PROVIDERS],
-    bootstrap: [AppComponent]
+	declarations: [
+		ThemeComponent,
+		AppComponent,
+	],
+	imports: [
+		LayoutModule,
+		BrowserModule,
+		BrowserAnimationsModule,
+		AppRoutingModule,
+		ThemeRoutingModule,
+		AuthModule,
+	],
+	providers: [ScriptLoaderService],
+	bootstrap: [AppComponent]
 })
-export class AppModule {
-    constructor(public appState: AppState) {
-    }
-}
+export class AppModule { }
