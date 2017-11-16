@@ -23,10 +23,10 @@ export function mockBackEndFactory(backend: MockBackend, options: BaseRequestOpt
 				});
 
 				// default account
-				if (params.email === 'geurtsmarf@hotmail.com' && params.password === 'marc') {
+				if (params.email === 'geurtsmarc@hotmail.com' && params.password === 'marc') {
 					filteredUsers[0] = {
 						fullName: 'Marc Geurts',
-						email: 'geurtsmarf@hotmail.com',
+						email: 'geurtsmarc@hotmail.com',
 						password: 'marc',
 					};
 				}
