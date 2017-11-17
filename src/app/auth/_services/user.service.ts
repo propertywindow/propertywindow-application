@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Headers, Http, RequestOptions, Response } from "@angular/http";
 import {environment} from '../../../environments/environment';
 import { User } from "../_models/index";
+import {Observable} from 'rxjs/Observable';
 
 @Injectable()
 export class UserService {
@@ -24,8 +25,25 @@ export class UserService {
 		return this.http.get(environment.engineUrl + 'authentication/users', this.jwt()).map((response: Response) => response.json());
 	}
 
+    getUser(): Observable<User> {
+        const data = {
+            'jsonrpc': '2.0',
+            'method': 'verify'
+        };
+        return this.http
+            .post(environment.engineUrl + 'authentication/user', data, this.jwt())
+            .map((response: Response) => response.json().result);
+    };
+
 	getById(id: number) {
-		return this.http.get(environment.engineUrl + 'authentication/users/' + id, this.jwt()).map((response: Response) => response.json());
+        const data = {
+            'jsonrpc': '2.0',
+            'method': 'getUser',
+			'params': {
+            	'id': id
+			}
+        };
+		return this.http.post(environment.engineUrl + 'authentication/user', data, this.jwt()).map((response: Response) => response.json());
 	}
 
 	create(user: User) {
@@ -43,7 +61,6 @@ export class UserService {
 	// private helper methods
 
 	private jwt() {
-		// create authorization header with jwt token
 		let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		if (currentUser && currentUser.token) {
 			let headers = new Headers({ 'Authorization': 'Basic ' + currentUser.token });

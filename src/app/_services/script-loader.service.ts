@@ -24,13 +24,10 @@ export class ScriptLoaderService {
 
 	loadScript(src: string) {
 		return new Promise((resolve, reject) => {
-
-			//resolve if already loaded
 			if (this._scripts[src].loaded) {
 				resolve({ script: src, loaded: true, status: 'Already Loaded' });
 			}
 			else {
-				//load script
 				let script = $('<script/>')
 					.attr('type', 'text/javascript')
 					.attr('src', this._scripts[src].src);
