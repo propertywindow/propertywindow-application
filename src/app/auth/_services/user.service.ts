@@ -11,12 +11,9 @@ export class UserService {
 	verify() {
         const data = {
             'jsonrpc': '2.0',
-            'method': 'verify',
-			'params': {
-            	'user_id': 1
-			}
+            'method': 'verify'
         };
-		return this.http.post(environment.engineUrl + 'authentication/login', data, this.jwt()).map((response: Response) => response.json());
+		return this.http.post(environment.engineUrl + 'authentication/user', data, this.jwt()).map((response: Response) => response.json());
 	}
 
 	forgotPassword(email: string) {
