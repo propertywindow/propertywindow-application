@@ -463,12 +463,12 @@ var mUtil = function() {
 
     /** @type {object} colors State colors **/
     var colors = {
-        brand:      '#716aca',
+        brand:      '#20547D',
         metal:      '#c4c5d6',
         light:      '#ffffff',
-        accent:     '#00c5dc',
-        primary:    '#5867dd',
-        success:    '#34bfa3',
+        accent:     '#80A142',
+        primary:    '#5E8FC8',
+        success:    '#80A142',
         info:       '#36a3f7',
         warning:    '#ffb822',
         danger:     '#f4516c'
