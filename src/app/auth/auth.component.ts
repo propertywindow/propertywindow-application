@@ -34,7 +34,6 @@ export class AuthComponent implements OnInit {
 
 	ngOnInit() {
 		this.model.remember = true;
-		// get return url from route parameters or default to '/'
 		this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
 		this._router.navigate([this.returnUrl]);
 
@@ -50,7 +49,13 @@ export class AuthComponent implements OnInit {
 		this._authService.login(this.model.email, this.model.password)
 			.subscribe(
 			data => {
-				this._router.navigate([this.returnUrl]);
+				if (data.token) {
+                    this._router.navigate([this.returnUrl]);
+				} else {
+                    this.showAlert('alertSignin');
+                    this._alertService.error('Incorrect login details');
+                    this.loading = false;
+				}
 			},
 			error => {
 				this.showAlert('alertSignin');

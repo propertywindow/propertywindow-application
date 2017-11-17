@@ -10,10 +10,8 @@ export class AuthenticationService {
 	}
 
 	login(email: string, password: string) {
-
         const loginData = {
             'jsonrpc': '2.0',
-            'id': null,
             'method': 'login',
             'params': {
                 'email': email,
@@ -23,18 +21,15 @@ export class AuthenticationService {
 
 		return this.http.post(environment.engineUrl + 'authentication/login', loginData)
 			.map((response: Response) => {
-				// login successful if there's a jwt token in the response
-				let user = response.json();
-				console.log(user);
+				let user = response.json().result;
 				if (user && user.token) {
-					// store user details and jwt token in local storage to keep user logged in between page refreshes
 					localStorage.setItem('currentUser', JSON.stringify(user));
 				}
+				return response.json().result;
 			});
 	}
 
-	logout() {
-		// remove user from local storage to log user out
+	static logout() {
 		localStorage.removeItem('currentUser');
 	}
 }
