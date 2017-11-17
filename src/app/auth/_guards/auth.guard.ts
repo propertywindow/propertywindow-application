@@ -13,7 +13,8 @@ export class AuthGuard implements CanActivate {
 		let currentUser = JSON.parse(localStorage.getItem('currentUser'));
 		return this._userService.verify().map(
 			data => {
-				if (data !== null) {
+				console.log(data.error);
+				if (data.error === null) {
 					// logged in so return true
 					return true;
 				}
