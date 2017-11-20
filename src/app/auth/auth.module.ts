@@ -12,6 +12,7 @@ import { AuthGuard } from "./_guards/auth.guard";
 import { AlertService } from "./_services/alert.service";
 import { AuthenticationService } from "./_services/authentication.service";
 import { UserService } from "./_services/user.service";
+import { ServiceService } from "./_services/service.service";
 import { fakeBackendProvider } from "./_helpers/index";
 
 @NgModule({
@@ -31,6 +32,7 @@ import { fakeBackendProvider } from "./_helpers/index";
 		AlertService,
 		AuthenticationService,
 		UserService,
+        ServiceService,
 		// api backend simulation
 		fakeBackendProvider,
 		MockBackend,

@@ -13,12 +13,11 @@ declare let mLayout: any;
 })
 export class ThemeComponent implements OnInit {
 
-
 	constructor(private _script: ScriptLoaderService, private _router: Router) {
 
 	}
 	ngOnInit() {
-		this._script.load('body', 'assets/vendors/base/vendors.bundle.js', 'assets/demo/default/base/scripts.bundle.js')
+		this._script.load('body', 'assets/vendors/base/vendors.bundle.js', 'assets/app/base/scripts.bundle.js')
 			.then(result => {
 				Helpers.setLoading(false);
 				// optional js to be loaded once

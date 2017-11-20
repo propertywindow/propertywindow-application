@@ -19,7 +19,7 @@ export class HeaderActionsComponent implements OnInit, AfterViewInit {
 	}
 	ngAfterViewInit() {
 		this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-			'assets/demo/default/custom/header/actions.js');
+			'assets/app/custom/header/actions.js');
 
 	}
 

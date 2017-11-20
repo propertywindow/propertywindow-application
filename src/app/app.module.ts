@@ -9,7 +9,6 @@ import {AppComponent} from './app.component';
 import {ScriptLoaderService} from "./_services/script-loader.service";
 import {ThemeRoutingModule} from "./theme/theme-routing.module";
 import {AuthModule} from "./auth/auth.module";
-import {ServicesModule} from './auth/_services/services.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +22,6 @@ import {ServicesModule} from './auth/_services/services.module';
         AppRoutingModule,
         ThemeRoutingModule,
         AuthModule,
-        ServicesModule
     ],
     providers: [ScriptLoaderService],
     bootstrap: [AppComponent]

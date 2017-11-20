@@ -5,11 +5,6 @@ import {Service} from '../_models/service';
 import {ServiceGroup} from '../_models/service-group';
 import {environment} from '../../../environments/environment';
 
-import 'rxjs/Rx';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/toPromise';
-import 'rxjs/add/operator/catch';
-
 @Injectable()
 export class ServiceService {
     constructor(private http: Http) {
