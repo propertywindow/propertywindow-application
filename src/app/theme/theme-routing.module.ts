@@ -10,8 +10,8 @@ const routes: Routes = [
 		"canActivate": [AuthGuard],
 		"children": [
 			{
-				"path": "index",
-				"loadChildren": ".\/pages\/default\/index\/index.module#IndexModule"
+				"path": "dashboard",
+				"loadChildren": ".\/pages\/default\/dashboard\/dashboard.module#DashboardModule"
 			},
 			{
 				"path": "header\/actions",
@@ -27,7 +27,7 @@ const routes: Routes = [
 			},
 			{
 				"path": "",
-				"redirectTo": "index",
+				"redirectTo": "dashboard",
 				"pathMatch": "full"
 			}
 		]

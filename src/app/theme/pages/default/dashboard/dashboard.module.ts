@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { IndexComponent } from './index.component';
+import { DashboardComponent } from './dashboard.component';
 import { LayoutModule } from '../../../layouts/layout.module';
 import { DefaultComponent } from '../default.component';
 
@@ -12,7 +12,7 @@ const routes: Routes = [
 		"children": [
 			{
 				"path": "",
-				"component": IndexComponent
+				"component": DashboardComponent
 			}
 		]
 	}
@@ -23,10 +23,10 @@ const routes: Routes = [
 	], exports: [
 		RouterModule
 	], declarations: [
-		IndexComponent
+		DashboardComponent
 	]
 })
-export class IndexModule {
+export class DashboardModule {
 
 
 

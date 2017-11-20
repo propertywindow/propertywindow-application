@@ -24,10 +24,7 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-
         mLayout.initHeader();
-
-
     }
 
     getUser() {
@@ -40,5 +37,4 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
                     console.log(error);
                 });
     }
-
 }

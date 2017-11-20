@@ -1,221 +1,76 @@
-<!-- BEGIN: Left Aside -->
 <button class="m-aside-left-close  m-aside-left-close--skin-light" id="m_aside_left_close_btn" appunwraptag="">
-	<i class="la la-close"></i>
+    <i class="la la-close"></i>
 </button>
 <div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-light">
+    <div id="m_ver_menu"
+         class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light m-aside-menu--dropdown"
+         data-menu-vertical="true" data-menu-dropdown="true" data-menu-scrollable="true"
+         data-menu-dropdown-timeout="500">
+        <ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
 
-	<div 		id="m_ver_menu" 		class="m-aside-menu  m-aside-menu--skin-light m-aside-menu--submenu-skin-light m-aside-menu--dropdown" 		data-menu-vertical="true"		 data-menu-dropdown="true" data-menu-scrollable="true" data-menu-dropdown-timeout="500"  		>
-		<ul class="m-menu__nav  m-menu__nav--dropdown-submenu-arrow">
-			<li class="m-menu__item  " routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-				<a  routerLink="/index" class="m-menu__link">
-					<i class="m-menu__link-icon flaticon-line-graph"></i>
-					<span class="m-menu__link-title">
-						<span class="m-menu__link-wrap">
-							<span class="m-menu__link-text">
-								Dashboard
-							</span>
-							<span class="m-menu__link-badge">
-								<span class="m-badge m-badge--danger">
-									2
+            <ng-container *ngFor="let item of service">
+
+                <li *ngIf="item.services.length === 0" class="m-menu__item" routerLinkActive="m-menu__item--active"
+                    routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+                    <a href="javascript:void(0)" [routerLink]="item.url" class="m-menu__link">
+                        <i class="m-menu__link-icon fa {{item.icon}}"></i>
+                        <span class="m-menu__link-title">
+							<span class="m-menu__link-wrap">
+								<span class="m-menu__link-text">
+									{{item.description}}
+								</span>
+								<span *ngIf="item.description === 'Email'" class="m-menu__link-badge">
+									<span class="m-badge m-badge--danger">
+										2
+									</span>
 								</span>
 							</span>
 						</span>
+                    </a>
+                </li>
+
+                <!--routerLinkActive="m-menu__item&#45;&#45;active"-->
+                <li *ngIf="item.services.length > 0" class="m-menu__item  m-menu__item--submenu"
+                     routerLinkActiveOptions="{ exact: true }"
+                    aria-haspopup="true" data-menu-submenu-toggle="hover">
+                    <a href="javascript:void(0)" [routerLink]="item.url" class="m-menu__link m-menu__toggle">
+                        <i class="m-menu__link-icon fa {{item.icon}}"></i>
+                        <span class="m-menu__link-text">
+						{{item.description}}
 					</span>
-				</a>
-			</li>
-			<li class="m-menu__section">
-				<h4 class="m-menu__section-text">
-					Agent
-				</h4>
-				<i class="m-menu__section-icon flaticon-more-v3"></i>
-			</li>
-
-			<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="hover">
-				<a  href="#" class="m-menu__link m-menu__toggle">
-					<i class="m-menu__link-icon flaticon-tabs"></i>
-					<span class="m-menu__link-text">
-						Datatables
-					</span>
-					<i class="m-menu__ver-arrow la la-angle-right"></i>
-				</a>
-				<div class="m-menu__submenu">
-					<span class="m-menu__arrow"></span>
-					<ul class="m-menu__subnav">
-						<li class="m-menu__item  m-menu__item--parent" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-							<a  href="#" class="m-menu__link">
+                        <i class="m-menu__ver-arrow la la-angle-right"></i>
+                    </a>
+                    <div class="m-menu__submenu">
+                        <span class="m-menu__arrow"></span>
+                        <ul class="m-menu__subnav">
+                            <li class="m-menu__item  m-menu__item--parent" routerLinkActive="m-menu__item--active"
+                                routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
+                                <a href="javascript:void(0)" class="m-menu__link">
 								<span class="m-menu__link-text">
-									Datatables
+									{{item.description}}
 								</span>
-							</a>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="hover">
-							<a  href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-									<span></span>
-								</i>
-								<span class="m-menu__link-text">
-									Base
+                                </a>
+                            </li>
+                            <li *ngFor="let subItem of item.services" class="m-menu__item  m-menu__item--submenu"
+                                routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"
+                                aria-haspopup="true" data-menu-submenu-toggle="hover">
+                                <a href="javascript:void(0)" [routerLink]="subItem.url"
+                                   class="m-menu__link m-menu__toggle">
+                                    <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                                        <span></span>
+                                    </i>
+                                    <span class="m-menu__link-text">
+									{{subItem.description}}
 								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/data-local" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Local Data
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/data-json" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												JSON Data
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/data-ajax" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Ajax Data
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/html-table" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												HTML Table
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/record-selection" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Record Selection
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/local-sort" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Local Sort
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/column-rendering" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Column Rendering
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/column-width" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Column Width
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/responsive-columns" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Responsive Columns
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/base/translation" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Translation
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-						<li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true"  data-menu-submenu-toggle="hover">
-							<a  href="#" class="m-menu__link m-menu__toggle">
-								<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-									<span></span>
-								</i>
-								<span class="m-menu__link-text">
-									Scrolling
-								</span>
-								<i class="m-menu__ver-arrow la la-angle-right"></i>
-							</a>
-							<div class="m-menu__submenu">
-								<span class="m-menu__arrow"></span>
-								<ul class="m-menu__subnav">
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/scrolling/vertical" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Vertical Scrolling
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/scrolling/horizontal" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Horizontal Scrolling
-											</span>
-										</a>
-									</li>
-									<li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }"  aria-haspopup="true" >
-										<a  routerLink="/components/datatables/scrolling/both" class="m-menu__link">
-											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
-												<span></span>
-											</i>
-											<span class="m-menu__link-text">
-												Both Scrolling
-											</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
-			</li>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
-		</ul>
-	</div>
+            </ng-container>
 
+        </ul>
+    </div>
 </div>
 

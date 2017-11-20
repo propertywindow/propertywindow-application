@@ -5,10 +5,10 @@ import { ScriptLoaderService } from '../../../../_services/script-loader.service
 
 @Component({
 	selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
-	templateUrl: "./index.component.html",
+	templateUrl: "./dashboard.component.html",
 	encapsulation: ViewEncapsulation.None,
 })
-export class IndexComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
 
 	constructor(private _script: ScriptLoaderService) {
