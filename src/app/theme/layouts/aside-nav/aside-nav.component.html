@@ -13,7 +13,7 @@
                 <li *ngIf="item.services.length === 0" class="m-menu__item" routerLinkActive="m-menu__item--active"
                     routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
                     <a href="javascript:void(0)" [routerLink]="item.url" class="m-menu__link">
-                        <i class="m-menu__link-icon fa {{item.icon}}"></i>
+                        <i class="m-menu__link-icon {{item.icon}}"></i>
                         <span class="m-menu__link-title">
 							<span class="m-menu__link-wrap">
 								<span class="m-menu__link-text">
@@ -34,7 +34,7 @@
                      routerLinkActiveOptions="{ exact: true }"
                     aria-haspopup="true" data-menu-submenu-toggle="hover">
                     <a href="javascript:void(0)" [routerLink]="item.url" class="m-menu__link m-menu__toggle">
-                        <i class="m-menu__link-icon fa {{item.icon}}"></i>
+                        <i class="m-menu__link-icon {{item.icon}}"></i>
                         <span class="m-menu__link-text">
 						{{item.description}}
 					</span>

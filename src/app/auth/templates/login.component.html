@@ -20,7 +20,7 @@
 								<input class="form-control m-input" type="text" placeholder="Email" name="email" [(ngModel)]="model.email" #email="ngModel" autocomplete="off">
 							</div>
 							<div class="form-group m-form__group">
-								<input class="form-control m-input m-login__form-input--last" type="password" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" autocomplete="new-password">
+								<input class="form-control m-input m-login__form-input--last" type="text" onfocus="this.type='password'" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" autocomplete="new-password">
 							</div>
 							<div class="row m-login__form-sub">
 								<div class="col m--align-left">
