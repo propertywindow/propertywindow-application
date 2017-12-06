@@ -1,6 +1,8 @@
-import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Helpers } from '../../../../helpers';
-import { ScriptLoaderService } from '../../../../_services/script-loader.service';
+import {Component, OnInit, ViewEncapsulation, AfterViewInit} from '@angular/core';
+import {Helpers} from '../../../../helpers';
+import {ScriptLoaderService} from '../../../../_services/script-loader.service';
+import {PropertyService} from '../../../../auth/_services/property.service';
+import {Property} from '../../../../auth/_models/property';
 
 
 @Component({
@@ -10,17 +12,28 @@ import { ScriptLoaderService } from '../../../../_services/script-loader.service
 })
 export class PropertiesComponent implements OnInit, AfterViewInit {
 
+    properties: Property[] = [];
 
-    constructor(private _script: ScriptLoaderService)  {
+    constructor(private _script: ScriptLoaderService,
+                private propertyService: PropertyService) {
 
     }
-    ngOnInit()  {
+
+    ngOnInit() {
 
     }
-    ngAfterViewInit()  {
-        this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-            'assets/custom/components/datatables/base/data-json.js');
 
+    ngAfterViewInit() {
+        // this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
+        //     'assets/app/custom/components/datatables/base/data-json.js');
+    }
+
+    getProperties() {
+        this.propertyService.getProperties().subscribe(
+            data => {
+                this.properties = data;
+            }
+        );
     }
 
 }
