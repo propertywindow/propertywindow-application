@@ -6,25 +6,27 @@ import { LayoutModule } from '../../../layouts/layout.module';
 import { DefaultComponent } from '../default.component';
 
 const routes: Routes = [
-    {
-        "path": "",
-        "component": DefaultComponent,
-        "children": [
-            {
-                "path": "",
-                "component": PropertiesComponent
-            }
-        ]
-    }
+	{
+		"path": "",
+		"component": DefaultComponent,
+		"children": [
+			{
+				"path": "",
+				"component": PropertiesComponent
+			}
+		]
+	}
 ];
-@NgModule({imports: [
-    CommonModule,RouterModule.forChild(routes),LayoutModule
-],exports: [
-    RouterModule
-],declarations: [
-    PropertiesComponent
-]})
-export class PropertiesModule  {
+@NgModule({
+	imports: [
+		CommonModule, RouterModule.forChild(routes), LayoutModule
+	], exports: [
+		RouterModule
+	], declarations: [
+		PropertiesComponent
+	]
+})
+export class PropertiesModule {
 
 
 

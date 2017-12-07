@@ -33,7 +33,7 @@ import { fakeBackendProvider } from "./_helpers/index";
 		AlertService,
 		AuthenticationService,
 		UserService,
-        ServiceService,
+		ServiceService,
 		PropertyService,
 		// api backend simulation
 		fakeBackendProvider,

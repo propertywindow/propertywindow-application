@@ -50,11 +50,11 @@ export class AuthComponent implements OnInit {
 			.subscribe(
 			data => {
 				if (data.token) {
-                    this._router.navigate([this.returnUrl]);
+					this._router.navigate([this.returnUrl]);
 				} else {
-                    this.showAlert('alertSignin');
-                    this._alertService.error('Incorrect login details');
-                    this.loading = false;
+					this.showAlert('alertSignin');
+					this._alertService.error('Incorrect login details');
+					this.loading = false;
 				}
 			},
 			error => {

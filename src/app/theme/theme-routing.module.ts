@@ -25,10 +25,10 @@ const routes: Routes = [
 				"path": "404",
 				"loadChildren": ".\/pages\/default\/not-found\/not-found.module#NotFoundModule"
 			},
-            {
-                "path": "properties",
-                "loadChildren": ".\/pages\/default\/properties\/properties.module#PropertiesModule"
-            },
+			{
+				"path": "properties",
+				"loadChildren": ".\/pages\/default\/properties\/properties.module#PropertiesModule"
+			},
 			{
 				"path": "",
 				"redirectTo": "dashboard",
