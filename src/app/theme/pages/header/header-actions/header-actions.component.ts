@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import {ScriptLoaderService} from '../../../../auth/services/script-loader.service';
+import {ScriptLoaderService} from '../../../../shared/services/script-loader.service';
 
 @Component({
 	selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",

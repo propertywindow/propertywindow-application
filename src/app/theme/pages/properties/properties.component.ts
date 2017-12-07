@@ -1,8 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { ScriptLoaderService } from '../../../auth/services/script-loader.service';
-import { PropertyService } from '../../../auth/services';
-import { Property } from '../../../auth/models/property';
-
+import { ScriptLoaderService } from '../../../shared/services/script-loader.service';
+import { PropertyService } from '../../../shared/services';
+import { Property } from '../../../shared/models/property';
 
 @Component({
 	selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",

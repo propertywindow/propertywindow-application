@@ -1,7 +1,6 @@
 import {Component, OnInit, ViewEncapsulation, AfterViewInit} from '@angular/core';
-import {UserService} from '../../../auth/services';
-import {User} from '../../../auth/models';
-
+import {UserService} from '../../../shared/services';
+import {User} from '../../../shared/models';
 
 declare let mLayout: any;
 
