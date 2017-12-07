@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { ScriptLoaderService } from '../../../../_services/script-loader.service';
-
+import {ScriptLoaderService} from '../../../../auth/services/script-loader.service';
 
 @Component({
 	selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
@@ -10,14 +9,14 @@ import { ScriptLoaderService } from '../../../../_services/script-loader.service
 export class HeaderActionsComponent implements OnInit, AfterViewInit {
 
 
-	constructor(private _script: ScriptLoaderService) {
+	constructor(private script: ScriptLoaderService) {
 
 	}
 	ngOnInit() {
 
 	}
 	ngAfterViewInit() {
-		this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
+		this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
 			'assets/app/custom/header/actions.js');
 
 	}

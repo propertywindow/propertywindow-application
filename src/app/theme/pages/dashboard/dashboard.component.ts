@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { ScriptLoaderService } from '../../../_services/script-loader.service';
+import { ScriptLoaderService } from '../../../auth/services/script-loader.service';
 
 
 @Component({

@@ -1,12 +1,10 @@
 import { AfterViewInit, Directive, ElementRef } from '@angular/core';
-import { Helpers } from '../helpers';
-
+import { Helpers } from '../../helpers';
 
 @Directive({
 	selector: "[appunwraptag]",
 })
 export class UnwrapTagDirective implements AfterViewInit {
-
 
 	constructor(private el: ElementRef) {
 
