@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { PropertiesComponent } from './properties.component';
-import { LayoutModule } from '../../../layouts/layout.module';
-import { DefaultComponent } from '../default.component';
+import { LayoutModule } from '../../layouts/layout.module';
+import { PagesComponent } from '../pages.component';
 
 const routes: Routes = [
 	{
 		"path": "",
-		"component": DefaultComponent,
+		"component": PagesComponent,
 		"children": [
 			{
 				"path": "",

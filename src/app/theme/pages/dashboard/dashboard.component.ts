@@ -1,14 +1,13 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
-import { Helpers } from '../../../../../helpers';
-import { ScriptLoaderService } from '../../../../../_services/script-loader.service';
+import { ScriptLoaderService } from '../../../_services/script-loader.service';
 
 
 @Component({
 	selector: ".m-grid__item.m-grid__item--fluid.m-wrapper",
-	templateUrl: "./header-actions.component.html",
+	templateUrl: "./dashboard.component.html",
 	encapsulation: ViewEncapsulation.None,
 })
-export class HeaderActionsComponent implements OnInit, AfterViewInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
 
 
 	constructor(private _script: ScriptLoaderService) {
@@ -19,7 +18,7 @@ export class HeaderActionsComponent implements OnInit, AfterViewInit {
 	}
 	ngAfterViewInit() {
 		this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-			'assets/app/custom/header/actions.js');
+			'assets/app/js/dashboard.js');
 
 	}
 

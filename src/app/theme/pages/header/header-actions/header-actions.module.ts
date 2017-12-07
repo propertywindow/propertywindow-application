@@ -1,18 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
-import { HeaderProfileComponent } from './header-profile.component';
-import { LayoutModule } from '../../../../layouts/layout.module';
-import { DefaultComponent } from '../../default.component';
+import { HeaderActionsComponent } from './header-actions.component';
+import { LayoutModule } from '../../../layouts/layout.module';
+import { PagesComponent } from '../../pages.component';
 
 const routes: Routes = [
 	{
 		"path": "",
-		"component": DefaultComponent,
+		"component": PagesComponent,
 		"children": [
 			{
 				"path": "",
-				"component": HeaderProfileComponent
+				"component": HeaderActionsComponent
 			}
 		]
 	}
@@ -23,10 +23,10 @@ const routes: Routes = [
 	], exports: [
 		RouterModule
 	], declarations: [
-		HeaderProfileComponent
+		HeaderActionsComponent
 	]
 })
-export class HeaderProfileModule {
+export class HeaderActionsModule {
 
 
 
