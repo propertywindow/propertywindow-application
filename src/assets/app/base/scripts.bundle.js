@@ -7441,7 +7441,7 @@ var mQuickSidebar = function() {
     var initOffcanvas = function() {
         topbarAside.mOffcanvas({
             class: 'm-quick-sidebar',
-            //overlay: false,
+            overlay: true,
             close: topbarAsideClose,
             toggle: topbarAsideToggle
         });
