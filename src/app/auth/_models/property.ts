@@ -1,0 +1,35 @@
+import {Gallery} from './gallery';
+import {Agent} from './agent';
+import {Client} from './client';
+import {Kind} from './kind';
+import {Terms} from './terms';
+import {SubType} from './subType';
+export class Property {
+    id: number;
+    images: Gallery[];
+    agent_id: number;
+    agent: Agent;
+    client_id: number;
+    client: Client;
+    kind_id: number;
+    kind: Kind;
+    terms_id: number;
+    terms: Terms;
+    sub_type_id: number;
+    subType: SubType;
+    online: boolean;
+    address: string;
+    street: string;
+    house_number: string;
+    postcode: string;
+    city: string;
+    country: string;
+    price: number;
+    sold_price: string;
+    espc: boolean;
+    lat: string;
+    lng: string;
+    archived: boolean;
+    photo: string;
+    created: string;
+}
