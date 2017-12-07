@@ -9,10 +9,10 @@ declare let mLayout: any;
 
 @Component({
     selector: ".m-grid.m-grid--hor.m-grid--root.m-page",
-    templateUrl: "./theme.component.html",
+    templateUrl: "./web.component.html",
     encapsulation: ViewEncapsulation.None,
 })
-export class ThemeComponent implements OnInit {
+export class WebComponent implements OnInit {
 
     constructor(private script: ScriptLoaderService, private router: Router) {
 

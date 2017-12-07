@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
-import {ThemeComponent} from './theme.component';
+import {WebComponent} from './web.component';
 import {Routes, RouterModule} from '@angular/router';
 import {AuthGuard} from "../shared/guards";
 
 const routes: Routes = [
     {
         "path": "",
-        "component": ThemeComponent,
+        "component": WebComponent,
         "canActivate": [AuthGuard],
         "children": [
             {
@@ -47,5 +47,5 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class ThemeRoutingModule {
+export class WebRoutingModule {
 }
