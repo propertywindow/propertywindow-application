@@ -8,7 +8,13 @@ import {AuthComponent} from "./auth.component";
 import {AlertComponent} from "./alert/alert.component";
 import {LogoutComponent} from "./logout/logout.component";
 import {AuthGuard} from "./guards";
-import {AuthenticationService, AlertService, UserService, ServiceService, PropertyService} from "./services";
+import {
+    AuthenticationService,
+    AlertService,
+    UserService,
+    ServiceService,
+    PropertyService
+} from "./services";
 
 @NgModule({
     declarations: [

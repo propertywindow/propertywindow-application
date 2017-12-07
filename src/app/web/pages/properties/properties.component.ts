@@ -12,7 +12,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
 
 	properties: Property[] = [];
 
-	constructor(private _script: ScriptLoaderService,
+	constructor(private script: ScriptLoaderService,
 		private propertyService: PropertyService) {
 
 	}
@@ -23,8 +23,8 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		// todo: load with data as parameter instead of json
-		// this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-		//     'assets/app/custom/components/datatables/base/data-json.js');
+		this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
+		    'assets/app/custom/components/datatables/base/data-json.js');
 	}
 
 	getProperties() {
