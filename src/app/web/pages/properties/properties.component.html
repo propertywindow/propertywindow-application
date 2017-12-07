@@ -27,10 +27,6 @@
     </div>
 </div>
 
-<p *ngFor="let item of properties">
-    {{item.address}}
-</p>
-
 <div class="m-content">
     <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert" hidden>
         <div class="m-alert__icon">
@@ -199,7 +195,64 @@
                 </div>
             </div>
 
-            <div class="m_datatable" id="json_data"></div>
+            <table *ngIf="properties" class="m-datatable" id="html_table" width="100%">
+                <thead>
+                    <tr>
+                        <th title="Field #1">
+                            Order ID
+                        </th>
+                        <th title="Field #2">
+                            Address
+                        </th>
+                        <th title="Field #3">
+                            Contact
+                        </th>
+                        <th title="Field #4">
+                            Car Make
+                        </th>
+                        <th title="Field #5">
+                            Car Model
+                        </th>
+                        <th title="Field #6">
+                            Color
+                        </th>
+                        <th title="Field #7">
+                            Deposit Paid
+                        </th>
+                        <th title="Field #8">
+                            Order Date
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of properties">
+                        <td>
+                            {{item.id}}
+                        </td>
+                        <td>
+                            {{item.address}}
+                        </td>
+                        <td>
+                            (916) 6137523
+                        </td>
+                        <td>
+                            Pontiac
+                        </td>
+                        <td>
+                            Grand Am
+                        </td>
+                        <td>
+                            Puce
+                        </td>
+                        <td>
+                            $75343.80
+                        </td>
+                        <td>
+                            2016-09-08
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
     </div>

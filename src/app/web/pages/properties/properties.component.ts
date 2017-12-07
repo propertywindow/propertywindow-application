@@ -22,9 +22,8 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
 	}
 
 	ngAfterViewInit() {
-		// todo: load with data as parameter instead of json
 		this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-		    'assets/app/custom/components/datatables/base/data-json.js');
+        'assets/app/custom/components/datatables/base/html-table.js');
 	}
 
 	getProperties() {
