@@ -1,8 +1,6 @@
 import {Component, OnInit, ViewEncapsulation, AfterViewInit} from '@angular/core';
-import {Helpers} from '../../../helpers';
-import {UserService} from '../../../auth/_services/user.service';
-import {User} from '../../../auth/_models/user';
-
+import {UserService} from '../../../shared/services';
+import {User} from '../../../shared/models';
 
 declare let mLayout: any;
 
@@ -15,7 +13,7 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
 
     user: User;
 
-    constructor(private _userService: UserService,) {
+    constructor(private userService: UserService,) {
 
     }
 
@@ -28,7 +26,7 @@ export class HeaderNavComponent implements OnInit, AfterViewInit {
     }
 
     getUser() {
-        this._userService.getUser()
+        this.userService.getUser()
             .subscribe(
                 data => {
                     this.user = data;
