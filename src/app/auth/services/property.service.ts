@@ -1,7 +1,7 @@
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Property } from '../_models/property';
+import { Property } from '../models/property';
 import { environment } from '../../../environments/environment';
 
 @Injectable()

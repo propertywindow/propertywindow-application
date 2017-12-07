@@ -1,9 +1,9 @@
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewEncapsulation } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ScriptLoaderService } from "../_services/script-loader.service";
-import { AuthenticationService, AlertService, UserService } from "./_services";
-import { AlertComponent } from "./_directives";
-import { LoginCustom } from "./_helpers/login-custom";
+import { AuthenticationService, AlertService, UserService } from "./services";
+import { AlertComponent } from "./directives";
+import { LoginCustom } from "./helpers/login-custom";
 import { Helpers } from "../helpers";
 
 @Component({

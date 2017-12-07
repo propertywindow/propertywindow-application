@@ -1,8 +1,7 @@
 import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { Service } from '../_models/service';
-import { ServiceGroup } from '../_models/service-group';
+import { Service, ServiceGroup } from '../models';
 import { environment } from '../../../environments/environment';
 
 @Injectable()

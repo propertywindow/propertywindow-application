@@ -6,11 +6,11 @@ import { MockBackend } from "@angular/http/testing";
 
 import { AuthRoutingModule } from "./auth-routing.routing";
 import { AuthComponent } from "./auth.component";
-import { AlertComponent } from "./_directives";
+import { AlertComponent } from "./directives";
 import { LogoutComponent } from "./logout/logout.component";
-import { AuthGuard } from "./_guards";
-import { AuthenticationService, AlertService, UserService, ServiceService, PropertyService } from "./_services";
-import { fakeBackendProvider } from "./_helpers";
+import { AuthGuard } from "./guards";
+import { AuthenticationService, AlertService, UserService, ServiceService, PropertyService } from "./services";
+import { fakeBackendProvider } from "./helpers";
 
 @NgModule({
 	declarations: [

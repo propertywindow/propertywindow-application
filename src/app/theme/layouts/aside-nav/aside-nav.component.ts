@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { Helpers } from '../../../helpers';
-import { ServiceService } from "../../../auth/_services/service.service";
-import { ServiceGroup } from '../../../auth/_models/service-group';
+import { ServiceService } from "../../../auth/services";
+import { ServiceGroup } from '../../../auth/models';
 
 declare let mLayout: any;
 @Component({

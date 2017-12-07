@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, AfterViewInit } from '@angular/core';
 import { ScriptLoaderService } from '../../../_services/script-loader.service';
-import { PropertyService } from '../../../auth/_services';
-import { Property } from '../../../auth/_models/property';
+import { PropertyService } from '../../../auth/services';
+import { Property } from '../../../auth/models/property';
 
 
 @Component({
