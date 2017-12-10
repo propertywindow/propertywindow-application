@@ -21977,6 +21977,7 @@ code {
     -ms-border-radius: 10px;
     -o-border-radius: 10px;
     border-radius: 10px;
+    min-width: 200px;
 }
 
 .m-messenger .m-messenger__messages .m-messenger__message .m-messenger__message-body .m-messenger__message-content .m-messenger__message-username {
@@ -22160,7 +22161,7 @@ code {
 }
 
 .m-messenger .m-messenger__messages .m-messenger__message.m-messenger__message--out .m-messenger__message-content .m-messenger__message-text {
-    color: #9fa1b7;
+    color: #ffffff;
 }
 
 .m-messenger .m-messenger__messages .m-messenger__message.m-messenger__message--out .m-messenger__message-content .m-messenger__message-typing {

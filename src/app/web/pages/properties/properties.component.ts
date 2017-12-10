@@ -23,7 +23,7 @@ export class PropertiesComponent implements OnInit, AfterViewInit {
 
 	ngAfterViewInit() {
 		this.script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-        'assets/app/custom/components/datatables/base/html-table.js');
+			'assets/app/custom/components/datatables/base/html-table.js');
 	}
 
 	getProperties() {

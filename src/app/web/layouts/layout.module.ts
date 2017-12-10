@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { LayoutComponent } from './layout/layout.component';
 import { HeaderNavComponent } from './header-nav/header-nav.component';
 import { PagesComponent } from '../pages/pages.component';
@@ -34,6 +35,7 @@ import { UnwrapTagDirective } from '../../shared/directives/unwrap-tag.directive
 		HrefPreventDefaultDirective,
 	],
 	imports: [
+		FormsModule,
 		CommonModule,
 		RouterModule,
 	]
