@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Observable, Subject} from 'rxjs/Rx';
+import {Observable} from 'rxjs/Rx';
 import {environment} from '../../../environments/environment';
 import {ChatMessage} from '../models';
 import * as io from 'socket.io-client';
