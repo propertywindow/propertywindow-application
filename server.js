@@ -1,9 +1,22 @@
 'use strict';
 
-const app = require('express')();
-const server = require('http').Server(app);
-const io = require('socket.io')(server);
+const express = require('express');
+const server = express();
+const http = require('http');
+const https = require('https');
+const fs = require('fs');
 const port = 8000;
+
+const sslOptions = {
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+    passphrase: 'propertywindow'
+};
+
+
+
+const app = https.createServer(sslOptions, server).listen(port);
+const io = require('socket.io')(app);
 
 let OnlineUsers = 0;
 
@@ -22,6 +35,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(port, () => {
-    console.log('started on port ' + port);
-});
+// server.get('/socket', function (req, res) {
+//     res.send("");
+// });
