@@ -30,6 +30,7 @@
         "core-js": "^2.4.1",
         "enhanced-resolve": "^3.3.0",
         "express": "^4.16.2",
+        "helmet": "^3.9.0",
         "jquery": "^3.2.1",
         "ng-recaptcha": "^3.0.0",
         "primeng": "^4.1.3",

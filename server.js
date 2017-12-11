@@ -6,16 +6,19 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 
-const sslOptions = {
+const options = {
     key: fs.readFileSync('privkey.pem'),
     cert: fs.readFileSync('fullchain.pem'),
     requestCert: false,
     rejectUnauthorized: false
 };
 
-const httpServer = http.createServer(server);
-const httpsServer = https.createServer(sslOptions, server);
-const io = require('socket.io')(httpsServer);
+http.createServer(server).listen(8000);
+https.createServer(options, server).listen(8443);
+
+server.use(require('helmet')());
+
+const io = require('socket.io')(https);
 
 let OnlineUsers = 0;
 
@@ -38,5 +41,3 @@ server.get('/socket', function (req, res) {
     res.send("test");
 });
 
-httpServer.listen(8443);
-httpsServer.listen(8000);
