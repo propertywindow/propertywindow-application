@@ -9,27 +9,27 @@ export class ChatService {
     socket: SocketIOClient.Socket;
     messages: ChatMessage[] = [];
 
-    // constructor() {
-    //     this.socket = io.connect(environment.ws_url);
-    // }
-    //
-    // // todo: logic to save to db goes here, no need to place in server
-    //
-    // sendMessage(chatMessage: ChatMessage) {
-    //     this.socket.emit('add-message', chatMessage);
-    // }
-    //
-    // getMessages(): Observable<ChatMessage> {
-    //
-    //     let observable = new Observable<ChatMessage>(messages => {
-    //         this.socket.on('message', (chatMessage) => {
-    //             messages.next(chatMessage);
-    //         });
-    //     });
-    //     return observable;
-    // }
-    //
-    // unsubscribe() {
-    //     this.socket.disconnect();
-    // }
+    constructor() {
+        this.socket = io.connect(environment.ws_url);
+    }
+
+    // todo: logic to save to db goes here, no need to place in server
+
+    sendMessage(chatMessage: ChatMessage) {
+        this.socket.emit('add-message', chatMessage);
+    }
+
+    getMessages(): Observable<ChatMessage> {
+
+        let observable = new Observable<ChatMessage>(messages => {
+            this.socket.on('message', (chatMessage) => {
+                messages.next(chatMessage);
+            });
+        });
+        return observable;
+    }
+
+    unsubscribe() {
+        this.socket.disconnect();
+    }
 }
