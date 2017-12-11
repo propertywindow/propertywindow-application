@@ -6,15 +6,15 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 
-// const options = {
-//     key: fs.readFileSync('privkey.pem'),
-//     cert: fs.readFileSync('fullchain.pem'),
-//     requestCert: false,
-//     rejectUnauthorized: false
-// };
+const options = {
+    key: fs.readFileSync('privkey.pem'),
+    cert: fs.readFileSync('fullchain.pem'),
+    requestCert: false,
+    rejectUnauthorized: false
+};
 
 http.createServer(server).listen(8000);
-// https.createServer(options, server).listen(8443);
+https.createServer(options, server).listen(8443, 'propertywindow.nl');
 
 server.use(require('helmet')());
 
