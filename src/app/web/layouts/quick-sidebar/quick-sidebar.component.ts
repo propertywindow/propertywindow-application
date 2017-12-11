@@ -20,12 +20,12 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     sendMessage() {
-        this.chatService.sendMessage({
-            author: this.user,
-            message: this.message,
-            datetime: ''
-        });
-        this.message = '';
+        // this.chatService.sendMessage({
+        //     author: this.user,
+        //     message: this.message,
+        //     datetime: ''
+        // });
+        // this.message = '';
     }
 
     getUser() {
@@ -36,18 +36,18 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                 });
     }
 
-    getInitialMessages() {
-        this.connection = this.chatService.getMessages().subscribe(message => {
-            this.messages.push(message);
-        });
-    }
+    // getInitialMessages() {
+    //     this.connection = this.chatService.getMessages().subscribe(message => {
+    //         this.messages.push(message);
+    //     });
+    // }
 
     ngOnInit() {
         this.getUser();
-        this.getInitialMessages();
+        // this.getInitialMessages();
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        // this.connection.unsubscribe();
     }
 }
