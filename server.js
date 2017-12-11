@@ -6,19 +6,19 @@ const http = require('http');
 const https = require('https');
 const fs = require('fs');
 
-const options = {
-    key: fs.readFileSync('privkey.pem'),
-    cert: fs.readFileSync('fullchain.pem'),
-    requestCert: false,
-    rejectUnauthorized: false
-};
+// const options = {
+//     key: fs.readFileSync('privkey.pem'),
+//     cert: fs.readFileSync('fullchain.pem'),
+//     requestCert: false,
+//     rejectUnauthorized: false
+// };
 
 http.createServer(server).listen(8000);
-https.createServer(options, server).listen(8443);
+// https.createServer(options, server).listen(8443);
 
 server.use(require('helmet')());
 
-const io = require('socket.io')(https);
+const io = require('socket.io')(http);
 
 let OnlineUsers = 0;
 
