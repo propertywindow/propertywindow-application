@@ -5,18 +5,17 @@ const server = express();
 const http = require('http');
 const https = require('https');
 const fs = require('fs');
-const port = 8000;
 
 const sslOptions = {
-    key: fs.readFileSync('./key.pem'),
-    cert: fs.readFileSync('./cert.pem'),
-    passphrase: 'propertywindow',
+    key: fs.readFileSync('privkey.pem'),
+    cert: fs.readFileSync('fullchain.pem'),
     requestCert: false,
     rejectUnauthorized: false
 };
 
-const app = https.createServer(sslOptions, server).listen(port);
-const io = require('socket.io')(app);
+const httpServer = http.createServer(server);
+const httpsServer = https.createServer(sslOptions, server);
+const io = require('socket.io')(httpsServer);
 
 let OnlineUsers = 0;
 
@@ -38,3 +37,6 @@ io.on('connection', (socket) => {
 server.get('/socket', function (req, res) {
     res.send("test");
 });
+
+httpServer.listen(8443);
+httpsServer.listen(8000);
