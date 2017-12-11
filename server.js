@@ -8,12 +8,12 @@ const fs = require('fs');
 const port = 8000;
 
 const sslOptions = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem'),
-    passphrase: 'propertywindow'
+    key: fs.readFileSync('./key.pem'),
+    cert: fs.readFileSync('./cert.pem'),
+    passphrase: 'propertywindow',
+    requestCert: false,
+    rejectUnauthorized: false
 };
-
-
 
 const app = https.createServer(sslOptions, server).listen(port);
 const io = require('socket.io')(app);
