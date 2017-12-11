@@ -35,6 +35,6 @@ io.on('connection', (socket) => {
     });
 });
 
-// server.get('/socket', function (req, res) {
-//     res.send("");
-// });
+server.get('/socket', function (req, res) {
+    res.send("test");
+});
