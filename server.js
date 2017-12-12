@@ -1,26 +1,13 @@
 'use strict';
 
-const express = require('express');
-const server = express();
-const http = require('http');
-const https = require('https');
-const fs = require('fs');
-
-const options = {
-    key: fs.readFileSync('privkey.pem'),
-    cert: fs.readFileSync('fullchain.pem'),
-    requestCert: false,
-    rejectUnauthorized: false
-};
-
-http.createServer(server).listen(8000);
-https.createServer(options, server).listen(8443, 'propertywindow.nl');
-
-server.use(require('helmet')());
-
-const io = require('socket.io')(http);
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server);
+const port = 8000;
 
 let OnlineUsers = 0;
+
+app.use(require('helmet')());
 
 io.on('connection', (socket) => {
     OnlineUsers++;
@@ -37,7 +24,6 @@ io.on('connection', (socket) => {
     });
 });
 
-server.get('/socket', function (req, res) {
-    res.send("test");
+server.listen(port, () => {
+    console.log('started on port ' + port);
 });
-

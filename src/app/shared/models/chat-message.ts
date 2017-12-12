@@ -1,7 +1,7 @@
-import {User} from './user';
+import { User } from './user';
 
 export class ChatMessage {
-    author: User;
-    message?: string;
-    datetime: string;
+	author: User;
+	message?: string;
+	datetime: string;
 }
