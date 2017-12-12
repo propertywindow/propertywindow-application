@@ -12,14 +12,15 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo 'NPM Install ...'
+                echo 'Building ...'
                 sh 'npm install'
+                sh 'ng build --prod --build-optimizer=false'
             }
         }
         stage('test') {
             steps {
                 echo 'Testing...'
-                sh 'ng build --prod --build-optimizer=false'
+                sh 'npm test'
             }
         }
     }
