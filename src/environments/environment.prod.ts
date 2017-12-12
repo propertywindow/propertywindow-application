@@ -1,5 +1,5 @@
 export const environment = {
 	production: true,
 	engineUrl: 'https://engine.propertywindow.nl/',
-	ws_url: 'https://localhost:3000'
+	ws_url: 'http://localhost:8000'
 };
