@@ -16,24 +16,24 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     connection;
 
     constructor(private chatService: ChatService, private userService: UserService) {
-        this.chatService.getUsers().subscribe(data => {
-            let user = data['user'];
-            if (data['event'] === 'left') {
-                console.log('User left: ' + user);
-            } else {
-                console.log('User joined: ' + user);
-            }
-        });
+        // this.chatService.getUsers().subscribe(data => {
+        //     let user = data['user'];
+        //     if (data['event'] === 'left') {
+        //         console.log('User left: ' + user);
+        //     } else {
+        //         console.log('User joined: ' + user);
+        //     }
+        // });
     }
 
     sendMessage() {
-        this.chatService.sendMessage({
-            author: this.user,
-            message: this.message,
-            datetime: '',
-            type: 'message'
-        });
-        this.message = '';
+        // this.chatService.sendMessage({
+        //     author: this.user,
+        //     message: this.message,
+        //     datetime: '',
+        //     type: 'message'
+        // });
+        // this.message = '';
     }
 
     getUser() {
@@ -45,9 +45,9 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     getInitialMessages() {
-        this.connection = this.chatService.getMessages().subscribe(message => {
-            this.messages.push(message);
-        });
+        // this.connection = this.chatService.getMessages().subscribe(message => {
+        //     this.messages.push(message);
+        // });
     }
 
     ngOnInit() {
@@ -56,6 +56,6 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        // this.connection.unsubscribe();
     }
 }
