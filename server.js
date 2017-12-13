@@ -13,9 +13,11 @@ app.use(require('helmet')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'static')));
+app.set('trust proxy', true);
+app.set('trust proxy', 'loopback');
 // app.use('/api', api);
 
-router.get('/socket', (req, res) => {
+router.get('/api', (req, res) => {
     res.send('api works');
 });
 
