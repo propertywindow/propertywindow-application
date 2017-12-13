@@ -7,12 +7,17 @@ const https = require('https');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const app = express();
+const router = express.Router();
 
 app.use(require('helmet')());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'static')));
 // app.use('/api', api);
+
+router.get('/', (req, res) => {
+    res.send('api works');
+});
 
 const port = process.env.PORT || '8000';
 app.set('port', port);
