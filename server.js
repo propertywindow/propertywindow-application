@@ -18,12 +18,12 @@ const port = process.env.PORT || '8000';
 app.set('port', port);
 
 const server = http.createServer(app);
-if ( app.get('env') !== 'development' ) {
-    const server = https.createServer({
-        cert: fs.readFileSync('/etc/letsencrypt/live/propertywindow.nl/fullchain.pem'),
-        key: fs.readFileSync('/etc/letsencrypt/live/propertywindow.nl/privkey.pem')
-    }, app);
-}
+// if ( app.get('env') !== 'development' ) {
+//     const server = https.createServer({
+//         cert: fs.readFileSync('/etc/letsencrypt/live/propertywindow.nl/fullchain.pem'),
+//         key: fs.readFileSync('/etc/letsencrypt/live/propertywindow.nl/privkey.pem')
+//     }, app);
+// }
 
 const io = require('socket.io')(server);
 
