@@ -19,7 +19,7 @@ export class ChatService {
         // this.socket.emit('add-message', chatMessage);
     }
 
-    getMessages(): Observable<ChatMessage> {
+    // getMessages(): Observable<ChatMessage> {
 
         // let observable = new Observable<ChatMessage>(messages => {
         //     this.socket.on('message', (chatMessage) => {
@@ -27,7 +27,7 @@ export class ChatService {
         //     });
         // });
         // return observable;
-    }
+    // }
 
     getUsers() {
         // let observable = new Observable(observer => {
