@@ -7,7 +7,6 @@
     "start": "ng serve",
     "serve-background": "ng serve &",
     "build": "ng build --prod",
-    "express": "nodemon server.js",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
