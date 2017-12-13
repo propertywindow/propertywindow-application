@@ -1,7 +1,0 @@
-{
-  "/socket/*":{
-    "target":"https://localhost:8000",
-    "secure":false,
-    "logLevel":"debug"
-  }
-}
