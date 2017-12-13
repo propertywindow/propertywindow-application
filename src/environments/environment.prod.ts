@@ -1,5 +1,5 @@
 export const environment = {
 	production: true,
 	engineUrl: 'https://engine.propertywindow.nl/',
-	ws_url: 'https://propertywindow.nl/api'
+	ws_url: 'https://socket.propertywindow.nl'
 };
