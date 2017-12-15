@@ -14,7 +14,7 @@ pipeline {
             steps {
                 echo 'Building ...'
                 sh 'npm install'
-                sh 'sudo npm i -g --unsafe-perm @angular/cli'
+                sh 'npm i -g --unsafe-perm @angular/cli'
                 sh 'ng build --prod --build-optimizer=false'
             }
         }
