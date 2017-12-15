@@ -22,6 +22,29 @@
             <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_users" role="tabpanel">
                 <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
 
+                    <div class="m-list-timeline">
+                        <div class="m-list-timeline__group">
+                            <div class="m-list-timeline__heading">
+                                Online Users
+                            </div>
+                            <!--<img *ngIf="user.avatar" [src]="'./assets/app/image_data/' + user.avatar"-->
+                            <!--class="rounded-circle max-w-40 m-r-10 ">-->
+                            <div class="m-list-timeline__items" *ngFor="let user of users">
+                                <div class="m-list-timeline__item">
+                                    <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
+                                    <a href="" class="m-list-timeline__text">
+                                        {{user.full_name}}
+                                        <span class="m-badge m-badge--success m-badge--wide">
+										online
+									</span>
+                                    </a>
+                                    <span class="m-list-timeline__time">
+									{{user.last_online | amTimeAgo}}
+								</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
