@@ -14,6 +14,7 @@ pipeline {
             steps {
                 echo 'Building ...'
                 sh 'npm install'
+                sh 'npm rebuild node-sass --force'
                 sh 'npm i -g --unsafe-perm @angular/cli'
                 sh 'ng build --prod --build-optimizer=false'
             }
