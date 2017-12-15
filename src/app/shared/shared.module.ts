@@ -14,7 +14,7 @@ import {
 	UserService,
 	ServiceService,
 	PropertyService,
-	ChatService
+	ConversationService
 } from "./services";
 
 @NgModule({
@@ -36,7 +36,7 @@ import {
 		UserService,
 		ServiceService,
 		PropertyService,
-		ChatService,
+        ConversationService,
 	],
 	entryComponents: [AlertComponent]
 })

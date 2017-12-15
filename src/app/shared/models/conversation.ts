@@ -1,6 +1,6 @@
 import { User } from './user';
 
-export class ChatMessage {
+export class Conversation {
 	author: User;
 	message?: string;
 	datetime: string;

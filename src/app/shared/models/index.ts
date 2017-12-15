@@ -1,4 +1,4 @@
 export * from './user';
 export * from './service';
 export * from './service-group';
-export * from './chat-message';
+export * from './conversation';

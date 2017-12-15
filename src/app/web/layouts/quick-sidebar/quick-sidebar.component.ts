@@ -1,26 +1,28 @@
 import {Component, OnInit, OnDestroy, ViewEncapsulation} from '@angular/core';
-import {ChatService, UserService} from '../../../shared/services';
-import {ChatMessage, User} from '../../../shared/models';
+import {ConversationService, UserService} from '../../../shared/services';
+import {Conversation, User} from '../../../shared/models';
 
 @Component({
     selector: "app-quick-sidebar",
     templateUrl: "./quick-sidebar.component.html",
     encapsulation: ViewEncapsulation.None,
-    providers: [ChatService]
+    providers: [ConversationService]
 })
 export class QuickSidebarComponent implements OnInit, OnDestroy {
 
-    messages: ChatMessage[] = [];
+    conversation: Conversation[] = [];
     user: User;
     message: string;
     connection;
 
-    constructor(private chatService: ChatService, private userService: UserService) {
+    constructor(private _conversationService: ConversationService, private _userService: UserService) {
 
     }
 
+    // todo: check if logged in
+
     sendMessage() {
-        this.chatService.sendMessage({
+        this._conversationService.sendMessage({
             author: this.user,
             message: this.message,
             datetime: '',
@@ -30,7 +32,7 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     getUser() {
-        this.userService.getUser()
+        this._userService.getUser()
             .subscribe(
                 data => {
                     this.user = data;
@@ -38,14 +40,16 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     getInitialMessages() {
-        this.connection = this.chatService.getMessages().subscribe(message => {
-            this.messages.push(message);
+        this.connection = this._conversationService.getConversation().subscribe(message => {
+            this.conversation.push(message);
         });
     }
 
     ngOnInit() {
-        this.getUser();
-        this.getInitialMessages();
+        if (this._userService.verify()) {
+            this.getUser();
+            this.getInitialMessages();
+        }
     }
 
     ngOnDestroy() {

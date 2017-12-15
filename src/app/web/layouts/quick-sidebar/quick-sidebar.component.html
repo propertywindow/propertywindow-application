@@ -28,7 +28,7 @@
                     <div class="m-messenger__messages">
 
 
-                        <div *ngFor="let item of messages" class="m-messenger__message" [ngClass]="[(item.author.id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
+                        <div *ngFor="let item of conversation" class="m-messenger__message" [ngClass]="[(item.author.id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
                             <div  *ngIf="item.author.id !== user.id" class="m-messenger__message-pic">
                             <img [src]="'./assets/app/image_data/' + item.author.avatar"/>
                             </div>
