@@ -36,7 +36,7 @@ import {
 		UserService,
 		ServiceService,
 		PropertyService,
-        ConversationService,
+		ConversationService,
 	],
 	entryComponents: [AlertComponent]
 })
