@@ -22,6 +22,7 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     // todo: check if logged in
 
     sendMessage() {
+        console.log('test1');
         this._conversationService.sendMessage({
             author: this.user,
             message: this.message,
