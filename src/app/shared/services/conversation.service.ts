@@ -32,12 +32,10 @@ export class ConversationService {
     // }
 
     sendMessage(conversation: Conversation) {
-        console.log('test2');
         this.socket.emit('add-message', conversation);
     }
 
     getConversation(): Observable<Conversation> {
-        console.log('test3');
         let observable = new Observable<Conversation>(messages => {
             this.socket.on('message', (conversation) => {
                 messages.next(conversation);
