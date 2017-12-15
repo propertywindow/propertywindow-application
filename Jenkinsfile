@@ -14,8 +14,6 @@ pipeline {
             steps {
                 echo 'Building ...'
                 sh 'npm install'
-                sh 'npm install -g node-gyp'
-                sh 'npm install -g @angular/cli'
                 sh 'ng build --prod --build-optimizer=false'
             }
         }
