@@ -10,7 +10,7 @@ pipeline {
     }
 
     stages {
-        stage('build') {
+        stage('Construction: Build') {
             steps {
                 echo 'Building ...'
                 sh 'npm install'
@@ -18,10 +18,19 @@ pipeline {
                 sh 'ng build --prod --build-optimizer=false'
             }
         }
-        stage('test') {
+        stage('Construction: Test') {
             steps {
                 echo 'Testing...'
                 sh 'npm test'
+            }
+        }
+        stage('Deploying: Deploy') {
+            steps {
+                echo 'Deploying...'
+                sshagent(['52488a7e-586a-4087-a6fc-4654e5420403']) {
+                    sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl rm -rf /var/www/propertywindow.nl/html/*'
+                    sh 'scp -r ./ root@propertywindow.nl:/var/www/propertywindow.nl/html'
+                }
             }
         }
     }
