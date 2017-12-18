@@ -38,9 +38,6 @@ pipeline {
     }
 }
 
-
-
-
 def notifyBuild(String buildStatus = 'STARTED') {
 
   buildStatus =  buildStatus ?: 'SUCCESSFUL'
