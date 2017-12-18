@@ -4,7 +4,7 @@ pipeline {
 
     agent {
         docker {
-            image 'docker pull teracy/angular-cli'
+            image 'teracy/angular-cli'
             args '-u root'
         }
     }
