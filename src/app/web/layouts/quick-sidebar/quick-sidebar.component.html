@@ -4,58 +4,43 @@
 		<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
 			<i class="la la-close"></i>
 		</span>
-        <ul id="m_quick_sidebar_tabs" class="nav nav-tabs m-tabs m-tabs-line m-tabs-line--brand" role="tablist">
-            <li class="nav-item m-tabs__item">
-                <a class="nav-link m-tabs__link active" data-toggle="tab" href="#m_quick_sidebar_tabs_users"
-                   role="tab">
-                    Users
-                </a>
-            </li>
-            <li class="nav-item m-tabs__item">
-                <a class="nav-link m-tabs__link" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger"
-                   role="tab">
-                    Messages
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_users" role="tabpanel">
-                <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
 
-                    <div class="m-list-timeline">
-                        <div class="m-list-timeline__group">
-                            <div class="m-list-timeline__heading">
-                                Online Users
-                            </div>
-                            <!--<img *ngIf="user.avatar" [src]="'./assets/app/image_data/' + user.avatar"-->
-                            <!--class="rounded-circle max-w-40 m-r-10 ">-->
-                            <div class="m-list-timeline__items" *ngFor="let user of users">
-                                <div class="m-list-timeline__item">
-                                    <span class="m-list-timeline__badge m-list-timeline__badge--state-success"></span>
-                                    <a href="" class="m-list-timeline__text">
+        <div class="tab-content">
+
+            <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_users" role="tabpanel">
+                <h3>Colleagues</h3>
+
+                <div class="m-widget4">
+                    <div class="m-widget4__item"  *ngFor="let user of users">
+                        <div class="m-widget4__img m-widget4__img--pic">
+                            <img alt="" *ngIf="user.avatar" [src]="'./assets/app/image_data/' + user.avatar">
+                        </div>
+                        <div class="m-widget4__info" role="tab" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger">
+                                    <span class="m-widget4__title">
                                         {{user.full_name}}
-                                        <span class="m-badge m-badge--success m-badge--wide">
-										online
-									</span>
-                                    </a>
-                                    <span class="m-list-timeline__time">
-									{{user.last_online | amTimeAgo}}
-								</span>
-                                </div>
-                            </div>
+                                    </span>
+                            <br>
+                            <span class="m-widget4__sub" *ngIf="user.last_online">
+                                        {{user.last_online | amTimeAgo}}
+                                    </span>
+                        </div>
+                        <div class="m-widget4__ext" *ngIf="user.last_online">
+                            <span class="m-badge m-badge--success">
+                                2
+                            </span>
                         </div>
                     </div>
                 </div>
+
             </div>
 
             <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
                 <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
                     <div class="m-messenger__messages">
 
-
                         <div *ngFor="let item of conversation" class="m-messenger__message" [ngClass]="[(item.author.id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
                             <div  *ngIf="item.author.id !== user.id" class="m-messenger__message-pic">
-                            <img [src]="'./assets/app/image_data/' + item.author.avatar"/>
+                                <img [src]="'./assets/app/image_data/' + item.author.avatar"/>
                             </div>
                             <!--<div *ngIf="item.author.id !== user.id" class="m-messenger__message-no-pic m&#45;&#45;bg-fill-danger">-->
 								<!--<span>-->
@@ -89,12 +74,13 @@
                         </div>
                         <div class="m-messenger__form-tools">
                             <a href="#" class="m-messenger__form-attachment" (click)="sendMessage()">
-                                <i class="la la-paperclip"></i>
+                                <i class="la la-send"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
+
 
         </div>
     </div>

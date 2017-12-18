@@ -21,6 +21,7 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     // todo: check if logged in
+    // todo: add smilies, chatnoices
 
     sendMessage() {
         this._conversationService.sendMessage({
