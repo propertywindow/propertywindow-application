@@ -11,10 +11,11 @@
                 }
             }
 
-            try {
-                notifyBuild('STARTED')
+            stages {
 
-                stages {
+                try {
+                    notifyBuild('STARTED')
+
                     stage('Construction: Build') {
                         steps {
                             echo 'Building ...'
@@ -39,13 +40,12 @@
                             }
                         }
                     }
+                } catch (e) {
+                    currentBuild.result = "FAILED"
+                    throw e
+                } finally {
+                    notifyBuild(currentBuild.result)
                 }
-
-            } catch (e) {
-                currentBuild.result = "FAILED"
-                throw e
-            } finally {
-                notifyBuild(currentBuild.result)
             }
     }
 
