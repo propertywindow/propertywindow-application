@@ -1,5 +1,7 @@
 #!/usr/bin/env groovy
 
+notifyBuild('STARTED')
+
 pipeline {
 
     agent {
@@ -12,7 +14,6 @@ pipeline {
     stages {
             stage('Construction: Build') {
                 steps {
-                    notifyBuild('STARTED')
                     echo 'Building ...'
                     sh 'npm install'
                     sh 'ng build --prod --build-optimizer=false'
