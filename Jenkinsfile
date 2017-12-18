@@ -32,7 +32,7 @@ pipeline {
                         sh 'ssh -o StrictHostKeyChecking=no -l root propertywindow.nl rm -rf /var/www/propertywindow.nl/html/*'
                         sh 'scp -r ./dist/ root@propertywindow.nl:/var/www/propertywindow.nl/html'
                     }
-                    notifyBuild()
+                    notifyBuild('SUCCESSFUL')
                 }
             }
     }
@@ -47,12 +47,12 @@ def notifyBuild(String buildStatus = 'STARTED') {
 
   def colorName = 'RED'
   def colorCode = '#FF0000'
-  def subject = "${buildStatus}: Job '${env.JOB_NAME}'"
+  def subject = "${buildStatus}: Build '${env.JOB_NAME}'"
   def summary = "${subject} (${env.BUILD_URL})"
 
   if (buildStatus == 'STARTED') {
     color = 'YELLOW'
-    colorCode = '#4E9CDB'
+    colorCode = '#E6993B'
   } else if (buildStatus == 'SUCCESSFUL') {
     color = 'GREEN'
     colorCode = '#56A459'
