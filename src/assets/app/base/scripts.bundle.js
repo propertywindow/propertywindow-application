@@ -7255,7 +7255,7 @@ var mLayout = function() {
                 state: 'm-brand__toggler--active'
             }
         });
-    }
+    };
 
     // handle sidebar toggle
     var initLeftAsideToggle = function() {
@@ -7276,7 +7276,7 @@ var mLayout = function() {
             horMenu.pauseDropdownHover(800);
             asideMenu.pauseDropdownHover(800);
         })
-    }
+    };
 
     var initTopbar = function() {
         $('#m_aside_header_topbar_mobile_toggle').click(function() {
@@ -7293,7 +7293,7 @@ var mLayout = function() {
             $('#m_topbar_notification_icon .m-nav__link-icon').removeClass('m-animate-shake');
             $('#m_topbar_notification_icon .m-nav__link-badge').removeClass('m-animate-blink');
         }, 6000);
-    }
+    };
 
     // handle quick search
     var initQuicksearch = function() {
@@ -7317,14 +7317,14 @@ var mLayout = function() {
                 }
             }
         });
-    }
+    };
 
     var initScrollTop = function() {
         $('[data-toggle="m-scroll-top"]').mScrollTop({
             offset: 300,
             speed: 600
         });
-    }
+    };
 
     return {
         init: function() {
@@ -7371,74 +7371,74 @@ $(document).ready(function() {
 });
 
 
-var mQuickSidebar = function() {
-    var topbarAside = $('#m_quick_sidebar');
-    var topbarAsideTabs = $('#m_quick_sidebar_tabs');
-    var topbarAsideClose = $('#m_quick_sidebar_close');
-    var topbarAsideToggle = $('#m_quick_sidebar_toggle');
-    var topbarAsideContent = topbarAside.find('.m-quick-sidebar__content');
+const mQuickSidebar = function() {
+    const topbarAside = $('#m_quick_sidebar');
+    const topbarAsideTabs = $('#m_quick_sidebar_tabs');
+    const topbarAsideClose = $('#m_quick_sidebar_close');
+    const topbarAsideToggle = $('#m_quick_sidebar_toggle');
+    const topbarAsideContent = topbarAside.find('.m-quick-sidebar__content');
 
-    var initMessages = function() {
-        var init = function() {
-            var messenger = $('#m_quick_sidebar_tabs_messenger');
-            var messengerMessages = messenger.find('.m-messenger__messages');
+    const initMessages = function() {
+        let init = function() {
+            let messenger = $('#m_quick_sidebar_tabs_messenger');
+            let messengerMessages = messenger.find('.m-messenger__messages');
 
-            var height = topbarAside.outerHeight(true) -
+            let height = topbarAside.outerHeight(true) -
                 topbarAsideTabs.outerHeight(true) -
                 messenger.find('.m-messenger__form').outerHeight(true) - 120;
 
             // init messages scrollable content
             messengerMessages.css('height', height);
             mApp.initScroller(messengerMessages, {});
-        }
+        };
 
         init();
 
         // reinit on window resize
         mUtil.addResizeHandler(init);
-    }
+    };
 
-    var initSettings = function() {
+    const initSettings = function() {
         // init dropdown tabbable content
-        var init = function() {
-            var settings = $('#m_quick_sidebar_tabs_settings');
-            var height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
+        let init = function() {
+            let settings = $('#m_quick_sidebar_tabs_settings');
+            let height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
 
             // init settings scrollable content
             settings.css('height', height);
             mApp.initScroller(settings, {});
-        }
+        };
 
         init();
 
         // reinit on window resize
         mUtil.addResizeHandler(init);
-    }
+    };
 
-    var initLogs = function() {
+    const initLogs = function() {
         // init dropdown tabbable content
-        var init = function() {
-            var logs = $('#m_quick_sidebar_tabs_logs');
-            var height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
+        let init = function() {
+            let logs = $('#m_quick_sidebar_tabs_logs');
+            let height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
 
             // init settings scrollable content
             logs.css('height', height);
             mApp.initScroller(logs, {});
-        }
+        };
 
         init();
 
         // reinit on window resize
         mUtil.addResizeHandler(init);
-    }
+    };
 
-    var initOffcanvasTabs = function() {
+    const initOffcanvasTabs = function() {
         initMessages();
         initSettings();
         initLogs();
-    }
+    };
 
-    var initOffcanvas = function() {
+    const initOffcanvas = function() {
         topbarAside.mOffcanvas({
             class: 'm-quick-sidebar',
             overlay: true,
@@ -7458,7 +7458,7 @@ var mQuickSidebar = function() {
                 initOffcanvasTabs();
             }, 1000);
         });
-    }
+    };
 
     return {
         init: function() {
