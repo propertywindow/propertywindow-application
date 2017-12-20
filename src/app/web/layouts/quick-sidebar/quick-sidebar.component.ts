@@ -24,12 +24,15 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
 	// todo: add smilies, chatnoices
 
 	sendMessage() {
-		this._conversationService.sendMessage({
-			author: this.user,
-			message: this.message,
-			datetime: '',
-			type: 'message'
-		});
+		if (this.message) {
+            this._conversationService.sendMessage({
+                author: this.user,
+                message: this.message,
+                datetime: '',
+                type: 'message'
+            });
+		}
+
 		this.message = '';
 	}
 
