@@ -1,17 +1,32 @@
-var Dashboard = function() {
+const Dashboard = function() {
 
-    var daterangepickerInit = function() {
+    const initTimer = function () {
+        $.sessionTimeout({
+            title: 'Session Timeout',
+            message: 'Your session is about to expire.',
+            keepAliveUrl: 'http://keenthemes.com/metronic/preview/inc/api/session-timeout/keepalive.php',
+            redirUrl: '/logout',
+            logoutUrl: '/logout',
+            warnAfter: 600000,
+            redirAfter: 660000,
+            ignoreUserActivity: true,
+            countdownMessage: 'Lock session in {timer} seconds.',
+            countdownBar: true
+        });
+    };
+
+    const daterangepickerInit = function() {
         if ($('#m_dashboard_daterangepicker').length === 0) {
             return;
         }
 
-        var picker = $('#m_dashboard_daterangepicker');
-        var start = moment();
-        var end = moment();
+        let picker = $('#m_dashboard_daterangepicker');
+        let start = moment();
+        let end = moment();
 
         function cb(start, end, label) {
-            var title = '';
-            var range = '';
+            let title = '';
+            let range = '';
 
             if ((end - start) < 100) {
                 title = 'Today:';
@@ -44,9 +59,27 @@ var Dashboard = function() {
         cb(start, end, '');
     };
 
+    const latestTrendsMap = function() {
+        if ($('#m_chart_latest_trends_map').length === 0) {
+            return;
+        }
+
+        try {
+            let map = new GMaps({
+                div: '#m_chart_latest_trends_map',
+                lat: 55.953252,
+                lng: -3.188267
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    };
+
     return {
         init: function() {
             daterangepickerInit();
+            latestTrendsMap();
+            initTimer();
         }
     };
 }();
