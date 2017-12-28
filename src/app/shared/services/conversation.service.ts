@@ -1,58 +1,82 @@
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
-import { environment } from '../../../environments/environment';
-import { Conversation, User } from '../models';
+import {Injectable} from '@angular/core';
+import {Headers, Http, RequestOptions, Response} from "@angular/http";
+import {Observable} from 'rxjs/Rx';
+import {environment} from '../../../environments/environment';
+import {Conversation, Message, User} from '../models';
 import * as io from 'socket.io-client';
-import { UserService } from './user.service';
+import {UserService} from './user.service';
 
 @Injectable()
 export class ConversationService {
-	socket: SocketIOClient.Socket;
-	messages: Conversation[] = [];
-	user: User;
+    socket: SocketIOClient.Socket;
+    messages: Conversation[] = [];
+    user: User;
 
-	// todo: rename to conversation, model too
+    constructor(private userService: UserService, private http: Http) {
+        this.socket = io.connect(environment.ws_url);
+        this.getUser();
+        // this.initChat();
+    }
 
-	constructor(private userService: UserService) {
-		this.socket = io.connect(environment.ws_url);
-		this.getUser();
-		// this.initChat();
-	}
+    // todo: logic to save to db goes here, no need to place in server
+    // todo: check if logged in
 
-	// todo: logic to save to db goes here, no need to place in server
-	// todo: check if logged in
+    // initChat() {
+    //     this.socket.emit('add-message', {
+    //         author: this.user,
+    //         message: 'online',
+    //         datetime: '',
+    //         type: 'event'
+    //     });
+    // }
 
-	// initChat() {
-	//     this.socket.emit('add-message', {
-	//         author: this.user,
-	//         message: 'online',
-	//         datetime: '',
-	//         type: 'event'
-	//     });
-	// }
+    sendMessage(message: Message) {
+        this.socket.emit('add-message', message);
+    }
 
-	sendMessage(conversation: Conversation) {
-		this.socket.emit('add-message', conversation);
-	}
+    getMessages(recipient_id: number): Observable<Message[]> {
+        const data = {
+            'jsonrpc': '2.0',
+            'method': 'getConversationByRecipient',
+            'params': {
+                'recipient_id': recipient_id
+            }
+        };
+        return this.http
+            .post(environment.engineUrl + 'conversation', data, this.jwt())
+            .map((response: Response) => response.json().result);
+    };
 
-	getConversation(): Observable<Conversation> {
-		let observable = new Observable<Conversation>(messages => {
-			this.socket.on('message', (conversation) => {
-				messages.next(conversation);
-			});
-		});
-		return observable;
-	}
+    getNewMessages(): Observable<Message> {
+        let observable = new Observable<Message>(messages => {
+            this.socket.on('message', (message) => {
+                messages.next(message);
+            });
+        });
+        return observable;
+    }
 
-	getUser() {
-		this.userService.getUser()
-			.subscribe(
-			data => {
-				this.user = data;
-			});
-	}
+    getUser() {
+        this.userService.getUser()
+            .subscribe(
+                data => {
+                    this.user = data;
+                });
+    }
 
-	unsubscribe() {
-		this.socket.disconnect();
-	}
+    unsubscribe() {
+        this.socket.disconnect();
+    }
+
+
+
+    // private helper methods
+
+    private jwt() {
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        if (currentUser && currentUser.token) {
+            let headers = new Headers({'Authorization': 'Basic ' + currentUser.token});
+            return new RequestOptions({headers: headers});
+        }
+    }
 }

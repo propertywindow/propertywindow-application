@@ -79,7 +79,7 @@ const Dashboard = function() {
         init: function() {
             daterangepickerInit();
             latestTrendsMap();
-            initTimer();
+            // initTimer();
         }
     };
 }();

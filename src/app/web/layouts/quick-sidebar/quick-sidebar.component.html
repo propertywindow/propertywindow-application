@@ -1,75 +1,91 @@
 <!-- begin::Quick Sidebar -->
 <div id="m_quick_sidebar" class="m-quick-sidebar m-quick-sidebar--tabbed m-quick-sidebar--skin-light" appunwraptag="">
     <div class="m-quick-sidebar__content m--hide">
-		<span id="m_quick_sidebar_close" class="m-quick-sidebar__close">
-			<i class="la la-close"></i>
-		</span>
 
-        <div class="tab-content">
+		<button type="button" id="m_quick_sidebar_close" class="btn btn-secondary m-btn m-btn--icon" style="float:right;">
+			<span>
+                <i class="la la-close"></i>
+                <span>Close</span>
+            </span>
+		</button>
 
-            <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_users" role="tabpanel">
-                <h3>Colleagues</h3>
+        <button type="button" class="btn btn-secondary m-btn m-btn--icon" (click)="toggleChat(null)"
+                [attr.aria-expanded]="!isCollapsed" [hidden]="!isCollapsed" style="float:left;">
+            <span>
+                <i class="la la-angle-left"></i>
+                <span>Back</span>
+            </span>
+        </button>
 
-                <div class="m-widget4">
-                    <div class="m-widget4__item"  *ngFor="let user of users">
-                        <div class="m-widget4__img m-widget4__img--pic">
-                            <img alt="" *ngIf="user.avatar" [src]="'./assets/app/image_data/' + user.avatar">
-                        </div>
-                        <div class="m-widget4__info" role="tab" data-toggle="tab" href="#m_quick_sidebar_tabs_messenger">
-                                    <span class="m-widget4__title">
-                                        {{user.full_name}}
-                                    </span>
-                            <br>
-                            <span class="m-widget4__sub" *ngIf="user.last_online">
-                                        {{user.last_online | amTimeAgo}}
-                                    </span>
-                        </div>
-                        <div class="m-widget4__ext" *ngIf="user.last_online">
-                            <span class="m-badge m-badge--success">
-                                2
-                            </span>
-                        </div>
+        <br><br><hr>
+
+        <div class="m-scrollable" [ngbCollapse]="isCollapsed">
+            <div class="m-widget4">
+                <div class="m-widget4__item"  *ngFor="let user of users">
+                    <div class="m-widget4__img m-widget4__img--pic">
+                        <img alt="" *ngIf="user.avatar" [src]="'./assets/app/image_data/' + user.avatar">
                     </div>
+                    <div class="m-widget4__info">
+                                <span class="m-widget4__title">
+                                    {{user.full_name}}
+                                </span>
+                        <br>
+                        <span class="m-widget4__sub" *ngIf="user.last_online">
+                                    {{user.last_online | amTimeAgo}}
+                                </span>
+                    </div>
+                    <div class="m-widget4__ext">
+                        <button type="button" class="btn btn-outline-primary" (click)="toggleChat(user)"
+                                [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">Chat
+                        </button>
+                    </div>
+
+                    <!--<div class="m-widget4__ext" *ngIf="user.last_online">-->
+                        <!--<span class="m-badge m-badge&#45;&#45;success">-->
+                            <!--2-->
+                        <!--</span>-->
+                    <!--</div>-->
                 </div>
-
             </div>
+        </div>
 
-            <div class="tab-pane active m-scrollable" id="m_quick_sidebar_tabs_messenger" role="tabpanel">
-                <p role="tab" data-toggle="tab" href="#m_quick_sidebar_tabs_users">Back</p>
+        <div class="m-scrollable" [ngbCollapse]="!isCollapsed">
+            <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
+                <div class="m-messenger__messages">
 
-                <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
-                    <div class="m-messenger__messages">
-
-                        <div *ngFor="let item of conversation" class="m-messenger__message" [ngClass]="[(item.author.id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
-                            <div  *ngIf="item.author.id !== user.id" class="m-messenger__message-pic">
-                                <img [src]="'./assets/app/image_data/' + item.author.avatar"/>
-                            </div>
-                            <!--<div *ngIf="item.author.id !== user.id" class="m-messenger__message-no-pic m&#45;&#45;bg-fill-danger">-->
-								<!--<span>-->
-									<!--M-->
-								<!--</span>-->
-                            <!--</div>-->
-                            <div class="m-messenger__message-body">
-                                <div class="m-messenger__message-arrow"></div>
-                                <div class="m-messenger__message-content">
-                                    <div *ngIf="item.author.id !== user.id" class="m-messenger__message-username">
-                                        {{item.author.first_name}} wrote
-                                    </div>
-                                    <div class="m-messenger__message-text">
-                                        {{item.message}}
-                                    </div>
+                    <div *ngFor="let item of messages" class="m-messenger__message" [ngClass]="[(item.author_id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
+                        <div  *ngIf="item.author_id !== user.id" class="m-messenger__message-pic">
+                            <img [src]="'./assets/app/image_data/' + recipient.avatar"/>
+                        </div>
+                        <!--<div *ngIf="item.author.id !== user.id" class="m-messenger__message-no-pic m&#45;&#45;bg-fill-danger">-->
+                            <!--<span>-->
+                                <!--M-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <div class="m-messenger__message-body">
+                            <div class="m-messenger__message-arrow"></div>
+                            <div class="m-messenger__message-content">
+                                <div *ngIf="item.author_id !== user.id" class="m-messenger__message-username">
+                                    {{recipient.first_name}} wrote
+                                </div>
+                                <div class="m-messenger__message-text">
+                                    {{item.message}}
                                 </div>
                             </div>
                         </div>
-
-                        <!--<div class="m-messenger__datetime">-->
-                            <!--2:30PM-->
-                        <!--</div>-->
-
-                        <!--(ngModelChange)="typeMessage($event)"-->
-
                     </div>
+
+                    <!--<div class="m-messenger__datetime">-->
+                        <!--2:30PM-->
+                    <!--</div>-->
+
+                    <!--(ngModelChange)="typeMessage($event)"-->
+
+                </div>
+
+                <div class="m-messenger__footer">
                     <div class="m-messenger__seperator"></div>
+
                     <div class="m-messenger__form">
                         <div class="m-messenger__form-controls">
                             <input [(ngModel)]="message" (keyup.enter)="sendMessage()" type="text" name="" placeholder="Type here..." class="m-messenger__form-input">
@@ -81,10 +97,11 @@
                         </div>
                     </div>
                 </div>
+
+
             </div>
-
-
         </div>
+
     </div>
 </div>
 <!-- end::Quick Sidebar -->
