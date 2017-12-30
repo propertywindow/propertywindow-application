@@ -70,8 +70,7 @@
                                 <div *ngIf="item.author_id !== user.id" class="m-messenger__message-username">
                                     {{recipient.first_name}} wrote
                                 </div>
-                                <div class="m-messenger__message-text">
-                                    {{item.message}}
+                                <div class="m-messenger__message-text" [innerHTML]="item.message | upperfirst">
                                 </div>
                             </div>
                         </div>

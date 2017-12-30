@@ -13,6 +13,7 @@ import {HrefPreventDefaultDirective} from '../../shared/directives/href-prevent-
 import {UnwrapTagDirective} from '../../shared/directives/unwrap-tag.directive';
 import {MomentModule} from 'angular2-moment';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import {NgPipesModule} from 'angular-pipes';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
         RouterModule,
         MomentModule,
         NgbModule.forRoot(),
+        NgPipesModule,
     ]
 })
 export class LayoutModule {

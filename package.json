@@ -29,6 +29,7 @@
     "@types/howler": "^2.0.5",
     "@types/jquery": "^3.2.6",
     "angular-datatables": "^5.0.0",
+    "angular-pipes": "^6.5.3",
     "angular2-moment": "^1.7.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",

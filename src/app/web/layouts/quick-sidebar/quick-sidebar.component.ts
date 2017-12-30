@@ -44,9 +44,6 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                 type: 'message'
             });
         }
-
-        console.log(this.message);
-
         this.message = '';
     }
 
@@ -82,11 +79,12 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     }
 
     toggleChat(recipient: User) {
+        this.isCollapsed = !this.isCollapsed;
+        this.messages = [];
         if (recipient) {
             this.recipient = recipient;
             this.getInitialMessages();
         }
-        this.isCollapsed = !this.isCollapsed;
     }
 
     ngOnInit() {

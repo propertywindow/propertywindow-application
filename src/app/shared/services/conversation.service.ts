@@ -32,6 +32,17 @@ export class ConversationService {
 
     sendMessage(message: Message) {
         this.socket.emit('add-message', message);
+
+        const data = {
+            'jsonrpc': '2.0',
+            'method': 'createConversation',
+            'params': {
+                'recipient_id': message.recipient_id,
+                'message': message.message
+            }
+        };
+
+        this.http.post(environment.engineUrl + 'conversation', data, this.jwt()).subscribe();
     }
 
     getMessages(recipient_id: number): Observable<Message[]> {
