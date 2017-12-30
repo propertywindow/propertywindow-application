@@ -1,6 +1,7 @@
 import {Component, OnInit, OnDestroy, ViewEncapsulation} from '@angular/core';
 import {ConversationService, UserService} from '../../../shared/services';
 import {Conversation, Message, User} from '../../../shared/models';
+import {Howl} from 'howler'
 
 @Component({
     selector: "app-quick-sidebar",
@@ -21,10 +22,18 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
 
     constructor(private _conversationService: ConversationService, private _userService: UserService) {
 
+        const blop = new Howl({
+            src: ['assets/app/media/sounds/blop.mp3'],
+            preload: true,
+            html5 :true
+        });
+
     }
 
-    // todo: add smilies, chat sounds
+    // todo: add smilies
 
+    // todo: strip from html or dangerous code
+    
     sendMessage() {
         if (this.message) {
             this._conversationService.sendMessage({
@@ -35,6 +44,8 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                 type: 'message'
             });
         }
+
+        console.log(this.message);
 
         this.message = '';
     }
@@ -63,17 +74,19 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                     this.messages = data;
                 });
 
+        // blop.play();
+
         this.connection = this._conversationService.getNewMessages().subscribe(messages => {
             this.messages.push(messages);
         });
     }
 
     toggleChat(recipient: User) {
-        this.isCollapsed = !this.isCollapsed;
         if (recipient) {
             this.recipient = recipient;
             this.getInitialMessages();
         }
+        this.isCollapsed = !this.isCollapsed;
     }
 
     ngOnInit() {

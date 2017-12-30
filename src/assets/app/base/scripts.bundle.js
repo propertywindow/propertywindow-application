@@ -7373,19 +7373,19 @@ $(document).ready(function() {
 
 const mQuickSidebar = function() {
     const topbarAside = $('#m_quick_sidebar');
-    const topbarAsideTabs = $('#m_quick_sidebar_tabs');
     const topbarAsideClose = $('#m_quick_sidebar_close');
     const topbarAsideToggle = $('#m_quick_sidebar_toggle');
+    const topbarAsideHeader = $('#m_quick_sidebar_header');
     const topbarAsideContent = topbarAside.find('.m-quick-sidebar__content');
 
     const initMessages = function() {
         let init = function() {
-            let messenger = $('#m_quick_sidebar_tabs_messenger');
+            let messenger = $('#m_quick_sidebar_messenger');
             let messengerMessages = messenger.find('.m-messenger__messages');
 
             let height = topbarAside.outerHeight(true) -
-                topbarAsideTabs.outerHeight(true) -
-                messenger.find('.m-messenger__form').outerHeight(true) - 120;
+                topbarAsideHeader.outerHeight(true) -
+                messenger.find('.m-messenger__form').outerHeight(true) - 160;
 
             // init messages scrollable content
             messengerMessages.css('height', height);
@@ -7398,44 +7398,8 @@ const mQuickSidebar = function() {
         mUtil.addResizeHandler(init);
     };
 
-    const initSettings = function() {
-        // init dropdown tabbable content
-        let init = function() {
-            let settings = $('#m_quick_sidebar_tabs_settings');
-            let height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
-
-            // init settings scrollable content
-            settings.css('height', height);
-            mApp.initScroller(settings, {});
-        };
-
-        init();
-
-        // reinit on window resize
-        mUtil.addResizeHandler(init);
-    };
-
-    const initLogs = function() {
-        // init dropdown tabbable content
-        let init = function() {
-            let logs = $('#m_quick_sidebar_tabs_logs');
-            let height = mUtil.getViewPort().height - topbarAsideTabs.outerHeight(true) - 60;
-
-            // init settings scrollable content
-            logs.css('height', height);
-            mApp.initScroller(logs, {});
-        };
-
-        init();
-
-        // reinit on window resize
-        mUtil.addResizeHandler(init);
-    };
-
     const initOffcanvasTabs = function() {
         initMessages();
-        initSettings();
-        initLogs();
     };
 
     const initOffcanvas = function() {
