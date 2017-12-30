@@ -21,18 +21,9 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     isCollapsed = false;
 
     constructor(private _conversationService: ConversationService, private _userService: UserService) {
-
-        const blop = new Howl({
-            src: ['assets/app/media/sounds/blop.mp3'],
-            preload: true,
-            html5 :true
-        });
-
     }
 
     // todo: add smilies
-
-    // todo: strip from html or dangerous code
     
     sendMessage() {
         if (this.message) {
@@ -71,9 +62,13 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                     this.messages = data;
                 });
 
-        // blop.play();
-
         this.connection = this._conversationService.getNewMessages().subscribe(messages => {
+            const blop = new Howl({
+                src: ['assets/app/media/sounds/blop.mp3'],
+                preload: true,
+                html5 :true
+            });
+            blop.play();
             this.messages.push(messages);
         });
     }

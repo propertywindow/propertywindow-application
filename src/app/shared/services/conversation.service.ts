@@ -18,8 +18,7 @@ export class ConversationService {
         // this.initChat();
     }
 
-    // todo: logic to save to db goes here, no need to place in server
-    // todo: check if logged in
+    // todo: set read when opening messages, and add read icons
 
     // initChat() {
     //     this.socket.emit('add-message', {
