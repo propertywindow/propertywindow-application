@@ -16,8 +16,6 @@ export class ConversationService {
         // this.initChat();
     }
 
-    // todo: set read when opening messages, and add read icons
-
     // initChat() {
     //     this.socket.emit('add-message', {
     //         author: this.user,
@@ -56,13 +54,13 @@ export class ConversationService {
             .map((response: Response) => response.json().result);
     };
 
-    getNewMessages(): Observable<Message> {
-        let observable = new Observable<Message>(messages => {
+
+    newMessages(): Observable<Message> {
+        return new Observable<Message>(messages => {
             this.socket.on('message', (message) => {
                 messages.next(message);
             });
         });
-        return observable;
     }
 
     unsubscribe() {

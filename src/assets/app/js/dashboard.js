@@ -1,4 +1,4 @@
-const Dashboard = function() {
+let Dashboard = function() {
 
     const initTimer = function () {
         $.sessionTimeout({
@@ -78,8 +78,8 @@ const Dashboard = function() {
     return {
         init: function() {
             daterangepickerInit();
-            // latestTrendsMap();
-            // initTimer();
+            latestTrendsMap();
+            initTimer();
         }
     };
 }();

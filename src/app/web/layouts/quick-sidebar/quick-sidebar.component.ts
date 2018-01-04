@@ -7,10 +7,9 @@ import {Howl} from 'howler'
     selector: "app-quick-sidebar",
     templateUrl: "./quick-sidebar.component.html",
     encapsulation: ViewEncapsulation.None,
-    providers: [ConversationService]
+    providers: [ConversationService],
 })
 export class QuickSidebarComponent implements OnInit, OnDestroy {
-
     conversation: Conversation;
     messages: Message[] = [];
     user: User;
@@ -22,8 +21,6 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     constructor(private _conversationService: ConversationService, private _userService: UserService) {
     }
 
-    // todo: add smilies
-    
     sendMessage() {
         if (this.message) {
             this._conversationService.sendMessage({
@@ -53,7 +50,10 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                 });
     }
 
-    // todo: on engine side: create conversation when doesn't exist
+    // todo: on engine side: create conversation when doesn't exist.
+    // todo: only load 10 most recent messages, load more when scrolling up.
+    // todo: set read when opening messages, and add read icons
+    // todo: add smilies
 
     getInitialMessages() {
         this._conversationService.getMessages(this.recipient.id)
@@ -86,13 +86,13 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
         if (this._userService.verify()) {
             this.getUser();
             this.getColleagues();
-            this._conversationService.getNewMessages().subscribe(messages => {
-                const blop = new Howl({
+            this._conversationService.newMessages().subscribe(messages => {
+                const chatSound = new Howl({
                     src: ['assets/app/media/sounds/blop.mp3'],
                     preload: true,
-                    html5 :true
+                    html5: true
                 });
-                blop.play();
+                chatSound.play();
                 this.messages.push(messages);
             });
         }
