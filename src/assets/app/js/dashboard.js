@@ -4,7 +4,7 @@ let Dashboard = function() {
         $.sessionTimeout({
             title: 'Session Timeout',
             message: 'Your session is about to expire.',
-            keepAliveUrl: 'http://keenthemes.com/metronic/preview/inc/api/session-timeout/keepalive.php',
+            keepAliveUrl: 'https://keenthemes.com/metronic/preview/inc/api/session-timeout/keepalive.php',
             redirUrl: '/logout',
             logoutUrl: '/logout',
             warnAfter: 600000,
@@ -79,7 +79,7 @@ let Dashboard = function() {
         init: function() {
             daterangepickerInit();
             latestTrendsMap();
-            initTimer();
+            // initTimer();
         }
     };
 }();
