@@ -55,30 +55,33 @@
             <div class="m-messenger m-messenger--message-arrow m-messenger--skin-light">
                 <div class="m-messenger__messages">
 
-                    <div *ngFor="let item of messages" class="m-messenger__message" [ngClass]="[(item.author_id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
-                        <div  *ngIf="item.author_id !== user.id" class="m-messenger__message-pic">
-                            <img [src]="'./assets/app/image_data/' + recipient.avatar"/>
-                        </div>
-                        <!--<div *ngIf="item.author.id !== user.id" class="m-messenger__message-no-pic m&#45;&#45;bg-fill-danger">-->
+                    <div *ngFor="let item of messages">
+                        <div class="m-messenger__message" [ngClass]="[(item.author_id === user.id)? 'm-messenger__message--out': 'm-messenger__message--in']">
+                            <div  *ngIf="item.author_id !== user.id" class="m-messenger__message-pic">
+                                <img [src]="'./assets/app/image_data/' + recipient.avatar"/>
+                            </div>
+                            <!--<div *ngIf="item.author.id !== user.id" class="m-messenger__message-no-pic m&#45;&#45;bg-fill-danger">-->
                             <!--<span>-->
-                                <!--M-->
+                            <!--M-->
                             <!--</span>-->
-                        <!--</div>-->
-                        <div class="m-messenger__message-body">
-                            <div class="m-messenger__message-arrow"></div>
-                            <div class="m-messenger__message-content">
-                                <div *ngIf="item.author_id !== user.id" class="m-messenger__message-username">
-                                    {{recipient.first_name}} wrote
-                                </div>
-                                <div class="m-messenger__message-text" [innerHTML]="item.message | upperfirst">
+                            <!--</div>-->
+                            <div class="m-messenger__message-body">
+                                <div class="m-messenger__message-arrow"></div>
+                                <div class="m-messenger__message-content">
+                                    <div *ngIf="item.author_id !== user.id" class="m-messenger__message-username">
+                                        {{recipient.first_name}} wrote
+                                    </div>
+                                    <div class="m-messenger__message-text" [innerHTML]="item.message | upperfirst">
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div *ngIf="item.type === 'time'" class="m-messenger__datetime">
+                            {{item.message}}
+                        </div>
                     </div>
 
-                    <!--<div class="m-messenger__datetime">-->
-                        <!--2:30PM-->
-                    <!--</div>-->
 
                     <!--(ngModelChange)="typeMessage($event)"-->
 

@@ -17,7 +17,6 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
     recipient: User;
     users: User[] = [];
     message: string;
-    connection;
     isCollapsed = false;
 
     constructor(private _conversationService: ConversationService, private _userService: UserService) {
@@ -54,6 +53,7 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                 });
     }
 
+    // todo: on engine side: create conversation when doesn't exist
 
     getInitialMessages() {
         this._conversationService.getMessages(this.recipient.id)
@@ -62,15 +62,15 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
                     this.messages = data;
                 });
 
-        this.connection = this._conversationService.getNewMessages().subscribe(messages => {
-            const blop = new Howl({
-                src: ['assets/app/media/sounds/blop.mp3'],
-                preload: true,
-                html5 :true
+        if (this.messages === null) {
+            this._conversationService.sendMessage({
+                author_id: this.user.id,
+                recipient_id: this.recipient.id,
+                message: new Date().toLocaleString(),
+                date: null,
+                type: 'time'
             });
-            blop.play();
-            this.messages.push(messages);
-        });
+        }
     }
 
     toggleChat(recipient: User) {
@@ -86,10 +86,19 @@ export class QuickSidebarComponent implements OnInit, OnDestroy {
         if (this._userService.verify()) {
             this.getUser();
             this.getColleagues();
+            this._conversationService.getNewMessages().subscribe(messages => {
+                const blop = new Howl({
+                    src: ['assets/app/media/sounds/blop.mp3'],
+                    preload: true,
+                    html5 :true
+                });
+                blop.play();
+                this.messages.push(messages);
+            });
         }
     }
 
     ngOnDestroy() {
-        this.connection.unsubscribe();
+        this._conversationService.unsubscribe();
     }
 }

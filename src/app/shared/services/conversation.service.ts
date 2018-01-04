@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
 import {Observable} from 'rxjs/Rx';
 import {environment} from '../../../environments/environment';
-import {Conversation, Message, User} from '../models';
+import {Conversation, Message} from '../models';
 import * as io from 'socket.io-client';
 import {UserService} from './user.service';
 
@@ -10,11 +10,9 @@ import {UserService} from './user.service';
 export class ConversationService {
     socket: SocketIOClient.Socket;
     messages: Conversation[] = [];
-    user: User;
 
     constructor(private userService: UserService, private http: Http) {
         this.socket = io.connect(environment.ws_url);
-        this.getUser();
         // this.initChat();
     }
 
@@ -37,7 +35,8 @@ export class ConversationService {
             'method': 'createConversation',
             'params': {
                 'recipient_id': message.recipient_id,
-                'message': message.message
+                'message': message.message,
+                'type': message.type
             }
         };
 
@@ -64,14 +63,6 @@ export class ConversationService {
             });
         });
         return observable;
-    }
-
-    getUser() {
-        this.userService.getUser()
-            .subscribe(
-                data => {
-                    this.user = data;
-                });
     }
 
     unsubscribe() {
