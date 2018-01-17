@@ -4,7 +4,6 @@ import {Routes, RouterModule} from '@angular/router';
 import {PropertiesComponent} from './properties.component';
 import {LayoutModule} from '../../layouts/layout.module';
 import {PagesComponent} from '../pages.component';
-import {DataTablesModule} from 'angular-datatables';
 
 const routes: Routes = [
     {
@@ -23,8 +22,7 @@ const routes: Routes = [
     imports: [
         CommonModule,
         RouterModule.forChild(routes),
-        LayoutModule,
-        DataTablesModule
+        LayoutModule
     ],
     exports: [
         RouterModule

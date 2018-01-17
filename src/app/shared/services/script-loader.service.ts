@@ -1,40 +1,68 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from '@angular/core';
 import * as $ from 'jquery';
 
 declare let document: any;
 
 interface Script {
-	src: string;
-	loaded: boolean;
+    src: string;
+    loaded: boolean;
 }
 
 @Injectable()
 export class ScriptLoaderService {
-	private _scripts: Script[] = [];
-	private tag: any;
+    public _scripts: Script[] = [];
 
-	load(tag, ...scripts: string[]) {
-		this.tag = tag;
-		scripts.forEach((script: string) => this._scripts[script] = { src: script, loaded: false });
+    /**
+     * Lazy load list of scripts
+     * @param tag
+     * @param scripts
+     * @param loadOnce
+     * @returns {Promise<any[]>}
+     */
+    loadScripts(tag, scripts, loadOnce?: boolean) {
+        loadOnce = loadOnce || false;
 
-		let promises: any[] = [];
-		scripts.forEach((script) => promises.push(this.loadScript(script)));
-		return Promise.all(promises);
-	}
+        scripts.forEach((script: string) => {
+            if (!this._scripts[script]) {
+                this._scripts[script] = {src: script, loaded: false};
+            }
+        });
 
-	loadScript(src: string) {
-		return new Promise((resolve, reject) => {
-			if (this._scripts[src].loaded) {
-				resolve({ script: src, loaded: true, status: 'Already Loaded' });
-			}
-			else {
-				let script = $('<script/>')
-					.attr('type', 'text/javascript')
-					.attr('src', this._scripts[src].src);
+        let promises: any[] = [];
+        scripts.forEach(
+            (script) => promises.push(this.loadScript(tag, script, loadOnce)));
 
-				$(this.tag).append(script);
-				resolve({ script: src, loaded: true, status: 'Loaded' });
-			}
-		});
-	}
+        return Promise.all(promises);
+    }
+
+    /**
+     * Lazy load a single script
+     * @param tag
+     * @param {string} src
+     * @param loadOnce
+     * @returns {Promise<any>}
+     */
+    loadScript(tag, src: string, loadOnce?: boolean) {
+        loadOnce = loadOnce || false;
+
+        if (!this._scripts[src]) {
+            this._scripts[src] = {src: src, loaded: false};
+        }
+
+        return new Promise((resolve, reject) => {
+            // resolve if already loaded
+            if (this._scripts[src].loaded && loadOnce) {
+                resolve({src: src, loaded: true});
+            }
+            else {
+                // load script tag
+                let scriptTag = $('<script/>').attr('type', 'text/javascript').attr('src', this._scripts[src].src);
+
+                $(tag).append(scriptTag);
+
+                this._scripts[src] = {src: src, loaded: true};
+                resolve({src: src, loaded: true});
+            }
+        });
+    }
 }

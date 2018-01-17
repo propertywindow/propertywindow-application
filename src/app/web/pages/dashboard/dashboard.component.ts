@@ -18,10 +18,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     }
 
     ngAfterViewInit() {
-        this._script.load('.m-grid__item.m-grid__item--fluid.m-wrapper',
-            'assets/vendors/custom/gmaps/gmaps.js',
-            'assets/app/js/dashboard.js');
-
+        this._script.loadScripts('.m-grid__item.m-grid__item--fluid.m-wrapper',
+            [
+                'assets/vendors/custom/gmaps/gmaps.js',
+                'assets/app/js/dashboard.js'
+            ]
+        );
     }
-
 }
